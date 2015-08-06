@@ -13,8 +13,8 @@ xlsx_read = {
         for sheetName in xlsx_file.sheet_names
 }
 
-# print the first 10 records for Sacramento
-print(xlsx_read['Sacramento'].head(10))
+# print the first 10 prices for Sacramento
+print(xlsx_read['Sacramento'].head(10)['price'])
 
 # write to Excel
 xlsx_read['Sacramento'] \
