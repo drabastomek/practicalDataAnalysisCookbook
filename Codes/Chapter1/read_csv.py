@@ -1,4 +1,5 @@
 import pandas as pd 
+import xml
 
 # names of files to read from
 r_filenameCSV = '../../Data/Chapter1/realEstate_trans.csv'
