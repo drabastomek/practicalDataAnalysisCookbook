@@ -13,7 +13,7 @@ def xml_encode(row):
     for field in row.index:
         xmlItem \
             .append(
-                '        <field name="{0}">{1}</field>' \
+                '        <variable variable_name="{0}">{1}</variable>' \
                 .format(field, row[field])
             )
     
@@ -51,14 +51,14 @@ def iter_records(records):
     '''
     for record in records:
         # temporary dictionary to hold values
-        return_dict = {}    
+        temp_dict = {}    
 
         # iterate through all the fields
-        for field in record:
-            return_dict[field.attrib['name']] = field.text
+        for variable in record:
+            temp_dict[variable.attrib['variable_name']] = variable.text
 
         # generate the value
-        yield return_dict
+        yield temp_dict
 
 def read_xml(xmlFileName):
     '''
