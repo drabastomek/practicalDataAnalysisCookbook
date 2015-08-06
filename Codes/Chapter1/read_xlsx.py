@@ -1,11 +1,8 @@
 import pandas as pd
 
-# name of files to read from
+# name of files to read from and write to
 r_filenameXLSX = '../../Data/Chapter1/realEstate_trans.xlsx'
 w_filenameXLSX = '../../Data/Chapter1/realEstate_trans.xlsx'
-
-# sheet name(s)
-sheets = ['Sacramento']
 
 # open the Excel file
 xlsx_file = pd.ExcelFile(r_filenameXLSX)
@@ -13,7 +10,7 @@ xlsx_file = pd.ExcelFile(r_filenameXLSX)
 # read the contents
 xlsx_read = {
     sheetName: xlsx_file.parse(sheetName)
-        for sheetName in sheets
+        for sheetName in xlsx_file.sheet_names
 }
 
 # print the first 10 records for Sacramento
