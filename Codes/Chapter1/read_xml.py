@@ -1,27 +1,36 @@
 import pandas as pd 
 import xml.etree.ElementTree as ET
 
-def xml_encode(row):
+def read_xml(xmlFileName):
     '''
-        Encode the row as an XML with a specific hierarchy
+        Read an XML encoded data and return pd.DataFrame
     '''
-    # first -- we are writing a record
-    xmlItem = ['  <record>']
+    with open(xmlFileName, 'r') as xml_file:
+        # read the data and store it as a tree
+        tree = ET.parse(xml_file)
 
-    # next -- for each field in the row we create a XML markup
-    #         in a <field name=...>...</field> format
-    for field in row.index:
-        xmlItem \
-            .append(
-                '        <variable variable_name="{0}">{1}</variable>' \
-                .format(field, row[field])
-            )
-    
-    # last -- this marks the end of the record
-    xmlItem.append('  </record>')
+        # get the root of the tree as this is the starting point
+        root = tree.getroot()
 
-    # return a string back to the calling method
-    return '\n'.join(xmlItem)
+        # return the DataFrame
+        return pd.DataFrame(list(iter_records(root)))
+
+def iter_records(records):
+    '''
+        Generator to iterate through all the records
+    '''
+    for record in records:
+        # temporary dictionary to hold values
+        temp_dict = {}    
+
+        # iterate through all the fields
+        for var in record:
+            temp_dict[var \
+                .attrib['var_name']
+            ] = var.text
+
+        # generate the value
+        yield temp_dict
 
 def write_xml(xmlFileName, data):
     '''
@@ -45,34 +54,27 @@ def write_xml(xmlFileName, data):
         # write the footer
         xmlFile.write('\n</records>')
 
-def iter_records(records):
+def xml_encode(row):
     '''
-        Generator to iterate through all the records
+        Encode the row as an XML with a specific hierarchy
     '''
-    for record in records:
-        # temporary dictionary to hold values
-        temp_dict = {}    
+    # first -- we are writing a record
+    xmlItem = ['  <record>']
 
-        # iterate through all the fields
-        for variable in record:
-            temp_dict[variable.attrib['variable_name']] = variable.text
+    # next -- for each field in the row we create a XML markup
+    #         in a <field name=...>...</field> format
+    for field in row.index:
+        xmlItem \
+            .append(
+                '  <var var_name="{0}">{1}</var>' \
+                .format(field, row[field])
+            )
+    
+    # last -- this marks the end of the record
+    xmlItem.append('  </record>')
 
-        # generate the value
-        yield temp_dict
-
-def read_xml(xmlFileName):
-    '''
-        Read an XML encoded data and return pd.DataFrame
-    '''
-    with open(xmlFileName, 'r') as xml_file:
-        # read the data and store it as a tree
-        tree = ET.parse(xml_file)
-
-        # get the root of the tree as this is the starting point
-        root = tree.getroot()
-
-        # return the DataFrame
-        return pd.DataFrame(list(iter_records(root)))
+    # return a string back to the calling method
+    return '\n'.join(xmlItem)
 
 # names of files to read from and write to
 r_filenameXML = '../../Data/Chapter1/realEstate_trans.xml'
