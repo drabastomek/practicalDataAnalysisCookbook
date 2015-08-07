@@ -38,5 +38,5 @@ url_read.columns = fix_string_spaces(url_read.columns)
 url_read.dropna(thresh=2, inplace=True)
 url_read.index = range(0,len(url_read))
 
-# print out 
+# print out top 10 IATA and Airport names
 print(url_read.head(10)[['IATA', 'Airport_name']])
