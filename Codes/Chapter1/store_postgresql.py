@@ -10,7 +10,7 @@ pswd = 'pAck7B0ok'
 
 # create the connection to the database
 engine = sa.create_engine(
-    'postgresql://{0}:{1}@localhost:5432/drabast' \
+    'postgresql://{0}:{1}@localhost:5432/{0}' \
     .format(usr, pswd)
 )
 
