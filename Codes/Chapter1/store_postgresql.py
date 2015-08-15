@@ -6,7 +6,7 @@ r_filenameCSV = '../../Data/Chapter1/realEstate_trans.csv'
 
 # database credentials
 usr  = 'drabast'
-pswd = 'pAck7B0ok'
+pswd = 'pAck7!B0ok'
 
 # create the connection to the database
 engine = sa.create_engine(
