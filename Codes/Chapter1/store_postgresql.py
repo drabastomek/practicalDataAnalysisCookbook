@@ -15,11 +15,10 @@ engine = sa.create_engine(
 )
 
 # read the data
-csv_read = pd.read_csv(
-    r_filenameCSV, 
-    index_col='sale_date', 
-    parse_dates=True
-)
+csv_read = pd.read_csv(r_filenameCSV)
+
+# transform sale_date to a datetime object
+csv_read['sale_date'] = pd.to_datetime(csv_read['sale_date'])
 
 # store the data in the database
 csv_read.to_sql('real_estate', engine, if_exists='replace')
