@@ -3,7 +3,6 @@ import pymongo as pm
 
 # name of the CSV file to read from and SQLite database
 r_filenameCSV = '../../Data/Chapter1/realEstate_trans.csv'
-rw_filenameSQLite = '../../Data/Chapter1/realEstate_trans.db'
 
 # read the data
 csv_read = pd.read_csv(r_filenameCSV)
@@ -27,7 +26,8 @@ if collection.find().count() > 0:
 # and then insert the newly read data
 collection.insert(csv_read.to_dict(orient='records'))
 
-# print out the top 10 documents
-cursor = collection.find()
+# print out the top 10 documents 
+# sold in ZIP codes 95841 and 95842
+cursor = collection.find({'zip': {'$in': [95841, 95842]}})
 for record in cursor.sort('_id').limit(10):
     print(record)
