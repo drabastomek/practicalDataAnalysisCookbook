@@ -1,5 +1,5 @@
 import pandas as pd
-import sqlalc   hemy as sa
+import sqlalchemy as sa
 
 # name of the CSV file to read from and SQLite database
 r_filenameCSV = '../../Data/Chapter1/realEstate_trans.csv'
