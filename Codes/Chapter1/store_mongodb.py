@@ -1,92 +1,33 @@
-from bson.code import Code
+import pandas as pd
 import pymongo as pm
 
-if __name__ == '__main__':
-    print('Testing access to MongoDB')
+# name of the CSV file to read from and SQLite database
+r_filenameCSV = '../../Data/Chapter1/realEstate_trans.csv'
+rw_filenameSQLite = '../../Data/Chapter1/realEstate_trans.db'
 
-    client = pm.MongoClient()
+# read the data
+csv_read = pd.read_csv(r_filenameCSV)
 
-    db = client['test']
+# transform sale_date to a datetime object
+csv_read['sale_date'] = pd.to_datetime(csv_read['sale_date'])
 
-    collection = db['restaurants']
+# connect to the MongoDB database
+client = pm.MongoClient()
 
-    # cursor = collection \
-    #     .find({"address.zipcode": "10460"}) \
-    #     .sort([
-    #         ("borough", pm.ASCENDING)
-    #     ])
+# and select packt database
+db = client['packt']
 
-    # for record in cursor:
-    #     print(record)
+# then connect to real_estate collection
+collection = db['real_estate']
 
-    cursor = collection \
-        .aggregate([
-            {
-                "$group": {
-                    "_id": "$borough",
-                    "count": {"$sum": 1}
-                }
-            }
-        ])
+# if there are any documents stored already -- remove them
+if collection.find().count() > 0:
+    collection.remove()
 
-    for record in cursor['result']:
-        print(record)
+# and then insert the newly read data
+collection.insert(csv_read.to_dict(orient='records'))
 
-
-    mapper = Code("""
-        function () {
-            for(var grade in this.grades){
-                emit({
-                    _borough_id: this.borough,
-                    _grade: this.grades[grade].grade
-                }, 1)
-            }
-        }
-    """)
-
-    reducer = Code("""
-        function (key, values) {
-            var total = 0;
-            for (var i = 0; i < values.length; i++) {
-                total += values[i];
-            }
-            return total;
-        }
-    """)
-
-    result = collection.map_reduce(mapper, reducer, 'myResults')
-
-    for rec in result.find():
-        print(rec)
-
-# this.grades.forEach(function(z) {
-#                 emit(z.grade, 1);
-#             });
-
-
-# from pymongo import MongoClient
-
-# db = MongoClient().aggregation_example
-# result = db.things.insert_many([
-#     {"x": 1, "tags": ["dog", "cat"]},
-#     {"x": 2, "tags": ["cat"]},
-#     {"x": 2, "tags": ["mouse", "cat", "dog"]},
-#     {"x": 3, "tags": []}
-# ])
-
-# from pymongo import MongoClient
-# db = MongoClient().aggregation_example
-# db.things.insert({"x": 1, "tags": ["dog", "cat"]})
-# db.things.insert({"x": 2, "tags": ["cat"]})
-# db.things.insert({"x": 2, "tags": ["mouse", "cat", "dog"]})
-# db.things.insert({"x": 3, "tags": []})
-
-# from bson.son import SON
-# result = db.things.aggregate([
-#     {"$unwind": "$tags"},
-#     {"$group": {"_id": "$tags", "count": {"$sum": 1}}},
-#     {"$sort": SON([("count", -1), ("_id", -1)])}
-# ])
-
-
-# print(result)
+# print out the top 10 documents
+cursor = collection.find()
+for record in cursor.sort('_id').limit(10):
+    print(record)
