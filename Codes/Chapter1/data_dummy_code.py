@@ -2,7 +2,7 @@ import pandas as pd
 
 # name of the file to read from
 r_filenameCSV = '../../Data/Chapter1/' + \
-    'realEstate_trans_standardized.csv'
+    'realEstate_trans_binned.csv'
 
 # name of the output file
 w_filenameCSV = '../../Data/Chapter1/' + \
