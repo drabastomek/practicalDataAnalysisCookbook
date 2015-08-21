@@ -28,24 +28,24 @@ csv_read = pd.read_csv(r_filenameCSV)
 
 # impute mean in place of NaNs
 for col in cols:
-    csv_read[col + '_s'] = standardize(csv_read[col])
-    csv_read[col + '_n'] = normalize(csv_read[col])
+    csv_read['s_' + col] = standardize(csv_read[col])
+    csv_read['n_' + col] = normalize(csv_read[col])
 
 # check if all is well now
 for col in cols:
     print('{0}_s: mean -- {1:.2f}, std dev -- {2:.2f}' \
         .format(
             col, 
-            csv_read[col + '_s'].mean(),
-            csv_read[col + '_s'].std()
+            csv_read['s_' + col].mean(),
+            csv_read['s_' + col].std()
         )
     )
 
     print('{0}_n: min -- {1:.2f}, max -- {2:.2f}\n' \
         .format(
             col,
-            csv_read[col + '_n'].min(),
-            csv_read[col + '_n'].max()
+            csv_read['n_' + col].min(),
+            csv_read['n_' + col].max()
         )
     )
 
