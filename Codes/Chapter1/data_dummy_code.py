@@ -11,7 +11,7 @@ w_filenameCSV = '../../Data/Chapter1/' + \
 # read the data
 csv_read = pd.read_csv(r_filenameCSV)
 
-# dummy code the column with the type of the property
+# dummy code the column
 csv_read = pd.get_dummies(
     csv_read, 
     prefix='d', 
