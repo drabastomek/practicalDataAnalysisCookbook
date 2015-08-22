@@ -21,7 +21,7 @@ w_filenameCSV = '../../Data/Chapter1/' + \
     'realEstate_trans_standardized.csv'
 
 # list of columns to normalize and standardize
-cols = ['price','sq__ft']
+cols = ['price_mean','sq__ft']
 
 # read the data
 csv_read = pd.read_csv(r_filenameCSV)
