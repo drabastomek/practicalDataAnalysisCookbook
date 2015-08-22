@@ -30,13 +30,13 @@ csv_read['b_price'] = np.digitize(
 counts_b = csv_read['b_price'].value_counts()
 print(counts_b.sort_index())
 
-# create bins based on percentiles
-perc = csv_read['price_mean'].quantile(np.linspace(0,1,11))
+# create bins based on deciles
+decile = csv_read['price_mean'].quantile(np.linspace(0,1,11))
 
-# and apply the percentile bins to the data
+# and apply the decile bins to the data
 csv_read['p_price'] = np.digitize(
     csv_read['price_mean'], 
-    perc
+    decile
 )
 
 # print out the counts for the percentile bins
