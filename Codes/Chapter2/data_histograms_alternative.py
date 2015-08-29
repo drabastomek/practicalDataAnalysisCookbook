@@ -14,15 +14,20 @@ w_filenameCSV = '../../Data/Chapter2/' + \
 csv_read = pd.read_csv(r_filenameCSV)
 csv_read = csv_read.query('beds < 5')
 
-# generate the histograms
-hist_price = csv_read.hist(column='price', figsize=(9,7))
-hist_pricebyBeds = csv_read.hist(
+# generate histogram by number of beds
+csv_read.hist(
     column='price', 
     by='beds', 
-    xlabelsize=7, 
-    ylabelsize=7, 
+    xlabelsize=8, 
+    ylabelsize=8, 
     sharex=True, 
+    sharey=True,
     figsize=(9,7)
+)
+
+# save to file
+plt.savefig(
+    '../../Data/Chapter2/Figures/priceByBeds_histogram.pdf'
 )
 
 # show the figures
