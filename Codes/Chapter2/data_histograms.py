@@ -1,23 +1,25 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+import sqlalchemy as sa
 
-# name of the file to read from
-r_filenameCSV = '../../Data/Chapter2/' + \
-    'realEstate_trans_full.csv'
+# database credentials
+usr  = 'drabast'
+pswd = 'pAck7!B0ok'
 
-# name of the output file
-w_filenameCSV = '../../Data/Chapter2/' + \
-    'realEstate_corellations.csv'
+# create the connection to the database
+engine = sa.create_engine(
+    'postgresql://{0}:{1}@localhost:5432/{0}' \
+    .format(usr, pswd)
+)
 
-# read the data and select only sales of flats 
-# with up to 4 beds
-csv_read = pd.read_csv(r_filenameCSV)
-csv_read = csv_read.query('beds < 5')
+# read prices from the database
+query = 'SELECT price FROM real_estate'
+price = pd.read_sql_query(query, engine)
 
 # generate the histograms
 ax = sns.distplot(
-    csv_read['price'], 
+    price, 
     bins=10, 
     kde=True    # show estimated kernel function
 )
