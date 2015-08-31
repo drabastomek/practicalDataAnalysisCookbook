@@ -50,8 +50,9 @@ for bed in beds:
     )
 
 # check if the counts selected match those expected
-print(strata_expected_counts)
-print(sample['beds'].value_counts())
+strata_sampled_counts = sample['beds'].value_counts()
+print('Expected: ', strata_expected_counts)
+print('Sampled: ', strata_sampled_counts)
 
 # output to the file
 with open(w_filenameSample,'w') as write_csv:
