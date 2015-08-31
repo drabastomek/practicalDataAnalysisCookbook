@@ -17,8 +17,7 @@ engine = sa.create_engine(
 )
 
 # read prices from the database
-query = '''SELECT beds || \' beds\' AS beds, 
-            sq__ft, 
+query = '''SELECT sq__ft, 
             price / 1000 AS price 
         FROM real_estate 
         WHERE sq__ft > 0 
