@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <!-- <link type="text/css" rel="stylesheet" href="demo.css"> -->
+    <link type="text/css" rel="stylesheet" href="scatter.css">
+  </head>
+  <body>
+
+    
+    <h2 style="font-size:24px;">
+      Scatter-Matrix.js
+    </h2>
+
+    <p>
+      Explore matrix data (samples as rows, observations as columns) using
+      scatterplot matrix. Simply supply a CSV with a header. For example:
+    </p>
+
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="scatter.js"></script>
+    <script type="text/javascript">
+      var sm = new ScatterMatrix('https://github.com/drabastomek/practicalDataAnalysisCookbook/blob/master/Data/Chapter2/realEstate_d3.csv');
+      sm.render();
+    </script>
+  </body>
+</html>
