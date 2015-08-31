@@ -17,10 +17,12 @@ engine = sa.create_engine(
 )
 
 # read prices from the database
-query = 'SELECT beds, sq__ft, price / 1000 AS price \
-    FROM real_estate \
-    WHERE sq__ft > 0 \
-    AND beds BETWEEN 2 AND 4'
+query = '''SELECT beds || \' beds\' AS beds, 
+            sq__ft, 
+            price / 1000 AS price 
+        FROM real_estate 
+        WHERE sq__ft > 0 
+        AND beds BETWEEN 2 AND 4'''
 data = pd.read_sql_query(query, engine)
 
 # output the samples to files
