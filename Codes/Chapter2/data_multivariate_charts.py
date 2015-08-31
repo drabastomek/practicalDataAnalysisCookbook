@@ -19,7 +19,7 @@ engine = sa.create_engine(
     .format(usr, pswd)
 )
 
-# print the top 10 rows from the database
+# prepare the query to extract the data from the database
 query = 'SELECT beds, sq__ft, price / 1000 AS price \
     FROM real_estate \
     WHERE sq__ft > 0 \
