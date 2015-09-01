@@ -1,27 +1,122 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <!-- <link type="text/css" rel="stylesheet" href="demo.css"> -->
-    <link type="text/css" rel="stylesheet" href="scatter.css">
-  </head>
-  <body>
-
-    
-    <h2 style="font-size:24px;">
-      Scatter-Matrix.js
-    </h2>
-
-    <p>
-      Explore matrix data (samples as rows, observations as columns) using
-      scatterplot matrix. Simply supply a CSV with a header. For example:
-    </p>
-
-    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <script src="scatter.js"></script>
-    <script type="text/javascript">
-      var sm = new ScatterMatrix('https://raw.githubusercontent.com/drabastomek/practicalDataAnalysisCookbook/master/Data/Chapter2/realEstate_d3.csv');
-      sm.render();
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <title>D3 -- price vs footage</title>
+    <script 
+        src='http://d3js.org/d3.v3.min.js' 
+        charset='utf-8'>
     </script>
-  </body>
+
+    <style>
+        body {
+            font-family: Verdana, Genova, sans-serif;
+            font-size: 14px;
+        }
+
+        circle { 
+            fill: #666; 
+            fill-opacity: .5; 
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: black;
+            shape-rendering: crispEdges;
+        }
+        
+        .axis text {
+            font-family: sans-serif;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <script type='text/javascript'>
+        var width   = 800;
+        var height  = 600;
+        var spacing = 60;
+
+        // Append the SVG object to the HTML body
+        var chart = d3.select('body')
+            .append('svg')
+            .attr('width',  width  + spacing)
+            .attr('height', height + spacing)
+        ;
+
+        // Read in the dataset (from github)
+        d3.csv('http://bit.ly/1LGBlrA', function(d) {
+                draw(d) });
+
+        function draw(dataset){
+            // Find the maximum price and area
+            var limit_max = {
+                'price': d3.max(dataset, function(d) { 
+                    return parseInt(d['price']); }), 
+                'sq__ft': d3.max(dataset, function(d) { 
+                    return parseInt(d['sq__ft']); })
+            };
+
+            // Define the scales
+            var scale_x = d3.scale.linear()
+                .domain([0, limit_max['price']])
+                .range([spacing, width - spacing * 2]);
+
+            var scale_y = d3.scale.linear()
+                .domain([0, limit_max['sq__ft']])
+                .range([height - spacing, spacing]);
+
+            //Define the axes
+            var axis_x = d3.svg.axis()
+                .scale(scale_x)
+                .orient('bottom')
+                .ticks(5);
+
+            var axis_y = d3.svg.axis()
+                .scale(scale_y)
+                .orient('left')
+                .ticks(5);
+
+            // Draw dots on the chart
+            chart.selectAll('circle')
+                .data(dataset)
+                .enter()
+                .append('circle')
+                .attr('cx', function(d) {
+                    return scale_x(parseInt(d['price']));
+                })
+                .attr('cy', function(d) {
+                    return scale_y(parseInt(d['sq__ft']));
+                })
+                .attr('r', 3)
+                ;
+
+            // Append X axis to chart
+            chart.append('g')
+                .attr('class', 'axis')
+                .attr('transform', 'translate(0,' + (height - spacing) + ')')
+                .call(axis_x);
+            
+            // Append Y axis to chart
+            chart.append('g')
+                .attr('class', 'axis')
+                .attr('transform', 'translate(' + spacing + ',0)')
+                .call(axis_y);
+
+            // Append axis labels    
+            chart.append('text')
+                .attr("transform", "translate(" + (width / 2) + " ," + (height - spacing / 3) + ")")
+                .style('text-anchor', 'middle')
+                .text('Price $ (,000)');
+
+            chart.append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 14)
+                .attr("x",0 - (height / 2))
+                .style("text-anchor", "middle")
+                .text("Area sq ft");
+        }
+    </script>
+</body>
 </html>
