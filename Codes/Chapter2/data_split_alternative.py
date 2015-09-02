@@ -29,7 +29,7 @@ y = data['price']
 x_train, x_test, y_train, y_test = sk.train_test_split(
     x, y, test_size=0.33, random_state=42)
 
-# the form DataFrames for ease of manipulating
+# then form DataFrames for ease of manipulating
 train = pd.DataFrame(
     np.append(x_train, y_train[...,None], 1), 
     columns=['zip', 'beds', 'sq__ft', 'price']
