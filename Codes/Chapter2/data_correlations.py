@@ -13,13 +13,13 @@ csv_read = pd.read_csv(r_filenameCSV)
 csv_read = csv_read[['beds','baths','sq__ft','price']]
 
 # calculate the correlations
-methods = ['pearson', 'kendall', 'spearman']
+coefficients = ['pearson', 'kendall', 'spearman']
 
 csv_corr = {}
 
-for method in methods:
-    csv_corr[method] = csv_read \
-        .corr(method=method) \
+for coefficient in coefficients:
+    csv_corr[coefficient] = csv_read \
+        .corr(method=coefficient) \
         .transpose()
 
 # output to a file
