@@ -2,7 +2,7 @@
 <html lang='en'>
 <head>
     <meta charset='utf-8'>
-    <title>D3 -- price vs footage</title>
+    <title>D3 -- price vs floor area</title>
     <script src='d3.v3.min.js' charset='utf-8'>
     </script>
 
@@ -36,7 +36,7 @@
         var height  = 600;
         var spacing = 60;
 
-        // Append the SVG object to the HTML body
+        // Append an SVG object to the HTML body
         var chart = d3.select('body')
             .append('svg')
             .attr('width',  width  + spacing)
@@ -113,7 +113,7 @@
                 .attr("y", 14)
                 .attr("x",0 - (height / 2))
                 .style("text-anchor", "middle")
-                .text("Area sq ft");
+                .text("Floor area sq. ft.");
         }
     </script>
 </body>
