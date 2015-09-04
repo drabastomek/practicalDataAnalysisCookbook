@@ -39,14 +39,14 @@ b.output_file(
 
 # create the figure and specify label for axes
 fig = b.figure(title='Price vs floor area and bed count')
-fig.xaxis.axis_label = 'Feet sq'
-fig.yaxis.axis_label = 'Price ($ \'000)'
+fig.xaxis.axis_label = 'Price ($ \'000)'
+fig.yaxis.axis_label = 'Feet sq'
 
 # and plot the data
 for i in range(2,5):
     d = data[data.beds == i]
 
-    fig.circle(d['sq__ft'],d['price'], color=d['color'],
+    fig.circle(d['price'], d['sq__ft'], color=d['color'],
         fill_alpha=.1, size=8, legend='{0} beds'.format(i))
 
 # then show the plot in the browser
