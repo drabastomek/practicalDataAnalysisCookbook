@@ -31,12 +31,6 @@ data = pd.read_sql_query(query, engine)
 # attach the color based on the bed count
 data['color'] = data['beds'].map(lambda x: colormap[x])
 
-# specify the output HTML file
-b.output_file(
-    '../../Data/Chapter2/Figures/price_bed_area.html',
-    title='Price vs floor area for different bed count'
-)
-
 # create the figure and specify label for axes
 fig = b.figure(title='Price vs floor area and bed count')
 fig.xaxis.axis_label = 'Price ($ \'000)'
@@ -48,6 +42,12 @@ for i in range(2,5):
 
     fig.circle(d['price'], d['sq__ft'], color=d['color'],
         fill_alpha=.1, size=8, legend='{0} beds'.format(i))
+
+# specify the output HTML file
+b.output_file(
+    '../../Data/Chapter2/Figures/price_bed_area.html',
+    title='Price vs floor area for different bed count'
+)
 
 # then show the plot in the browser
 b.show(fig)
