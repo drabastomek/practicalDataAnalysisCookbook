@@ -4,9 +4,9 @@ import pandas as pd
 
 # colors for different bed count
 colormap = {
-    2: 'red',
-    3: 'green',
-    4: 'blue'
+    2: 'firebrick',
+    3: '#228b22',
+    4: 'navy'
 }
 
 # database credentials
