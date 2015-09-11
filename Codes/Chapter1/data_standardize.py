@@ -26,7 +26,7 @@ cols = ['price_mean','sq__ft']
 # read the data
 csv_read = pd.read_csv(r_filenameCSV)
 
-# impute mean in place of NaNs
+# normalize and standardize the columns
 for col in cols:
     csv_read['n_' + col] = normalize(csv_read[col])
     csv_read['s_' + col] = standardize(csv_read[col])
