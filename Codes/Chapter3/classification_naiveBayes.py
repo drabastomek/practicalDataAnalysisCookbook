@@ -12,7 +12,10 @@ def fitNaiveBayes(data):
     '''
         Build the Naive Bayes classifier
     '''
+    # create the classifier object
     naiveBayes_classifier = nb.GaussianNB()
+
+    # fit the model
     return naiveBayes_classifier.fit(data[0], data[1])
 
 # the file name of the dataset
