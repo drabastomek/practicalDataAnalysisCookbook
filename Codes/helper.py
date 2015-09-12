@@ -3,26 +3,33 @@ import numpy as np
 import sklearn.metrics as mt                          
 
 def timeit(method):
+    '''
+        A decorator to time how long it takes to estimate
+        the models
+    '''
 
     def timed(*args, **kw):
-        ts = time.time()
+        start = time.time()
         result = method(*args, **kw)
-        te = time.time()
+        end = time.time()
 
         print('The method {0} took {1:2.2f} sec to estimate.' \
-              .format(method.__name__, te-ts))
+              .format(method.__name__, end-start))
         return result
 
     return timed
 
 def split_data(data, y, x = 'All', test_size = 0.33):
-    # dependent variable and all the independent
+    '''
+        Method to split the data into training and testing
+    '''
+    # dependent variable
     variables = {'y': y}
 
+    # and all the independent
     if x == 'All':
         allColumns = list(data.columns)
         allColumns.remove(y)
-
         variables['x'] = allColumns
     else:
         if type(x) != list:
@@ -43,6 +50,9 @@ def split_data(data, y, x = 'All', test_size = 0.33):
     return train_x, train_y, test_x, test_y
 
 def printModelSummary(actual, predicted):
+    '''
+        Method to print out model summaries
+    '''
     print('Overall accuracy of the model is {0:.2f}'\
         .format(
             (actual == predicted).sum() / \

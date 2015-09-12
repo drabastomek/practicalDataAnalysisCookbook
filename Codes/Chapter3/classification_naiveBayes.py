@@ -1,4 +1,4 @@
-# this import is needed to load helper from the parent folder
+# this is needed to load helper from the parent folder
 import sys
 sys.path.append('..')
 
