@@ -47,7 +47,7 @@ def split_data(data, y, x = 'All', test_size = 0.33):
     test_x  = data[~data.train][variables['x']]
     test_y  = data[~data.train][variables['y']]
 
-    return train_x, train_y, test_x, test_y
+    return train_x, train_y, test_x, test_y, variables['x']
 
 def printModelSummary(actual, predicted):
     '''
