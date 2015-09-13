@@ -8,18 +8,34 @@ import pandas as pd
 import mlpy as ml
 
 @hlp.timeit
-def fitSVM(data):
+def fitLinearSVM(data):
     '''
-        Build the SVM classifier
+        Build the linear SVM classifier
     '''
     # create the classifier object
-    svm = ml.LibSvm(svm_type='c_svc', kernel_type='linear', gamma=10)
+    svm = ml.LibSvm(svm_type='c_svc', kernel_type='linear')
 
     # fit the data
     svm.learn(data[0],data[1])
 
     #return the classifier
     return svm
+
+@hlp.timeit
+def fitRBFSVM(data):
+    '''
+        Build the linear SVM classifier
+    '''
+    # create the classifier object
+    svm = ml.LibSvm(svm_type='c_svc', kernel_type='rbf', 
+        gamma=0.7)
+
+    # fit the data
+    svm.learn(data[0],data[1])
+
+    #return the classifier
+    return svm
+
 
 # the file name of the dataset
 r_filename = '../../Data/Chapter3/bank_contacts.csv'
@@ -36,10 +52,13 @@ labels = hlp.split_data(
 )
 
 # train the model
-classifier = fitSVM((train_x, train_y))
+classifier_l = fitLinearSVM((train_x, train_y))
+classifier_r = fitRBFSVM((train_x, train_y))
 
 # classify the unseen data
-predicted = classifier.pred(test_x)
+predicted_l = classifier_l.pred(test_x)
+predicted_r = classifier_r.pred(test_x)
 
 # print out the results
-hlp.printModelSummary(test_y, predicted)
+hlp.printModelSummary(test_y, predicted_l)
+hlp.printModelSummary(test_y, predicted_r)
