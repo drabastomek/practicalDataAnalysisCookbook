@@ -13,7 +13,8 @@ def fitDecisionTree(data):
         Build a decision tree classifier
     '''
     # create the classifier object
-    tree = sk.DecisionTreeClassifier()
+    tree = sk.DecisionTreeClassifier(max_features="auto",
+        min_samples_split=50)
 
     # fit the data
     return tree.fit(data[0],data[1])
@@ -40,3 +41,14 @@ predicted = classifier.predict(test_x)
 
 # print out the results
 hlp.printModelSummary(test_y, predicted)
+
+# print out the importance of features
+coef = {nm: coeff 
+    for (nm, coeff) 
+    in zip(labels, classifier.feature_importances_)
+}
+print(coef)
+
+# and export to a .dot file
+sk.export_graphviz(classifier, 
+    out_file='../../Data/Chapter3/tree.dot')
