@@ -26,7 +26,8 @@ csv_read = pd.read_csv(r_filename)
 
 # split the data into training and testing
 train_x, train_y, \
-test_x,  test_y = hlp.split_data(
+test_x,  test_y, \
+labels = hlp.split_data(
     csv_read, y = 'credit_application')
 
 # train the model
