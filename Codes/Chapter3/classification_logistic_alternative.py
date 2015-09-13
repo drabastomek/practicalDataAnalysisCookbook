@@ -6,7 +6,6 @@ sys.path.append('..')
 import helper as hlp
 import pandas as pd
 import sklearn.linear_model as lm
-import sklearn.cross_validation as cv
 
 @hlp.timeit
 def fitLogisticRegression(data):
