@@ -68,7 +68,7 @@ classifier = fitANN(training)
 # classify the unseen data
 predicted = classifier.activateOnDataset(testing)
 
-# the highest output activation gives the class
+# the lowest output activation gives the class
 predicted = predicted.argmin(axis=1)
 
 # print out the results
