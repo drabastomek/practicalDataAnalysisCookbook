@@ -58,3 +58,32 @@ def printModelSummary(actual, predicted):
             (actual == predicted).sum() / \
             len(actual) * 100))
     print(mt.classification_report(actual, predicted))
+
+def prepareANNDataset(data):
+    '''
+        Method to prepare the dataset for ANN training
+        and testing. Assumes single valued output
+    '''
+    # we only import this when preparing ANN dataset
+    import pybrain.datasets as dt
+
+    # supplementary method to convert list to tuple
+    def extract(row):
+        return tuple(row)
+
+    # get the number of inputs and outputs
+    inputs = len(data[0].columns)
+    outputs = 2
+
+    # create dataset object
+    dataset = dt.SupervisedDataSet(inputs, outputs)
+
+    # convert dataframes to lists of tuples
+    x = list(data[0].apply(extract, axis=1))
+    y = [(item,abs(item - 1)) for item in data[1]]
+
+    # and add samples to the ANN dataset
+    for i in range(len(x)):
+        dataset.addSample(x[i], y[i])
+
+    return dataset
