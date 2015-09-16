@@ -12,8 +12,6 @@ import pybrain.tools.shortcuts as pb
 import pybrain.utilities as ut
 
 
-# def prepareDataset()
-
 @hlp.timeit
 def fitANN(data):
     '''
@@ -58,7 +56,7 @@ labels = hlp.split_data(
     x = ['n_duration','n_euribor3m','n_age','n_emp_var_rate','n_pdays','month_mar','prev_ctc_outcome_success','n_cons_price_idx','month_apr','n_cons_conf_idx']
 )
 
-# data_x, data_y = 
+# create the ANN training and testing datasets
 training = hlp.prepareANNDataset((train_x, train_y))
 testing  = hlp.prepareANNDataset((test_x,  test_y))
 
