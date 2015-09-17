@@ -53,11 +53,15 @@ def printModelSummary(actual, predicted):
     '''
         Method to print out model summaries
     '''
-    print('Overall accuracy of the model is {0:.2f}'\
+    print('Overall accuracy of the model is {0:.2f} percent'\
         .format(
             (actual == predicted).sum() / \
             len(actual) * 100))
-    print(mt.classification_report(actual, predicted))
+    print('Classification report: \n', 
+        mt.classification_report(actual, predicted))
+    print('Confusion matrix: \n', 
+        mt.confusion_matrix(actual, predicted))
+    print('ROC: ', mt.roc_auc_score(actual, predicted))
 
 def prepareANNDataset(data):
     '''
