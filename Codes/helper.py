@@ -13,7 +13,7 @@ def timeit(method):
         result = method(*args, **kw)
         end = time.time()
 
-        print('The method {0} took {1:2.2f} sec to estimate.' \
+        print('The method {0} took {1:2.2f} sec to run.' \
               .format(method.__name__, end-start))
         return result
 
