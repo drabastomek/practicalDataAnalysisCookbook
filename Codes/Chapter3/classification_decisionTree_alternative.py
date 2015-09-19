@@ -5,7 +5,7 @@ sys.path.append('..')
 # the rest of the imports
 import helper as hlp
 import pandas as pd
-import sklearn.tree as sk
+import mlpy as ml
 
 @hlp.timeit
 def fitDecisionTree(data):
@@ -13,11 +13,13 @@ def fitDecisionTree(data):
         Build a decision tree classifier
     '''
     # create the classifier object
-    tree = sk.DecisionTreeClassifier(max_features="auto",
-        min_samples_split=50)
+    tree = ml.ClassTree(minsize=1000)
 
     # fit the data
-    return tree.fit(data[0],data[1])
+    tree.learn(data[0],data[1])
+
+    # return the classifier
+    return tree
 
 # the file name of the dataset
 r_filename = '../../Data/Chapter3/bank_contacts.csv'
@@ -37,18 +39,7 @@ labels = hlp.split_data(
 classifier = fitDecisionTree((train_x, train_y))
 
 # classify the unseen data
-predicted = classifier.predict(test_x)
+predicted = classifier.pred(test_x)
 
 # print out the results
 hlp.printModelSummary(test_y, predicted)
-
-# print out the importance of features
-coef = {nm: coeff 
-    for (nm, coeff) 
-    in zip(labels, classifier.feature_importances_)
-}
-print(coef)
-
-# and export to a .dot file
-sk.export_graphviz(classifier, 
-    out_file='../../Data/Chapter3/tree.dot')
