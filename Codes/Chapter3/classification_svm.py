@@ -13,12 +13,13 @@ def fitLinearSVM(data):
         Build the linear SVM classifier
     '''
     # create the classifier object
-    svm = ml.LibSvm(svm_type='c_svc', kernel_type='linear')
+    svm = ml.LibSvm(svm_type='c_svc', 
+        kernel_type='linear', C=20.0)
 
     # fit the data
     svm.learn(data[0],data[1])
 
-    #return the classifier
+    # return the classifier
     return svm
 
 @hlp.timeit
@@ -28,7 +29,7 @@ def fitRBFSVM(data):
     '''
     # create the classifier object
     svm = ml.LibSvm(svm_type='c_svc', kernel_type='rbf', 
-        gamma=0.7)
+        gamma=0.001, C=20.0)
 
     # fit the data
     svm.learn(data[0],data[1])
