@@ -27,39 +27,68 @@
 
 5. Number of Instances: 41188 for bank-additional-full.csv
 
-6. Number of Attributes: 20 + output attribute.
-
 7. Attribute information:
 
-   For more information, read [Moro et al., 2014].
+   These have been tweaked by Tom Drabas for the purpose of the Practical Data Analysis book published by Packt Publishing. 
 
    Input variables:
-   # bank client data:
-   1 - age (numeric)
-   2 - job : type of job (categorical: "admin.","blue-collar","entrepreneur","housemaid","management","retired","self-employed","services","student","technician","unemployed","unknown")
-   3 - marital : marital status (categorical: "divorced","married","single","unknown"; note: "divorced" means divorced or widowed)
-   4 - education (categorical: "basic.4y","basic.6y","basic.9y","high.school","illiterate","professional.course","university.degree","unknown")
-   5 - default: has credit in default? (categorical: "no","yes","unknown")
-   6 - housing: has housing loan? (categorical: "no","yes","unknown")
-   7 - loan: has personal loan? (categorical: "no","yes","unknown")
-   # related with the last contact of the current campaign:
-   8 - contact: contact communication type (categorical: "cellular","telephone") 
-   9 - month: last contact month of year (categorical: "jan", "feb", "mar", ..., "nov", "dec")
-  10 - day_of_week: last contact day of the week (categorical: "mon","tue","wed","thu","fri")
-  11 - duration: last contact duration, in seconds (numeric). Important note:  this attribute highly affects the output target (e.g., if duration=0 then y="no"). Yet, the duration is not known before a call is performed. Also, after the end of the call y is obviously known. Thus, this input should only be included for benchmark purposes and should be discarded if the intention is to have a realistic predictive model.
-   # other attributes:
-  12 - campaign: number of contacts performed during this campaign and for this client (numeric, includes last contact)
-  13 - pdays: number of days that passed by after the client was last contacted from a previous campaign (numeric; 999 means client was not previously contacted)
-  14 - previous: number of contacts performed before this campaign and for this client (numeric)
-  15 - poutcome: outcome of the previous marketing campaign (categorical: "failure","nonexistent","success")
-   # social and economic context attributes
-  16 - emp.var.rate: employment variation rate - quarterly indicator (numeric)
-  17 - cons.price.idx: consumer price index - monthly indicator (numeric)     
-  18 - cons.conf.idx: consumer confidence index - monthly indicator (numeric)     
-  19 - euribor3m: euribor 3 month rate - daily indicator (numeric)
-  20 - nr.employed: number of employees - quarterly indicator (numeric)
-
-  Output variable (desired target):
-  21 - y - has the client subscribed a term deposit? (binary: "yes","no")
-
-8. Missing Attribute Values: There are several missing values in some categorical attributes, all coded with the "unknown" label. These missing values can be treated as a possible class label or using deletion or imputation techniques. 
+   1 - n_age, normalized age of the customer
+   2 - n_duration, normalized last contact duration, in seconds
+   3 - n_pdays, normalized number of days that passed by after the client was last contacted from a previous campaign (1 means client was not previously contacted)
+   4 - n_previous, normalized number of contacts performed before this campaign and for this client
+   5 - n_emp_var_rate, normalized employment variation rate - quarterly indicator
+   6 - n_cons_price_idx,  normalized consumer price index - monthly indicator
+   7 - n_cons_conf_idx, normalized consumer confidence index - monthly indicator
+   8 - n_euribor3m, normalized euribor 3 month rate - daily indicator
+   9 - n_nr_employed, normalized number of employees - quarterly indicator
+   10 - job_admin, a dummy variable indicating a person working in an admin position
+   11 - job_blue_collar, a dummy variable indicating a person working in an blue collar position
+   12 - job_entrepreneur, a dummy variable indicating a person being an entrepreneur
+   13 - job_housemaid, a dummy variable indicating a person being a housemaid
+   14 - job_management, a dummy variable indicating a person being a manager
+   15 - job_retired, a dummy variable indicating a retiree
+   16 - job_self_employed, a dummy variable indicating a person being self employed
+   17 - job_services, a dummy variable indicating a person working in a services industry
+   18 - job_student, a dummy variable indicating a person being a student
+   19 - job_technician, a dummy variable indicating a person being a technician
+   20 - job_unemployed, a dummy variable indicating a person being unemployed
+   21 - job_unknown, a dummy variable indicating an unknown person's occupation
+   22 - marital_divorced, a dummy variable indicating a person being divorced
+   23 - marital_married, a dummy variable indicating a person being married
+   24 - marital_single, a dummy variable indicating a person being single
+   25 - marital_unknown, a dummy variable indicating unknown person's marital status
+   26 - edu_basic_4y, a dummy variable indicating 4 years of basic education
+   27 - edu_basic_6y, a dummy variable indicating 6 years of basic education
+   28 - edu_basic_9y, a dummy variable indicating 9 years of basic education
+   29 - edu_high_school, a dummy variable indicating a high school diploma
+   30 - edu_illiterate, a dummy variable indicating an illiterate person
+   31 - edu_professional_course, a dummy variable indicating finishing a professional course
+   32 - edu_university_degree, a dummy variable indicating university degree
+   33 - edu_unknown, a dummy variable indicating unknown person's education
+   34 - default_unknown, a dummy variable indicating missing variable whether the person had defaulted on their credit
+   35 - default_yes, a dummy variable indicating a default in the person's credit history
+   36 - housing_unknown, a dummy variable indicating missing variable whether the person holds a home loan
+   37 - housing_yes, a dummy variable indicating the person holds a housing loan
+   38 - loan_unknown, a dummy variable indicating missing variable whether the person holds a persona loan
+   39 - loan_yes, a dummy variable indicating the person holds a personal loan
+   40 - contact_cellular, a dummy variable indicating the person was contacted on their cellphone
+   41 - contact_telephone, a dummy variable indicating the person was contacted on their landline
+   42 - prev_ctc_outcome_failure, a dummy variable indicating the outcome of the previous marketing campaign as a fail
+   43 - prev_ctc_outcome_nonexistent, a dummy variable indicating that the person has not been contacted before
+   44 - prev_ctc_outcome_success, a dummy variable indicating the outcome of the previous marketing campaign as a success i.e. the person applied for a credit
+   45 - month_apr, a dummy variable indicating that the person was contacted in April
+   46 - month_aug, a dummy variable indicating that the person was contacted in August
+   47 - month_dec, a dummy variable indicating that the person was contacted in December
+   48 - month_jul, a dummy variable indicating that the person was contacted in July
+   49 - month_jun, a dummy variable indicating that the person was contacted in June
+   50 - month_mar, a dummy variable indicating that the person was contacted in March
+   51 - month_may, a dummy variable indicating that the person was contacted in May
+   52 - month_nov, a dummy variable indicating that the person was contacted in November
+   53 - month_oct, a dummy variable indicating that the person was contacted in October
+   54 - month_sep, a dummy variable indicating that the person was contacted in September
+   55 - dow_fri, a dummy variable indicating that the person was contacted on Friday
+   56 - dow_mon, a dummy variable indicating that the person was contacted on Monday
+   57 - dow_thu, a dummy variable indicating that the person was contacted on Thursday
+   58 - dow_tue, a dummy variable indicating that the person was contacted on Tuesday
+   59 - dow_wed, a dummy variable indicating that the person was contacted on Wednesday
+   
