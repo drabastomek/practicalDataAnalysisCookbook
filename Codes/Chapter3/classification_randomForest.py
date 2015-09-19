@@ -15,7 +15,7 @@ def fitRandomForest(data):
     '''
     # create the classifier object
     forest = en.RandomForestClassifier(n_jobs=-1, 
-        min_samples_split=100, n_estimators=10, 
+        min_samples_split=100, n_estimators=10,
         class_weight="auto")
 
     # fit the data
@@ -57,8 +57,8 @@ for counter, (nm, label) \
     ):
     print("{0}. {1}: {2}".format(counter, nm,label))
 
-# and export the trees to .dot files
-for counter, tree in enumerate(classifier.estimators_):
-    sk.export_graphviz(tree,
-        out_file='../../Data/Chapter3/randomForest/tree_' \
-        + str(counter) + '.dot')
+# # and export the trees to .dot files
+# for counter, tree in enumerate(classifier.estimators_):
+#     sk.export_graphviz(tree,
+#         out_file='../../Data/Chapter3/randomForest/tree_' \
+#         + str(counter) + '.dot')
