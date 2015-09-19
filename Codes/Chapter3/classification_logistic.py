@@ -6,6 +6,7 @@ sys.path.append('..')
 import helper as hlp
 import pandas as pd
 import statsmodels.api as sm
+import statsmodels.genmod.families.links as fm
 
 @hlp.timeit
 def fitLogisticRegression(data):
@@ -13,7 +14,8 @@ def fitLogisticRegression(data):
         Build the logistic regression classifier
     '''
     # create the classifier object
-    logistic_classifier = sm.GLM(data[1], data[0], family=sm.families.Binomial())
+    logistic_classifier = sm.GLM(data[1], data[0], 
+        family=sm.families.Binomial(link=fm.logit))
 
     # fit the data
     return logistic_classifier.fit()
