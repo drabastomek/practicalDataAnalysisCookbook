@@ -13,7 +13,7 @@ def fitSVM(data):
         Build the SVM classifier
     '''
     # create the classifier object
-    svm = sv.SVC(kernel='linear', C=1.0)
+    svm = sv.SVC(kernel='linear', C=20.0)
 
     # fit the data
     return svm.fit(data[0],data[1])
@@ -40,3 +40,5 @@ predicted = classifier.predict(test_x)
 
 # print out the results
 hlp.printModelSummary(test_y, predicted)
+
+print(classifier.support_vectors_)
