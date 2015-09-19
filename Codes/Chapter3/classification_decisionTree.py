@@ -56,4 +56,4 @@ for counter, (nm, label) \
 
 # and export to a .dot file
 sk.export_graphviz(classifier, 
-    out_file='../../Data/Chapter3/tree.dot')
+    out_file='../../Data/Chapter3/decisionTree/tree.dot')
