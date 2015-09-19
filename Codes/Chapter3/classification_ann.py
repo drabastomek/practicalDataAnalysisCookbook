@@ -11,7 +11,6 @@ import pybrain.supervised.trainers as tr
 import pybrain.tools.shortcuts as pb
 import pybrain.utilities as ut
 
-
 @hlp.timeit
 def fitANN(data):
     '''
