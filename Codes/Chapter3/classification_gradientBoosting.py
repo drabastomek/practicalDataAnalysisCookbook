@@ -14,7 +14,7 @@ def fitGradientBoosting(data):
     '''
     # create the classifier object
     gradBoost = en.GradientBoostingClassifier(
-        min_samples_split=100, n_estimators=1000)
+        min_samples_split=100, n_estimators=500)
 
     # fit the data
     return gradBoost.fit(data[0],data[1])
@@ -54,5 +54,3 @@ for counter, (nm, label) \
         zip(labels, classifier.feature_importances_)
     ):
     print("{0}. {1}: {2}".format(counter, nm,label))
-
-print(len(classifier.estimators_))
