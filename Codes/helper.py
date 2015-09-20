@@ -77,7 +77,7 @@ def prepareANNDataset(data):
 
     # get the number of inputs and outputs
     inputs = len(data[0].columns)
-    outputs = 2
+    outputs = len(data[1].axes) + 1
 
     # create dataset object
     dataset = dt.SupervisedDataSet(inputs, outputs)
