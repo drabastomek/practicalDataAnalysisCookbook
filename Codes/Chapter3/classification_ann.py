@@ -5,11 +5,9 @@ sys.path.append('..')
 # the rest of the imports
 import helper as hlp
 import pandas as pd 
-import pybrain.datasets as dt
 import pybrain.structure as st
 import pybrain.supervised.trainers as tr
 import pybrain.tools.shortcuts as pb
-import pybrain.utilities as ut
 
 @hlp.timeit
 def fitANN(data):
@@ -22,7 +20,7 @@ def fitANN(data):
 
     # create the classifier object
     ann = pb.buildNetwork(inputs_cnt, 
-        inputs_cnt / 2, 
+        inputs_cnt * 2, 
         target_cnt,
         hiddenclass=st.TanhLayer,
         outclass=st.SoftmaxLayer,
