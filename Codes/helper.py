@@ -66,7 +66,7 @@ def printModelSummary(actual, predicted):
 def prepareANNDataset(data):
     '''
         Method to prepare the dataset for ANN training
-        and testing. Assumes single valued output
+        and testing
     '''
     # we only import this when preparing ANN dataset
     import pybrain.datasets as dt
@@ -87,7 +87,7 @@ def prepareANNDataset(data):
     y = [(item,abs(item - 1)) for item in data[1]]
 
     # and add samples to the ANN dataset
-    for i in range(len(x)):
-        dataset.addSample(x[i], y[i])
+    for x_item, y_item in zip(x,y):
+        dataset.addSample(x_item, y_item)
 
     return dataset
