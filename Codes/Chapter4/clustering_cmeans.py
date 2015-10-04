@@ -44,7 +44,9 @@ centroids, u, u0, d, jm, p, fpc = findClusters_cmeans(
     selected.transpose()
 )
 # assess the clusters effectiveness
-labels = [np.argmax(elem, axis=None) for elem in u.transpose()]
+labels = [
+    np.argmax(elem, axis=None) for elem in u.transpose()
+]
 
 print(hlp.pseudo_F(selected,labels, centroids))
 print(hlp.davis_bouldin(selected,labels, centroids))
