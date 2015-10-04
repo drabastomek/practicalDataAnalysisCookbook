@@ -17,34 +17,35 @@ def findClusters_kmeans(data):
     '''
     # create the classifier object
     kmeans = cl.KMeans(
-        n_clusters=10,
+        n_clusters=4,
         n_jobs=-1,
-        verbose=2,
-        n_init=100
+        verbose=0,
+        n_init=30
     )
 
     # fit the data
     return kmeans.fit(data)
 
-# # the file name of the dataset
-# r_filename = '../../Data/Chapter3/bank_contacts.csv'
+# the file name of the dataset
+r_filename = '../../Data/Chapter3/bank_contacts.csv'
 
-# # read the data
-# csv_read = pd.read_csv(r_filename)
+# read the data
+csv_read = pd.read_csv(r_filename)
 
-# print(csv_read.head(10))
+# select variables
+selected = csv_read[['n_duration','n_nr_employed',
+        'prev_ctc_outcome_success','n_euribor3m',
+        'n_cons_conf_idx','n_age','month_oct',
+        'n_cons_price_idx','edu_university_degree','n_pdays',
+        'dow_mon','job_student','job_technician',
+        'job_housemaid','edu_basic_6y']]
 
-digits = dt.load_digits(n_class=10)
-X = digits.data
-y = digits.target
+# cluster the data
+cluster = findClusters_kmeans(selected)
 
-X_red = mn.SpectralEmbedding(n_components=2).fit_transform(X)
+# assess the clusters effectiveness
+labels = cluster.labels_
+centroids = cluster.cluster_centers_
 
-cluster = findClusters_kmeans(X_red)
-
-pred = cluster.predict(X_red)
-
-print(mt.homogeneity_score(pred, y))
-print(mt.completeness_score(pred, y))
-
-# print(cluster.predict(csv_read))
+print(hlp.pseudo_F(selected,labels, centroids))
+print(hlp.davis_bouldin(selected,labels, centroids))
