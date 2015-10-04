@@ -6,9 +6,6 @@ sys.path.append('..')
 import helper as hlp
 import pandas as pd
 import sklearn.cluster as cl
-import sklearn.datasets as dt
-import sklearn.manifold as mn
-import sklearn.metrics as mt
 
 @hlp.timeit
 def findClusters_kmeans(data):
