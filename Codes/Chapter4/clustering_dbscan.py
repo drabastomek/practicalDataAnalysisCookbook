@@ -19,19 +19,6 @@ def findClusters_DBSCAN(data):
     # fit the data
     return dbscan.fit(data)
 
-def getCentroids(data, labels):
-    '''
-        Method to get the centroids of clusters in DBSCAN
-    '''
-    # create a copy of the data
-    data = data.copy()
-
-    # apply labels
-    data['predicted'] = labels
-
-    # and return the centroids
-    return np.array(data.groupby('predicted').agg('mean'))
-
 # the file name of the dataset
 r_filename = '../../Data/Chapter3/bank_contacts.csv'
 
@@ -51,7 +38,7 @@ cluster = findClusters_DBSCAN(selected)
 
 # assess the clusters effectiveness
 labels = cluster.labels_ + 1
-centroids = getCentroids(selected, labels)
+centroids = hlp.getCentroids(selected, labels)
 
 print('Number of clusters: {0}' \
     .format(len(np.unique(labels)))

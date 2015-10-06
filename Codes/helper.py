@@ -160,3 +160,17 @@ def davis_bouldin(X, labels, centroids):
     Di = [np.max(elem) for elem in Rij]
 
     return np.array(Di).sum() / len(centroids)
+
+def getCentroids(data, labels):
+    '''
+        Method to get the centroids of clusters in clustering
+        models that do not return the centroids explicitly
+    '''
+    # create a copy of the data
+    data = data.copy()
+
+    # apply labels
+    data['predicted'] = labels
+
+    # and return the centroids
+    return np.array(data.groupby('predicted').agg('mean'))
