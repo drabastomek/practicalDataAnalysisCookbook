@@ -7,7 +7,6 @@ import helper as hlp
 import pandas as pd
 import sklearn.cluster as cl
 import sklearn.metrics as mt
-# from sklearn.metrics import pairwise_distances
 
 @hlp.timeit
 def findClusters_kmeans(data):
