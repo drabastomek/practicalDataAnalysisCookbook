@@ -7,23 +7,23 @@ import helper as hlp
 import pandas as pd
 import sklearn.cluster as cl
 import sklearn.metrics as mt
-# from sklearn.metrics import pairwise_distances
 
 @hlp.timeit
-def findClusters_kmeans(data):
+def findClusters_meanShift(data):
     '''
-        Cluster data using k-means
+        Cluster data using Mean Shift method
     '''
+    bandwidth = cl.estimate_bandwidth(data, 
+        quantile=0.25, n_samples=500)
+
     # create the classifier object
-    kmeans = cl.KMeans(
-        n_clusters=4,
-        n_jobs=-1,
-        verbose=0,
-        n_init=30
+    meanShift = cl.MeanShift(
+        bandwidth=bandwidth,
+        bin_seeding=True
     )
 
     # fit the data
-    return kmeans.fit(data)
+    return meanShift.fit(data)
 
 # the file name of the dataset
 r_filename = '../../Data/Chapter3/bank_contacts.csv'
@@ -40,7 +40,7 @@ selected = csv_read[['n_duration','n_nr_employed',
         'job_housemaid','edu_basic_6y']]
 
 # cluster the data
-cluster = findClusters_kmeans(selected)
+cluster = findClusters_meanShift(selected.as_matrix())
 
 # assess the clusters effectiveness
 labels = cluster.labels_
