@@ -48,5 +48,4 @@ labels = [
     np.argmax(elem, axis=None) for elem in u.transpose()
 ]
 
-print(hlp.pseudo_F(selected,labels, centroids))
-print(hlp.davis_bouldin(selected,labels, centroids))
+hlp.printClustersSummary(selected, labels, centroids)

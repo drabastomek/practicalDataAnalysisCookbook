@@ -116,5 +116,4 @@ cluster = findClusters_kmeans(selected, optimal_n_clusters)
 labels = cluster.labels_
 centroids = cluster.cluster_centers_
 
-print(hlp.pseudo_F(selected,labels, centroids))
-print(hlp.davis_bouldin(selected,labels, centroids))
+hlp.printClustersSummary(selected, labels, centroids)

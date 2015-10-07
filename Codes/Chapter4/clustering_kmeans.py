@@ -6,6 +6,8 @@ sys.path.append('..')
 import helper as hlp
 import pandas as pd
 import sklearn.cluster as cl
+import sklearn.metrics as mt
+# from sklearn.metrics import pairwise_distances
 
 @hlp.timeit
 def findClusters_kmeans(data):
@@ -44,5 +46,4 @@ cluster = findClusters_kmeans(selected)
 labels = cluster.labels_
 centroids = cluster.cluster_centers_
 
-print(hlp.pseudo_F(selected,labels, centroids))
-print(hlp.davis_bouldin(selected,labels, centroids))
+hlp.printClustersSummary(selected, labels, centroids)

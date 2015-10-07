@@ -174,3 +174,15 @@ def getCentroids(data, labels):
 
     # and return the centroids
     return np.array(data.groupby('predicted').agg('mean'))
+
+def printClustersSummary(data, labels, centroids):
+    '''
+        Helper method to automate models assessment
+    '''
+    print('Pseudo_F: ', pseudo_F(data,labels, centroids))
+    print('Davis-Bouldin: ', 
+        davis_bouldin(data,labels, centroids))
+    print('Silhouette score: ', 
+        mt.silhouette_score(data, labels, 
+            metric='euclidean'))
+
