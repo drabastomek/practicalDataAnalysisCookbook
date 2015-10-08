@@ -109,7 +109,7 @@ def pseudo_F(X, labels, centroids):
             Commun. Stat. 3: 1-27.
             http://dx.doi.org/10.1080/03610927408827101
 
-        We borrowed the code from 
+        We borrowed this code from 
         https://github.com/scampion/scikit-learn/blob/master/
         scikits/learn/cluster/__init__.py
     '''
@@ -139,7 +139,9 @@ def davis_bouldin(X, labels, centroids):
 
             http://dx.doi.org/10.1109/TPAMI.1979.4766909
     '''
-    distance = np.array([np.sqrt(np.sum((x - centroids[labels[i]])**2)) for i, x in enumerate(X.as_matrix())])
+    distance = np.array([
+        np.sqrt(np.sum((x - centroids[labels[i]])**2)) 
+        for i, x in enumerate(X.as_matrix())])
 
     u, c = np.unique(labels, return_counts=True)
 
@@ -151,11 +153,16 @@ def davis_bouldin(X, labels, centroids):
     Mij = []
 
     for centroid in centroids:
-        Mij.append([np.sqrt(np.sum((centroid - x)**2)) for x in centroids])
+        Mij.append([
+            np.sqrt(np.sum((centroid - x)**2)) 
+            for x in centroids])
 
     Rij = [] 
     for i in range(len(centroids)):
-        Rij.append([0 if i == j else (Si[i] + Si[j]) / Mij[i][j] for j in range(len(centroids))])
+        Rij.append([
+            0 if i == j 
+            else (Si[i] + Si[j]) / Mij[i][j] 
+            for j in range(len(centroids))])
 
     Di = [np.max(elem) for elem in Rij]
 
@@ -179,10 +186,10 @@ def printClustersSummary(data, labels, centroids):
     '''
         Helper method to automate models assessment
     '''
-    print('Pseudo_F: ', pseudo_F(data,labels, centroids))
+    print('Pseudo_F: ', pseudo_F(data, labels, centroids))
     print('Davis-Bouldin: ', 
-        davis_bouldin(data,labels, centroids))
-    print('Silhouette score: ', 
-        mt.silhouette_score(data, labels, 
-            metric='euclidean'))
+        davis_bouldin(data, labels, centroids))
+    # print('Silhouette score: ', 
+    #     mt.silhouette_score(data, labels, 
+    #         metric='euclidean'))
 
