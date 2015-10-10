@@ -34,13 +34,16 @@ def findOptimalClusterNumber(
         number of clusters that minimizes the Davis-Bouldin
         criterion
     '''
-    measures = [666]        # first element
-    n_clusters = 2          # starting point
+    # the object to hold measures 
+    measures = [666]
+
+    # starting point
+    n_clusters = 2 
     
     # counter for the number of iterations past the local 
     # minimum
     keep_going_cnt = 0
-    minimum_found = False   # flag for the minimum found
+    stop = False   # flag for the algorithm stop
     
     def checkMinimum(keep_going):
         '''
@@ -66,7 +69,7 @@ def findOptimalClusterNumber(
 
     # main loop 
     # loop until minimum found or maximum iterations reached
-    while not minimum_found and n_clusters < (max_iter + 2):
+    while not stop and n_clusters < (max_iter + 2):
         # cluster the data
         cluster = findClusters_kmeans(data, n_clusters)
 
@@ -74,13 +77,13 @@ def findOptimalClusterNumber(
         labels = cluster.labels_
         centroids = cluster.cluster_centers_
 
-        # store the measures
+        # store the measures   
         measures.append(
             hlp.davis_bouldin(data,labels, centroids)
         )
 
         # check if minimum found
-        minimum_found = checkMinimum(keep_going)
+        stop = checkMinimum(keep_going)
 
         # increase the iteration
         n_clusters += 1
@@ -89,7 +92,7 @@ def findOptimalClusterNumber(
     return measures.index(np.min(measures))
 
 # the file name of the dataset
-r_filename = '../../Data/Chapter3/bank_contacts.csv'
+r_filename = '../../Data/Chapter4/bank_contacts.csv'
 
 # read the data
 csv_read = pd.read_csv(r_filename)

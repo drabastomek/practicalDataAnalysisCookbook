@@ -112,17 +112,24 @@ def pseudo_F(X, labels, centroids):
         We borrowed this code from 
         https://github.com/scampion/scikit-learn/blob/master/
         scikits/learn/cluster/__init__.py
+
+        However, it had an error so we altered how B is
+        calculated.
     '''
-    mean = np.mean(X,axis=0) 
-    B = np.sum([ (c - mean)**2 for c in centroids])
+    center = np.mean(X,axis=0)
+    u, count = np.unique(labels, return_counts=True)
+
+    B = np.sum([count[i] * ((cluster - center)**2)
+        for i, cluster in enumerate(centroids)])
 
     X = X.as_matrix()
-    W = np.sum([ (x-centroids[labels[i]])**2 
+    W = np.sum([(x - centroids[labels[i]])**2 
                  for i, x in enumerate(X)])
 
-    c = len(centroids)
+    k = len(centroids)
     n = len(X)
-    return (B /(c-1))/(W/ (n-c))
+
+    return (B / (k-1)) / (W / (n-k))
 
 def davis_bouldin(X, labels, centroids):
     '''
@@ -143,12 +150,12 @@ def davis_bouldin(X, labels, centroids):
         np.sqrt(np.sum((x - centroids[labels[i]])**2)) 
         for i, x in enumerate(X.as_matrix())])
 
-    u, c = np.unique(labels, return_counts=True)
+    u, count = np.unique(labels, return_counts=True)
 
     Si = []
 
-    for group, i in enumerate(u):
-        Si.append(distance[labels == group].sum() / c[i])
+    for i, group in enumerate(u):
+        Si.append(distance[labels == group].sum() / count[i])
 
     Mij = []
 
@@ -189,7 +196,7 @@ def printClustersSummary(data, labels, centroids):
     print('Pseudo_F: ', pseudo_F(data, labels, centroids))
     print('Davis-Bouldin: ', 
         davis_bouldin(data, labels, centroids))
-    # print('Silhouette score: ', 
-    #     mt.silhouette_score(data, labels, 
-    #         metric='euclidean'))
+    print('Silhouette score: ', 
+        mt.silhouette_score(data, labels, 
+            metric='euclidean'))
 
