@@ -69,7 +69,7 @@ def findOptimalClusterNumber(
 
     # main loop 
     # loop until minimum found or maximum iterations reached
-    while not stop and n_clusters < (max_iter + n_clusters):
+    while not stop and n_clusters < (max_iter + 2):
         # cluster the data
         cluster = findClusters_kmeans(data, n_clusters)
 
@@ -89,7 +89,7 @@ def findOptimalClusterNumber(
         n_clusters += 1
 
     # once found -- return the index of the minimum
-    return measures.index(np.min(measures))
+    return measures.index(np.min(measures)) + 1
 
 # the file name of the dataset
 r_filename = '../../Data/Chapter4/bank_contacts.csv'
