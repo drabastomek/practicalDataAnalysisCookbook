@@ -17,11 +17,11 @@ def findClusters_cmeans(data):
     # create the classifier object
     return cl.cmeans(
         data,
-        c = 4,          # number of clusters
+        c = 5,          # number of clusters
         m = 2,          # exponentiation factor
         
         # stopping criteria
-        error = 0.03,
+        error = 0.01,
         maxiter = 300
     )
 
@@ -44,9 +44,12 @@ centroids, u, u0, d, jm, p, fpc = findClusters_cmeans(
     selected.transpose()
 )
 
+print(u[0:10])
+
 # assess the clusters effectiveness
 labels = [
-    np.argmax(elem, axis=None) for elem in u.transpose()
+    np.argmax(elem) for elem in u.transpose()
 ]
+
 
 hlp.printClustersSummary(selected, labels, centroids)
