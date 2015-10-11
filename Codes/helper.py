@@ -197,6 +197,6 @@ def printClustersSummary(data, labels, centroids):
     print('Davis-Bouldin: ', 
         davis_bouldin(data, labels, centroids))
     print('Silhouette score: ', 
-        mt.silhouette_score(data, labels, 
+        mt.silhouette_score(data, np.array(labels), 
             metric='euclidean'))
 
