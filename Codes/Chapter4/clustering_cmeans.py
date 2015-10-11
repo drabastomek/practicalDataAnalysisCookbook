@@ -21,8 +21,8 @@ def findClusters_cmeans(data):
         m = 2,          # exponentiation factor
         
         # stopping criteria
-        error = 0.3,
-        maxiter = 30
+        error = 0.03,
+        maxiter = 300
     )
 
 # the file name of the dataset
@@ -43,6 +43,7 @@ selected = csv_read[['n_duration','n_nr_employed',
 centroids, u, u0, d, jm, p, fpc = findClusters_cmeans(
     selected.transpose()
 )
+
 # assess the clusters effectiveness
 labels = [
     np.argmax(elem, axis=None) for elem in u.transpose()
