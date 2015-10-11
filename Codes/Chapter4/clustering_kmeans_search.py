@@ -69,7 +69,7 @@ def findOptimalClusterNumber(
 
     # main loop 
     # loop until minimum found or maximum iterations reached
-    while not stop and n_clusters < (max_iter + 2):
+    while not stop and n_clusters < (max_iter + n_clusters):
         # cluster the data
         cluster = findClusters_kmeans(data, n_clusters)
 
