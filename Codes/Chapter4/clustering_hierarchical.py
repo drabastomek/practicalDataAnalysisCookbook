@@ -5,23 +5,18 @@ sys.path.append('..')
 # the rest of the imports
 import helper as hlp
 import pandas as pd
-import mlpy as ml
+import scipy.cluster.hierarchy as cl
 import numpy as np
+import pylab as pl
 
 @hlp.timeit
-def findClusters_ward(data):
+def findClusters_link(data):
     '''
-        Cluster data using Ward's hierarchical clustering
+        Cluster data using single linkage hierarchical 
+        clustering
     '''
-    # create the classifier object
-    ward = ml.MFastHCluster(
-        method='ward'
-    )
-
-    # fit the data
-    ward.linkage(data)
-
-    return ward
+    # return the linkage object
+    return cl.linkage(data, method='single')
 
 # the file name of the dataset
 r_filename = '../../Data/Chapter4/bank_contacts.csv'
@@ -40,9 +35,15 @@ selected = csv_read[['n_duration','n_nr_employed',
 # cluster the data
 cluster = findClusters_ward(selected)
 
-# assess the clusters effectiveness
-labels = cluster.cut(20)
-centroids = hlp.getCentroids(selected, labels)
+# plot the clusters
+fig  = pl.figure(figsize=(16,9))
+ax   = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+dend = cl.dendrogram(cluster, truncate_mode='level', p=20)
+ax.set_xticks([])
+ax.set_yticks([])
 
-print(hlp.pseudo_F(selected,labels, centroids))
-print(hlp.davis_bouldin(selected,labels, centroids))
+# save the figure
+fig.savefig(
+    '../../Data/Chapter4/hierarchical_dendrogram.png',
+    dpi=300
+)
