@@ -36,7 +36,7 @@ y = csv_read[csv_read.columns[-1]]
 # reduce the dimensionality
 z = reduce_PCA(x)
 
-# save the chart
+# plot and save the chart
 file_save_params = {
     'filename': '../../Data/Chapter5/charts/pca_3d.png', 
     'dpi': 300
