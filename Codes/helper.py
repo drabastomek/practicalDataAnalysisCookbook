@@ -200,3 +200,38 @@ def printClustersSummary(data, labels, centroids):
         mt.silhouette_score(data, np.array(labels), 
             metric='euclidean'))
 
+def plot_components(z, y, **f_params):
+    '''
+        Produce and save the chart presenting the 3 principal
+        components
+    '''
+    # import necessary modules
+    import matplotlib.pyplot as plt
+    from mpl_toolkits.mplot3d import Axes3D
+
+    # convert the dependent into a Numpy array
+    # this is done so z and y are in the same format
+    y_np = np.array(y)
+
+    # create a figure
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+
+    # to vary the colors and markers for the points
+    color_marker = [('r','o'),('g','.')]
+
+    # plot the dots
+    for i in range(0, len(y.unique())):
+        ax.scatter(
+            z[y_np == i, 0], 
+            z[y_np == i, 1], 
+            z[y_np == i, 2], 
+            c=color_marker[i][0], 
+            marker=color_marker[i][1])
+
+    ax.set_xlabel('First component')
+    ax.set_ylabel('S    econd component')
+    ax.set_zlabel('First component')
+
+    # save the figure
+    plt.savefig(**f_params)
