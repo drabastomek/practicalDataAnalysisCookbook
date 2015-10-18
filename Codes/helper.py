@@ -227,8 +227,8 @@ def plot_components(z, y, color_marker, **f_params):
             marker=color_marker[i][1])
 
     ax.set_xlabel('First component')
-    ax.set_ylabel('S    econd component')
-    ax.set_zlabel('First component')
+    ax.set_ylabel('Second component')
+    ax.set_zlabel('Third component')
 
     # save the figure
     plt.savefig(**f_params)
