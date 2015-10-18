@@ -200,7 +200,7 @@ def printClustersSummary(data, labels, centroids):
         mt.silhouette_score(data, np.array(labels), 
             metric='euclidean'))
 
-def plot_components(z, y, **f_params):
+def plot_components(z, y, color_marker, **f_params):
     '''
         Produce and save the chart presenting 3 principal
         components
@@ -216,9 +216,6 @@ def plot_components(z, y, **f_params):
     # create a figure
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
-
-    # to vary the colors and markers for the points
-    color_marker = [('r','o'),('g','.')]
 
     # plot the dots
     for i in range(0, len(y.unique())):

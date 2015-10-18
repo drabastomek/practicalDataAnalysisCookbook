@@ -37,9 +37,12 @@ y = csv_read[csv_read.columns[-1]]
 z = reduce_PCA(x)
 
 # plot and save the chart
+# to vary the colors and markers for the points
+color_marker = [('r','o'),('g','.')]
+
 file_save_params = {
     'filename': '../../Data/Chapter5/charts/pca_3d.png', 
     'dpi': 300
 }
 
-hlp.plot_components(z, y, **file_save_params)
+hlp.plot_components(z, y, color_marker, **file_save_params)
