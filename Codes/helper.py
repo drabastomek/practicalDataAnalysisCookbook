@@ -202,7 +202,7 @@ def printClustersSummary(data, labels, centroids):
 
 def plot_components(z, y, **f_params):
     '''
-        Produce and save the chart presenting the 3 principal
+        Produce and save the chart presenting 3 principal
         components
     '''
     # import necessary modules
