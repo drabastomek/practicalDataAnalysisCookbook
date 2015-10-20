@@ -23,6 +23,8 @@ def split_data(data, y, x = 'All', test_size = 0.33):
     '''
         Method to split the data into training and testing
     '''
+    import sys
+    
     # dependent variable
     variables = {'y': y}
 
