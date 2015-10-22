@@ -24,7 +24,7 @@ def split_data(data, y, x = 'All', test_size = 0.33):
         Method to split the data into training and testing
     '''
     import sys
-    
+
     # dependent variable
     variables = {'y': y}
 
@@ -208,12 +208,17 @@ def plot_components(z, y, color_marker, **f_params):
         components
     '''
     # import necessary modules
+    import pandas as pd
     import matplotlib.pyplot as plt
     from mpl_toolkits.mplot3d import Axes3D
 
     # convert the dependent into a Numpy array
     # this is done so z and y are in the same format
-    y_np = np.array(y)
+    y_np = y
+
+    # do it only, however, if y is a Pandas Series object
+    if type(y_np) == pd.Series:
+        y_np = np.array(y_np)
 
     # create a figure
     fig = plt.figure()
