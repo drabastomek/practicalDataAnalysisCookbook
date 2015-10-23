@@ -33,6 +33,12 @@ y = csv_read[csv_read.columns[-1]]
 # reduce the dimensionality
 z = reduce_PCA(x)
 
+# how much variance each component explains?
+print(z.explained_variance_ratio_)
+
+# and total variance accounted for
+print(np.sum(z.explained_variance_ratio_))
+
 # plot and save the chart
 # vary the colors and markers for the points
 color_marker = [('r','^'),('g','o')]
