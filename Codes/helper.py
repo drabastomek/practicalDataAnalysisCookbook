@@ -208,7 +208,6 @@ def plot_components(z, y, color_marker, **f_params):
         components
     '''
     # import necessary modules
-    import pandas as pd
     import matplotlib.pyplot as plt
     from mpl_toolkits.mplot3d import Axes3D
 
@@ -216,8 +215,8 @@ def plot_components(z, y, color_marker, **f_params):
     # this is done so z and y are in the same format
     y_np = y
 
-    # do it only, however, if y is a Pandas Series object
-    if type(y_np) == pd.Series:
+    # do it only, however, if y is not NumPy array
+    if type(y_np) != np.array:
         y_np = np.array(y_np)
 
     # create a figure
