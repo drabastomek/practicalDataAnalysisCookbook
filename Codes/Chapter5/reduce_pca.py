@@ -20,8 +20,8 @@ def reduce_PCA(x):
     # learn the principal components from all the features
     pca.learn(x)
 
-    # return only 3 principal components
-    return pca.transform(x, k=3)
+    # return the object
+    return pca
 
 # the file name of the dataset
 r_filename = '../../Data/Chapter5/bank_contacts.csv'
@@ -45,4 +45,5 @@ file_save_params = {
     'dpi': 300
 }
 
-hlp.plot_components(z, y, color_marker, **file_save_params)
+hlp.plot_components(z.transform(x, k=3), y, 
+    color_marker, **file_save_params)
