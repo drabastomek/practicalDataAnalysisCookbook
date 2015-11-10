@@ -29,10 +29,10 @@ def reduceDimensions(method, data, **kwrd_params):
 @hlp.timeit
 def fit_kNN_classifier(data):
     '''
-        Build the linear SVM classifier
+        Build the kNN classifier
     '''
     # create the classifier object
-    knn = nb.KNeighborsClassifier(n_neighbors=3)
+    knn = nb.KNeighborsClassifier()
 
     # fit the data
     knn.fit(data[0],data[1])
@@ -40,17 +40,49 @@ def fit_kNN_classifier(data):
     #return the classifier
     return knn
 
-def class_fit_predict_print(train_x, train_y, test_x, test_y):
+def prepare_data(data, principal_components, n_components):
+    '''
+        Prepare the data for the classification
+    '''
+    # prepare the column names
+    cols = ['pc' + str(i) 
+        for i in range(0, n_components)]
+
+    # concatenate the data
+    data = pd.concat(
+        [data, 
+            pd.DataFrame(principal_components, 
+                columns=cols)], 
+            axis=1, join_axes=[data.index])
+
+    # split the data into training and testing
+    train_x, train_y, \
+    test_x,  test_y, \
+    labels = hlp.split_data(
+        data, 
+        y = 'credit_application',
+        x = cols
+    )
+
+    return (train_x, train_y, test_x, test_y)
+
+def class_fit_predict_print(data):
+    '''
+        Automating model estimation
+    '''
     # train the model
-    classifier = fit_kNN_classifier((train_x, train_y))
+    classifier = fit_kNN_classifier((data[0], data[1]))
 
     # classify the unseen data
-    predicted = classifier.predict(test_x)
+    predicted = classifier.predict(data[2])
 
     # print out the results
-    hlp.printModelSummary(test_y, predicted)
+    hlp.printModelSummary(data[3], predicted)
 
 def fit_clean(data):
+    '''
+        Fit the model without any principal components
+    '''
     # split the data into training and testing
     train_x, train_y, \
     test_x,  test_y, \
@@ -59,88 +91,72 @@ def fit_clean(data):
         y = 'credit_application'
     )
 
-    class_fit_predict_print(train_x, train_y, test_x, test_y)
+    # fit the model and print the summary
+    class_fit_predict_print((train_x, train_y, 
+        test_x, test_y))
 
 def fit_pca(data):
+    '''
+        Fit the model with PCA principal components
+    '''
+    # keyword parameters for the PCA
     kwrd_params = {'n_components': 5, 'whiten': True}
 
+    # reduce the data
     reduced = reduceDimensions(cd.PCA, data, **kwrd_params)
 
-    cols = ['pc' + str(i) 
-        for i in range(0, kwrd_params['n_components'])]
+    # prepare the data for the classifier
+    data_l = prepare_data(data, reduced, 
+        kwrd_params['n_components'])
 
-    data = pd.concat(
-        [data, 
-            pd.DataFrame(reduced, 
-                columns=cols)], 
-            axis=1, join_axes=[data.index])
-
-    # split the data into training and testing
-    train_x, train_y, \
-    test_x,  test_y, \
-    labels = hlp.split_data(
-        data, 
-        y = 'credit_application',
-        x = cols
-    )
-
-    class_fit_predict_print(train_x, train_y, test_x, test_y) 
+    # fit the model
+    class_fit_predict_print(data_l)
 
 def fit_fastICA(data):
+    '''
+        Fit the model with fast ICA principal components
+    '''
+    # keyword parameters for the PCA
     kwrd_params = {
-        'n_components': 5, 'algorithm': 'parallel', 'whiten': True
+        'n_components': 5, 
+        'algorithm': 'parallel', 
+        'whiten': True
     }
 
-    reduced = reduceDimensions(cd.FastICA, data, **kwrd_params)
+    # reduce the data
+    reducced = reduceDimensions(cd.FastICA, 
+        data, **kwrd_params)
 
-    cols = ['pc' + str(i) 
-        for i in range(0, kwrd_params['n_components'])]
+    # prepare the data for the classifier
+    data_l = prepare_data(data, reduced, 
+        kwrd_params['n_components'])
 
-    data = pd.concat(
-        [data, 
-            pd.DataFrame(reduced, 
-                columns=cols)], 
-            axis=1, join_axes=[data.index])
-
-    # split the data into training and testing
-    train_x, train_y, \
-    test_x,  test_y, \
-    labels = hlp.split_data(
-        data, 
-        y = 'credit_application',
-        x = cols
-    )
-
-    class_fit_predict_print(train_x, train_y, test_x, test_y) 
+    # fit the model
+    class_fit_predict_print(data_l)
 
 def fit_truncatedSVD(data):
+    '''
+        Fit the model with truncated SVD principal components
+    '''
+    # keyword parameters for the PCA
     kwrd_params = {
-        'algorithm': 'randomized', 'n_components': 5, 'n_iter': 5,
-        'random_state': 42, 'tol': 0.0
+        'algorithm': 'randomized', 
+        'n_components': 5, 
+        'n_iter': 5,
+        'random_state': 42, 
+        'tol': 0.0
     }
 
-    reduced = reduceDimensions(cd.TruncatedSVD, data, **kwrd_params)
+    # reduce the data
+    reduced = reduceDimensions(cd.TruncatedSVD, 
+        data, **kwrd_params)
 
-    cols = ['pc' + str(i) 
-        for i in range(0, kwrd_params['n_components'])]
+    # prepare the data for the classifier
+    data_l = prepare_data(data, reduced, 
+        kwrd_params['n_components'])
 
-    data = pd.concat(
-        [data, 
-            pd.DataFrame(reduced, 
-                columns=cols)], 
-            axis=1, join_axes=[data.index])
-
-    # split the data into training and testing
-    train_x, train_y, \
-    test_x,  test_y, \
-    labels = hlp.split_data(
-        data, 
-        y = 'credit_application',
-        x = cols
-    )
-
-    class_fit_predict_print(train_x, train_y, test_x, test_y) 
-
+    # fit the model
+    class_fit_predict_print(data_l)
 
 # the file name of the dataset
 r_filename = '../../Data/Chapter3/bank_contacts.csv'

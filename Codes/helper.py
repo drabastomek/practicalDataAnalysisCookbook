@@ -19,6 +19,16 @@ def timeit(method):
 
     return timed
 
+def timeExecution(method, *args, **kwargs):
+    '''
+        A method to measure time of execution of a method
+    '''
+    start = time.time()
+    result = method(*args, **kwargs)
+    end = time.time()
+
+    return result, end-start
+
 def split_data(data, y, x = 'All', test_size = 0.33):
     '''
         Method to split the data into training and testing
@@ -224,11 +234,11 @@ def plot_components(z, y, color_marker, **f_params):
     ax = fig.add_subplot(111, projection='3d')
 
     # plot the dots
-    for i in range(0, len(y.unique())):
+    for i, j in enumerate(np.unique(y_np)):
         ax.scatter(
-            z[y_np == i, 0], 
-            z[y_np == i, 1], 
-            z[y_np == i, 2], 
+            z[y_np == j, 0], 
+            z[y_np == j, 1], 
+            z[y_np == j, 2], 
             c=color_marker[i][0], 
             marker=color_marker[i][1])
 
@@ -238,3 +248,64 @@ def plot_components(z, y, color_marker, **f_params):
 
     # save the figure
     plt.savefig(**f_params)
+
+def plot_components_2d(z, y, color_marker, **f_params):
+    '''
+        Produce and save the chart presenting 3 principal
+        components
+    '''
+    # import necessary modules
+    import matplotlib.pyplot as plt
+    from mpl_toolkits.mplot3d import Axes3D
+
+    # convert the dependent into a Numpy array
+    # this is done so z and y are in the same format
+    y_np = y
+
+    # do it only, however, if y is not NumPy array
+    if type(y_np) != np.array:
+        y_np = np.array(y_np)
+
+    # create a figure
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+
+    # plot the dots
+    for i in np.unique(y_np):
+        ax.scatter(
+            z[y_np == i, 0], 
+            z[y_np == i, 1], 
+            c=color_marker[i][0], 
+            marker=color_marker[i][1])
+
+    ax.set_xlabel('First component')
+    ax.set_ylabel('Second component')
+
+    # save the figure
+    plt.savefig(**f_params)
+
+def produce_XOR(sampleSize):
+    import sklearn.datasets as dt
+
+    # centers of the blobs
+    centers = [(0,0),(3,0),(3,3),(0,3)]
+
+    # create the sample
+    x, y = dt.make_blobs(n_samples=sampleSize, n_features=2,
+        cluster_std=0.8, centers=centers, shuffle=False
+    )
+
+    # and make it XOR like
+    y[y == 2] = 0 
+    y[y == 3] = 1
+
+    return x, y
+
+def produce_sample(sampleSize, features):
+    import sklearn.datasets as dt
+
+    # create the sample
+    x, y = dt.make_sparse_uncorrelated(
+        n_samples=sampleSize, n_features=features)
+
+    return x, y

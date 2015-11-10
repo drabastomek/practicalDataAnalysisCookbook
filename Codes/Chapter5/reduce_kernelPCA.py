@@ -5,7 +5,6 @@ sys.path.append('..')
 # the rest of the imports
 import helper as hlp
 import pandas as pd
-import numpy as np
 import sklearn.decomposition as dc
 
 @hlp.timeit
@@ -42,14 +41,5 @@ kwd_params = {
 
 z = reduce_KernelPCA(x, **kwd_params)
 
-# plot and save the chart
-# vary the colors and markers for the points
-color_marker = [('r','^'),('g','o')]
-
-file_save_params = {
-    'filename': '../../Data/Chapter5/charts/kernel_pca_3d.png', 
-    'dpi': 300
-}
-
-hlp.plot_components(z.transform(x), y, color_marker, 
-    **file_save_params)
+# transform the dataset
+x_transformed = z.transform(x)

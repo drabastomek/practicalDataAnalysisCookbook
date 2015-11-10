@@ -5,7 +5,6 @@ sys.path.append('..')
 # the rest of the imports
 import helper as hlp
 import pandas as pd
-import numpy as np
 import mlpy as ml
 
 @hlp.timeit
@@ -47,23 +46,34 @@ csv_read = pd.read_csv(r_filename)
 x = csv_read[csv_read.columns[:-1]]
 y = csv_read[csv_read.columns[-1]]
 
+# split the original data into training and testing
+train_x_orig, train_y_orig, \
+test_x_orig,  test_y_orig, \
+labels_orig = hlp.split_data(
+    csv_read, 
+    y = 'credit_application'
+)
+
 # reduce the dimensionality
 csv_read['reduced'] = reduce_LDA(x, y).transform(x)
 
-# split the data into training and testing
-train_x, train_y, \
-test_x,  test_y, \
-labels = hlp.split_data(
+# split the reduced data into training and testing
+train_x_r, train_y_r, \
+test_x_r,  test_y_r, \
+labels_r = hlp.split_data(
     csv_read, 
     y = 'credit_application',
     x = ['reduced']
 )
 
-# train the model
-classifier_l = fitLinearSVM((train_x, train_y))
+# train the models
+classifier_r    = fitLinearSVM((train_x_r, train_y_r))
+classifier_orig = fitLinearSVM((train_x_orig, train_y_orig))
 
 # classify the unseen data
-predicted_l = classifier_l.pred(test_x)
+predicted_r    = classifier_r.pred(test_x_r)
+predicted_orig = classifier_orig.pred(test_x_orig)
 
 # print out the results
-hlp.printModelSummary(test_y, predicted_l)
+hlp.printModelSummary(test_y_r, predicted_r)
+hlp.printModelSummary(test_y_orig, predicted_orig)

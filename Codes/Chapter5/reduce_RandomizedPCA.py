@@ -4,44 +4,117 @@ sys.path.append('..')
 
 # the rest of the imports
 import helper as hlp
-import pandas as pd
 import numpy as np
-import sklearn.decomposition as cd
+import sklearn.decomposition as dc
 
-@hlp.timeit
-def reduce_CCA(x, y):
+def reduce_PCA(x):
     '''
-        Reduce the dimensions using Canonical Correlation
-        Analysis
+        Reduce the dimensions using Principal Component
+        Analysis 
     '''
-    # create the CCA object
-    cca = cd.RandomizedPCA(n_components=3, whiten=True,
-        copy=True)
+    # create the PCA object
+    pca = dc.PCA(n_components=2, whiten=True)
 
     # learn the principal components from all the features
-    return cca.fit(x, y)
+    return pca.fit(x)
 
-# the file name of the dataset
-r_filename = '../../Data/Chapter5/bank_contacts.csv'
+def reduce_randomizedPCA(x):
+    '''
+        Reduce the dimensions using Randomized PCA algorithm
+    '''
+    # create the CCA object
+    randomPCA = dc.RandomizedPCA(n_components=2, whiten=True,
+        copy=False)
 
-# read the data
-csv_read = pd.read_csv(r_filename)
+    # learn the principal components from all the features
+    return randomPCA.fit(x)
 
-# split into independent and dependent features
-x = csv_read[csv_read.columns[:-1]]
-y = csv_read[csv_read.columns[-1]]
+def saveSurfacePlot(X_in,Y_in,Z,**f_params):
+    from mpl_toolkits.mplot3d import Axes3D
+    import matplotlib.pyplot as plt
+    import matplotlib as mt
 
-# reduce the dimensionality
-z = reduce_CCA(x, y)
+    # adjust the font
+    font = {'size': 8}
+    mt.rc('font', **font)
 
-# plot and save the chart
-# to vary the colors and markers for the points
-color_marker = [('r','o'),('g','.')]
+    # create a mesh
+    X, Y = np.meshgrid(X_in, Y_in)
 
-file_save_params = {
-    'filename': '../../Data/Chapter5/charts/randomized_pca_3d.png', 
+    # create figure and add axes
+    fig = plt.figure()
+    ax = fig.gca(projection='3d')
+
+    # plot the surface
+    surf = ax.plot_surface(X, Y, Z, 
+        rstride=1, cstride=1, 
+        cmap=mt.cm.seismic,
+        linewidth=0, antialiased=True)
+
+    # set the limits on the z-axis
+    ax.set_zlim(0, 7)
+
+    # add labels to axes
+    ax.set_xlabel('Sample size')
+    ax.set_ylabel('Feature space')
+    ax.set_zlabel('Time to estimate (s)')
+
+    # rotate the chart
+    ax.view_init(30, 130)
+
+    # and save the figure
+    fig.savefig(**f_params)
+
+# prepare the sample
+sampleSizes = np.arange(1000, 50000, 3000)
+featureSpace = np.arange(100, 1000, 100)
+
+# object to hold the results
+Z = {'randomPCA': [], 'PCA': []}
+
+for features in featureSpace:
+    inner_z_randomPCA = []
+    inner_z_PCA = []
+
+    for sampleSize in sampleSizes:
+        # get the sample
+        x, y = hlp.produce_sample(
+            sampleSize=sampleSize, features=features)
+
+        print(
+            'Processing: sample size {0} and {1} features'\
+            .format(sampleSize, features))
+
+        # reduce the dimensionality
+        z_r, time_r     = hlp.timeExecution(
+            reduce_randomizedPCA, x)
+        z_pca, time_pca = hlp.timeExecution(
+            reduce_PCA, x)
+
+        inner_z_randomPCA.append(time_r)
+        inner_z_PCA.append(time_pca)
+
+    Z['randomPCA'].append(inner_z_randomPCA)
+    Z['PCA'].append(inner_z_PCA)
+
+# filename params for the standard PCA
+f_params = {
+    'filename':
+        '../../Data/Chapter5/charts/time_pca_surf.png',
     'dpi': 300
 }
 
-hlp.plot_components(z.transform(x), y, color_marker, 
-    **file_save_params)
+# prepare and save the plot
+saveSurfacePlot(sampleSizes, featureSpace, 
+    Z['PCA'], **f_params)
+
+# filename params for the randomized PCA
+f_params = {
+    'filename':
+        '../../Data/Chapter5/charts/time_r_pca_surf.png',
+    'dpi': 300
+}
+
+# prepare and save the plot
+saveSurfacePlot(sampleSizes, featureSpace, 
+    Z['randomPCA'], **f_params)
