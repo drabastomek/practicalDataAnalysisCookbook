@@ -124,7 +124,7 @@ def fit_fastICA(data):
     }
 
     # reduce the data
-    reducced = reduceDimensions(cd.FastICA, 
+    reduced = reduceDimensions(cd.FastICA, 
         data, **kwrd_params)
 
     # prepare the data for the classifier
