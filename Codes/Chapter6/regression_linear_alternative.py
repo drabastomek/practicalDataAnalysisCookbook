@@ -6,18 +6,22 @@ sys.path.append('..')
 import helper as hlp
 import pandas as pd
 import numpy as np
-import statsmodels.api as sm
+import sklearn.linear_model as lm
 
 @hlp.timeit
 def regression_linear(x,y):
     '''
         Estimate a linear regression
     '''
-    # create the model object
-    model = sm.OLS(y, x)
+    # create the regressor object
+    linear = lm.LinearRegression(fit_intercept=True,
+        normalize=True, copy_X=True, n_jobs=-1)
 
-    # and return the fit model
-    return model.fit()
+    # estimate the model
+    linear.fit(x,y)
+
+    # return the object
+    return linear
 
 # the file name of the dataset
 r_filename = '../../Data/Chapter6/power_plant_dataset_pc.csv'
@@ -49,8 +53,14 @@ y     = csv_read[dependent]
 
 # estimate the model using all variables (without PC)
 z = regression_linear(x,y)
-print(z.summary())
+
+print(z.score(x,y))
+print(z.coef_)
+print(z.intercept_)
 
 # estimate the model using principal components
 z_red = regression_linear(x_red,y)
-print(z_red.summary())
+
+print(z_red.score(x_red,y))
+print(z_red.coef_)
+print(z_red.intercept_)
