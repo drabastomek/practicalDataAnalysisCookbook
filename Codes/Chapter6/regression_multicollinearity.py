@@ -44,7 +44,8 @@ t = np.nonzero(abs(v[:,s[0]]) > 0.01)
 print(t[0])
 
 # and reduce the data keeping only 3 principal components
-z = reduce_PCA(x, n=3)
+n_components = 3
+z = reduce_PCA(x, n=n_components)
 pc = z.transform(x)
 print(pc)
 
@@ -55,7 +56,7 @@ print(z.explained_variance_ratio_)
 print(np.sum(z.explained_variance_ratio_))
 
 # append the reduced dimensions to the dataset
-for i in range(0, 3):
+for i in range(0, n_components):
     x['p_{0}'.format(i)] = pc[:, i]
     
 x[csv_read.columns[-1]] = y
