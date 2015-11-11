@@ -56,7 +56,10 @@ print(np.sum(z.explained_variance_ratio_))
 
 # append the reduced dimensions to the dataset
 for i in range(0, 3):
-    csv_read['p_{0}'.format(i)] = pc[:, i]
+    x['p_{0}'.format(i)] = pc[:, i]
+    
+x[csv_read.columns[-1]] = y
+csv_read = x
 
 # output to file
 w_filename = '../../Data/Chapter6/power_plant_dataset_pc.csv'
