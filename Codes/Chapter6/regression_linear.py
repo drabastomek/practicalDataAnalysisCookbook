@@ -43,14 +43,22 @@ independent = [
 ]
 
 # split into independent and dependent features
-x     = csv_read[independent]
-x_red = csv_read[independent_reduced]
-y     = csv_read[dependent]
+x = csv_read[independent]
+y = csv_read[dependent]
 
 # estimate the model using all variables (without PC)
 z = regression_linear(x,y)
 print(z.summary())
 
-# estimate the model using principal components
-z_red = regression_linear(x_red,y)
-print(z_red.summary())
+# remove insignificant variables
+significant = [
+    'fuel_aer_COL', 'fuel_aer_DFO', 'fuel_aer_HYC', 
+    'fuel_aer_NUC', 'mover_CT', 'mover_HY', 'state_KY', 
+    'state_TX', 'state_WV', 'mover_ST', 'state_AL', 
+    'mover_GT']
+
+x_red = x[significant]
+
+# estimate the model with limited number of variables
+z = regression_linear(x_red,y)
+print(z.summary())

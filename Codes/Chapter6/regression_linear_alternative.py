@@ -58,7 +58,7 @@ print(z.score(x,y))
 print(z.coef_)
 print(z.intercept_)
 
-# estimate the model using principal components
+# estimate the model using Principal Components only
 z_red = regression_linear(x_red,y)
 
 print(z_red.score(x_red,y))
