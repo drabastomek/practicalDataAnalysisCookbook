@@ -5,8 +5,6 @@ sys.path.append('..')
 # the rest of the imports
 import helper as hlp
 import pandas as pd
-import numpy as np
-import sklearn.linear_model as lm
 import matplotlib.pyplot as pl
 import seaborn as sns
 sns.set(style="ticks")
