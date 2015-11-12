@@ -6,18 +6,22 @@ sys.path.append('..')
 import helper as hlp
 import pandas as pd
 import numpy as np
-import statsmodels.api as sm
+import sklearn.linear_model as lm
 
 @hlp.timeit
 def regression_linear(x,y):
     '''
         Estimate a linear regression
     '''
-    # create the model object
-    model = sm.OLS(y, x)
+    # create the regressor object
+    linear = lm.LinearRegression(fit_intercept=True,
+        normalize=True, copy_X=True, n_jobs=-1)
 
-    # and return the fit model
-    return model.fit()
+    # estimate the model
+    linear.fit(x,y)
+
+    # return the object
+    return linear
 
 # the file name of the dataset
 r_filename = '../../Data/Chapter6/power_plant_dataset_pc.csv'
@@ -43,22 +47,20 @@ independent = [
 ]
 
 # split into independent and dependent features
-x = csv_read[independent]
-y = csv_read[dependent]
+x     = csv_read[independent]
+x_red = csv_read[independent_reduced]
+y     = csv_read[dependent]
 
 # estimate the model using all variables (without PC)
 z = regression_linear(x,y)
-print(z.summary())
 
-# remove insignificant variables
-significant = [
-    'fuel_aer_COL', 'fuel_aer_DFO', 'fuel_aer_HYC', 
-    'fuel_aer_NUC', 'mover_CT', 'mover_HY', 'state_KY', 
-    'state_TX', 'state_WV', 'mover_ST', 'state_AL', 
-    'mover_GT']
+print(z.score(x,y))
+print(z.coef_)
+print(z.intercept_)
 
-x_red = x[significant]
+# estimate the model using Principal Components only
+z_red = regression_linear(x_red,y)
 
-# estimate the model with limited number of variables
-z = regression_linear(x_red,y)
-print(z.summary())
+print(z_red.score(x_red,y))
+print(z_red.coef_)
+print(z_red.intercept_)
