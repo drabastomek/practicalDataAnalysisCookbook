@@ -47,8 +47,8 @@ x = csv_read[independent]
 y = csv_read[dependent]
 
 # estimate the model using all variables (without PC)
-z = regression_linear(x,y)
-print(z.summary())
+regressor = regression_linear(x,y)
+print(regressor.summary())
 
 # remove insignificant variables
 significant = [
@@ -60,5 +60,5 @@ significant = [
 x_red = x[significant]
 
 # estimate the model with limited number of variables
-z = regression_linear(x_red,y)
-print(z.summary())
+regressor = regression_linear(x_red,y)
+print(regressor.summary())
