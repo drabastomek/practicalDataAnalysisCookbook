@@ -52,15 +52,15 @@ x_red = csv_read[independent_reduced]
 y     = csv_read[dependent]
 
 # estimate the model using all variables (without PC)
-z = regression_linear(x,y)
+regressor = regression_linear(x,y)
 
-print(z.score(x,y))
-print(z.coef_)
-print(z.intercept_)
+print(regressor.score(x,y))
+print(regressor.coef_)
+print(regressor.intercept_)
 
 # estimate the model using Principal Components only
-z_red = regression_linear(x_red,y)
+regressor_red = regression_linear(x_red,y)
 
-print(z_red.score(x_red,y))
-print(z_red.coef_)
-print(z_red.intercept_)
+print(regressor_red.score(x_red,y))
+print(regressor_red.coef_)
+print(regressor_red.intercept_)
