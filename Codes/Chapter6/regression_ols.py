@@ -9,7 +9,7 @@ import numpy as np
 import statsmodels.api as sm
 
 @hlp.timeit
-def regression_linear(x,y):
+def regression_ols(x,y):
     '''
         Estimate a linear regression
     '''
@@ -47,7 +47,7 @@ x = csv_read[independent]
 y = csv_read[dependent]
 
 # estimate the model using all variables (without PC)
-regressor = regression_linear(x,y)
+regressor = regression_ols(x,y)
 print(regressor.summary())
 
 # remove insignificant variables
@@ -60,5 +60,5 @@ significant = [
 x_red = x[significant]
 
 # estimate the model with limited number of variables
-regressor = regression_linear(x_red,y)
+regressor = regression_ols(x_red,y)
 print(regressor.summary())
