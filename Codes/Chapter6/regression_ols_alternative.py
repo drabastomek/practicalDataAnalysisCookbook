@@ -22,20 +22,6 @@ def regression_linear(x,y):
     # and return the fit model
     return ols
 
-def get_score(y, predicted):
-    '''
-        Method to calculate R^2
-    '''
-    # calculate the mean of actuals
-    mean_y = y.mean()
-
-    # calculate the total sum of squares and residual
-    # sum of squares
-    sum_of_square_total = np.sum((y - mean_y)**2)
-    sum_of_square_resid = np.sum((y - predicted)**2)
-
-    return 1 - sum_of_square_resid / sum_of_square_total
-
 # the file name of the dataset
 r_filename = '../../Data/Chapter6/power_plant_dataset_pc.csv'
 
@@ -70,5 +56,5 @@ regressor = regression_linear(x,y)
 predicted = regressor.pred(x)
 
 # and calculate the R^2
-score = get_score(y, predicted)
+score = hlp.get_score(y, predicted)
 print(score)

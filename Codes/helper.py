@@ -309,3 +309,17 @@ def produce_sample(sampleSize, features):
         n_samples=sampleSize, n_features=features)
 
     return x, y
+
+def get_score(y, predicted):
+    '''
+        Method to calculate R^2
+    '''
+    # calculate the mean of actuals
+    mean_y = y.mean()
+
+    # calculate the total sum of squares and residual
+    # sum of squares
+    sum_of_square_total = np.sum((y - mean_y)**2)
+    sum_of_square_resid = np.sum((y - predicted)**2)
+
+    return 1 - sum_of_square_resid / sum_of_square_total
