@@ -48,7 +48,7 @@ r_filename = '../../Data/Chapter6/power_plant_dataset_pc.csv'
 # read the data
 csv_read = pd.read_csv(r_filename)
 
-# remove the principal components
+# keep only principal components
 independent_reduced = [
     col 
     for col 
@@ -56,8 +56,8 @@ independent_reduced = [
     if col.startswith('p')
 ]
 
-for col in independent_reduced:
-    del csv_read[col]
+csv_read = csv_read[independent_reduced + 
+    ['net_generation_MWh']]
 
 # split the data into training and testing
 train_x, train_y, \

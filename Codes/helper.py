@@ -75,7 +75,7 @@ def printModelSummary(actual, predicted):
         mt.confusion_matrix(actual, predicted))
     print('ROC: ', mt.roc_auc_score(actual, predicted))
 
-def prepareANNDataset(data):
+def prepareANNDataset(data, prob=None):
     '''
         Method to prepare the dataset for ANN training
         and testing
@@ -89,14 +89,19 @@ def prepareANNDataset(data):
 
     # get the number of inputs and outputs
     inputs = len(data[0].columns)
-    outputs = len(data[1].axes) + 1
+    outputs = len(data[1].axes) + 1 
+    if prob == 'regression':
+        outputs -= 1
 
     # create dataset object
     dataset = dt.SupervisedDataSet(inputs, outputs)
 
     # convert dataframes to lists of tuples
     x = list(data[0].apply(extract, axis=1))
-    y = [(item,abs(item - 1)) for item in data[1]]
+    if prob == 'regression':
+        y = [(item) for item in data[1]]
+    else:
+        y = [(item,abs(item - 1)) for item in data[1]]
 
     # and add samples to the ANN dataset
     for x_item, y_item in zip(x,y):
