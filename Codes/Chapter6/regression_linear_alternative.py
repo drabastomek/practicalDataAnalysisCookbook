@@ -43,4 +43,4 @@ for col in x_red.columns:
 sns.lmplot(x="x", y="y", col="PC", hue="PC", data=pc_stack,
            col_wrap=3, size=3)
 
-pl.savefig('../../Data/Chapter6/regression_linear.pdf')
+pl.savefig('../../Data/Chapter6/charts/regression_linear.pdf')
