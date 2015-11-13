@@ -7,7 +7,6 @@ import helper as hlp
 import pandas as pd
 import numpy as np
 import sklearn.svm as sv
-
 import matplotlib.pyplot as plt
 
 
