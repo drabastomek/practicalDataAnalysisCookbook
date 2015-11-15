@@ -5,7 +5,6 @@ sys.path.append('..')
 # the rest of the imports
 import helper as hlp
 import pandas as pd
-import numpy as np
 import statsmodels.api as sm
 
 @hlp.timeit
@@ -13,6 +12,9 @@ def regression_ols(x,y):
     '''
         Estimate a linear regression
     '''
+    # add a constant to the data
+    x = sm.add_constant(x)
+
     # create the model object
     model = sm.OLS(y, x)
 
@@ -51,12 +53,7 @@ regressor = regression_ols(x,y)
 print(regressor.summary())
 
 # remove insignificant variables
-significant = [
-    'fuel_aer_COL', 'fuel_aer_DFO', 'fuel_aer_HYC', 
-    'fuel_aer_NUC', 'mover_CT', 'mover_HY', 'state_KY', 
-    'state_TX', 'state_WV', 'mover_ST', 'state_AL', 
-    'mover_GT']
-
+significant = ['total_fuel_cons', 'total_fuel_cons_mmbtu']
 x_red = x[significant]
 
 # estimate the model with limited number of variables

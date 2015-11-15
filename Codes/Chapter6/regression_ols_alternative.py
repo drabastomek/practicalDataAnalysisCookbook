@@ -28,26 +28,12 @@ r_filename = '../../Data/Chapter6/power_plant_dataset_pc.csv'
 # read the data
 csv_read = pd.read_csv(r_filename)
 
-# select the names of columns
-dependent = csv_read.columns[-1]
-independent_reduced = [
-    col 
-    for col 
-    in csv_read.columns 
-    if col.startswith('p')
-]
+# remove insignificant variables
+significant = ['total_fuel_cons_mmbtu']
+x = csv_read[significant]
 
-independent = [
-    col 
-    for col 
-    in csv_read.columns 
-    if      col not in independent_reduced
-        and col not in dependent
-]
-
-# split into independent and dependent features
-x = np.array(csv_read[independent_reduced[0]]).reshape(-1,1)
-y = csv_read[dependent]
+# x = np.array(csv_read[independent_reduced[0]]).reshape(-1,1)
+y = csv_read[csv_read.columns[-1]]
 
 # estimate the model using all variables (without PC)
 regressor = regression_linear(x,y)
@@ -57,4 +43,4 @@ predicted = regressor.pred(x)
 
 # and calculate the R^2
 score = hlp.get_score(y, predicted)
-print(score)
+print('R2: ', score)
