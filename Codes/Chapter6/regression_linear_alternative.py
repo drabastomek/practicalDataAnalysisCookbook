@@ -4,6 +4,7 @@ sys.path.append('..')
 
 # the rest of the imports
 import helper as hlp
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as pl
 import seaborn as sns
@@ -31,6 +32,7 @@ y     = csv_read[dependent]
 # stack up the principal components
 pc_stack = pd.DataFrame()
 
+# stack up the principal components
 for col in x_red.columns:
     series = pd.DataFrame()
     series['x'] = x_red[col]
@@ -40,7 +42,32 @@ for col in x_red.columns:
 
 # Show the results of a linear regression within each
 # principal component
-sns.lmplot(x="x", y="y", col="PC", hue="PC", data=pc_stack,
-           col_wrap=3, size=3)
+sns.lmplot(x='x', y='y', col='PC', hue='PC', data=pc_stack,
+           col_wrap=2, size=5)
 
-pl.savefig('../../Data/Chapter6/charts/regression_linear.pdf')
+pl.savefig('../../Data/Chapter6/charts/regression_linear.png',
+    dpi=300)
+
+# select only the fel consumption
+fuel_cons = ['total_fuel_cons','total_fuel_cons_mmbtu']
+x = csv_read[fuel_cons]
+
+# stack up the fuel variables
+fuel_stack = pd.DataFrame()
+
+# stack up the fuel consumption variables
+for col in fuel_cons:
+    series = pd.DataFrame()
+    series['x'] = x[col]
+    series['y'] = y
+    series['fuel'] = col
+    fuel_stack = fuel_stack.append(series)
+
+# Show the results of a linear regression for each fuel
+# consumption variable
+sns.lmplot(x='x', y='y', col='fuel', hue='fuel',
+    data=fuel_stack, col_wrap=2, size=5)
+
+pl.savefig(
+    '../../Data/Chapter6/charts/regression_linear_fuel.png',
+    dpi=300)
