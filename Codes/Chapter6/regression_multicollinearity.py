@@ -25,7 +25,7 @@ r_filename = '../../Data/Chapter6/power_plant_dataset.csv'
 # read the data
 csv_read = pd.read_csv(r_filename)
 
-x = csv_read[csv_read.columns[:-1]]
+x = csv_read[csv_read.columns[:-2]].copy()
 y = csv_read[csv_read.columns[-1]]
 
 # produce correlation matrix for the independent variables
@@ -33,31 +33,41 @@ corr = x.corr()
 
 # and check the eigenvectors and eigenvalues of the matrix
 w, v = np.linalg.eig(corr)
-print(w)
+print('Eigenvalues: ', w)
 
 # values that are close to 0 indicate multicollinearity
-s = np.nonzero(w < 0.01)
-print(s, v[:,s[0]])
+s = np.nonzero(w < 0.001)
+# inspect which variables are collinear
+print('Indices of eigenvalues close to 0:', s[0])
 
-# inspect which variables are not collinear
-t = np.nonzero(abs(v[:,s[0]]) > 0.01)
-print(t[0])
+all_columns = []
+for i in s[0]:
+    print('\nIndex: {0}. '.format(i))
+
+    t = np.nonzero(abs(v[:,i]) > 0.33)
+    all_columns += list(t[0])
+    print('Collinear: ', t[0])
+
+for i in np.unique(all_columns):
+    print('Variable {0}: {1}'.format(i, x.columns[i]))
 
 # and reduce the data keeping only 3 principal components
-n_components = 3
+n_components = 5
 z = reduce_PCA(x, n=n_components)
 pc = z.transform(x)
-print(pc)
 
 # how much variance each component explains?
-print(z.explained_variance_ratio_)
+print('\nVariance explained by each principal component: ', 
+    z.explained_variance_ratio_)
 
 # and total variance accounted for
-print(np.sum(z.explained_variance_ratio_))
+print('Total variance explained: ', 
+    np.sum(z.explained_variance_ratio_))
 
 # append the reduced dimensions to the dataset
 for i in range(0, n_components):
-    x['p_{0}'.format(i)] = pc[:, i]
+    col_name = 'p_{0}'.format(i)
+    x[col_name] = pd.Series(pc[:, i])
     
 x[csv_read.columns[-1]] = y
 csv_read = x
