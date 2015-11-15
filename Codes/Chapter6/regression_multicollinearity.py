@@ -25,7 +25,7 @@ r_filename = '../../Data/Chapter6/power_plant_dataset.csv'
 # read the data
 csv_read = pd.read_csv(r_filename)
 
-x = csv_read[csv_read.columns[:-2]].copy()
+x = csv_read[csv_read.columns[:-1]].copy()
 y = csv_read[csv_read.columns[-1]]
 
 # produce correlation matrix for the independent variables
@@ -36,7 +36,7 @@ w, v = np.linalg.eig(corr)
 print('Eigenvalues: ', w)
 
 # values that are close to 0 indicate multicollinearity
-s = np.nonzero(w < 0.001)
+s = np.nonzero(w < 0.01)
 # inspect which variables are collinear
 print('Indices of eigenvalues close to 0:', s[0])
 
@@ -45,7 +45,7 @@ for i in s[0]:
     print('\nIndex: {0}. '.format(i))
 
     t = np.nonzero(abs(v[:,i]) > 0.33)
-    all_columns += list(t[0])
+    all_columns += list(t[0]) + [i]
     print('Collinear: ', t[0])
 
 for i in np.unique(all_columns):
