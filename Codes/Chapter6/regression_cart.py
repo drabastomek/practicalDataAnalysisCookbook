@@ -5,7 +5,6 @@ sys.path.append('..')
 # the rest of the imports
 import helper as hlp
 import pandas as pd
-import numpy as np
 import sklearn.tree as sk
 
 @hlp.timeit
@@ -15,7 +14,7 @@ def regression_cart(x,y):
     '''
     # create the regressor object
     cart = sk.DecisionTreeRegressor(min_samples_split=80,
-        max_features="sqrt", random_state=666666, 
+        max_features="auto", random_state=66666, 
         max_depth=5)
 
     # estimate the model
@@ -56,7 +55,7 @@ y     = csv_read[dependent]
 regressor = regression_cart(x,y)
 
 # print out the results
-print(regressor.score(x,y))
+print('R2: ', regressor.score(x,y))
 
 for counter, (nm, label) \
     in enumerate(
@@ -72,7 +71,7 @@ sk.export_graphviz(regressor,
 regressor_red = regression_cart(x_red,y)
 
 # print out the results
-print(regressor_red.score(x_red,y))
+print('R: ', regressor_red.score(x_red,y))
 
 for counter, (nm, label) \
     in enumerate(
