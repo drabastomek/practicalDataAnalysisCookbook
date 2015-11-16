@@ -7,7 +7,7 @@ import helper as hlp
 import pandas as pd
 import numpy as np
 import sklearn.ensemble as en
-import sklearn.tree as sk
+import sklearn.cross_validation as cv
 
 @hlp.timeit
 def regression_rf(x,y):
@@ -49,15 +49,21 @@ independent = [
 ]
 
 # split into independent and dependent features
-x     = csv_read[independent]
-y     = csv_read[dependent]
+x = csv_read[independent]
+y = csv_read[dependent]
 
 # estimate the model using all variables (without PC)
 regressor = regression_rf(x,y)
 
 # print out the results
-print(regressor.score(x,y))
+print('R: ', regressor.score(x,y))
 
+# test the sensitivity of R2
+scores = cv.cross_val_score(regressor, x, y, cv=100)
+print('Expected R2: {0:.2f} (+/- {1:.2f})'\
+    .format(scores.mean(), scores.std()**2))
+
+# print features importance
 for counter, (nm, label) \
     in enumerate(
         zip(x.columns, regressor.feature_importances_)
@@ -70,8 +76,14 @@ x_red = csv_read[features[0]]
 regressor_red = regression_rf(x_red,y)
 
 # print out the results
-print(regressor_red.score(x_red,y))
+print('R: ', regressor_red.score(x_red,y))
 
+# test the sensitivity of R2
+scores = cv.cross_val_score(regressor_red, x_red, y, cv=100)
+print('Expected R2: {0:.2f} (+/- {1:.2f})'\
+    .format(scores.mean(), scores.std()**2))
+
+# print features importance
 for counter, (nm, label) \
     in enumerate(
         zip(x_red.columns, regressor_red.feature_importances_)

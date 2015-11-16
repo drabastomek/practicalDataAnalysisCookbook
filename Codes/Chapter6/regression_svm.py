@@ -9,7 +9,6 @@ import numpy as np
 import sklearn.svm as sv
 import matplotlib.pyplot as plt
 
-
 @hlp.timeit
 def regression_svm(x, y, **kw_params):
     '''
@@ -24,9 +23,9 @@ def regression_svm(x, y, **kw_params):
     # return the object
     return svm
 
-# simulate dataset
-errors = np.random.normal(0, 0.5, size=1000)
+# simulated dataset
 x = np.arange(-2, 2, 0.004)
+errors = np.random.normal(0, 0.5, size=len(x))
 y = 0.8 * x**4 - 2 * x**2 +  errors
 
 # reshape the x array so its in a column form
@@ -34,15 +33,15 @@ x_reg = x.reshape(-1, 1)
 
 models_to_test = [
     {'kernel': 'linear'}, 
-    {'kernel': 'poly','gamma': 0.5, 'C': 0.9, 'degree': 4}, 
-    {'kernel': 'poly','gamma': 0.5, 'C': 0.9, 'degree': 6}, 
-    {'kernel': 'rbf','gamma': 0.5, 'C': 0.9}
+    {'kernel': 'poly','gamma': 0.5, 'C': 0.5, 'degree': 4}, 
+    {'kernel': 'poly','gamma': 0.5, 'C': 0.5, 'degree': 6}, 
+    {'kernel': 'rbf','gamma': 0.5, 'C': 0.5}
 ]
 
+# create chart frame
 plt.figure(figsize=(len(models_to_test) * 2 + 3, 9.5))
 plt.subplots_adjust(left=.05, right=.95, 
     bottom=.05, top=.96, wspace=.1, hspace=.15)
-
 
 for i, model in enumerate(models_to_test):
     # estimate the model
@@ -65,4 +64,5 @@ for i, model in enumerate(models_to_test):
                  transform=plt.gca().transAxes, size=15,
                  horizontalalignment='right')
 
-plt.savefig('../../data/Chapter6/charts/regression_svm.pdf')
+plt.savefig('../../data/Chapter6/charts/regression_svm.png',
+    dpi= 300)
