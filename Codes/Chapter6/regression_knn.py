@@ -5,8 +5,8 @@ sys.path.append('..')
 # the rest of the imports
 import helper as hlp
 import pandas as pd
-import numpy as np
 import sklearn.neighbors as nb
+import sklearn.cross_validation as cv
 
 @hlp.timeit
 def regression_kNN(x,y):
@@ -14,8 +14,8 @@ def regression_kNN(x,y):
         Build the kNN classifier
     '''
     # create the classifier object
-    knn = nb.KNeighborsRegressor(n_neighbors=20, 
-        algorithm="kd_tree", n_jobs=-1)
+    knn = nb.KNeighborsRegressor(n_neighbors=80, 
+        algorithm='kd_tree', n_jobs=-1)
 
     # fit the data
     knn.fit(x,y)
@@ -31,32 +31,39 @@ csv_read = pd.read_csv(r_filename)
 
 # select the names of columns
 dependent = csv_read.columns[-1]
-independent_reduced = [
+independent_principal = [
     col 
     for col 
     in csv_read.columns 
     if col.startswith('p')
 ]
 
-independent = [
-    col 
-    for col 
-    in csv_read.columns 
-    if      col not in independent_reduced
-        and col not in dependent
+independent_significant = [
+    'total_fuel_cons', 'total_fuel_cons_mmbtu'
 ]
 
-# split into independent and dependent features
-x     = csv_read[independent]
-x_red = csv_read[independent_reduced]
-y     = csv_read[dependent]
+# split into independent_significant and dependent features
+x_sig = csv_read[independent_significant]
+x_principal = csv_read[independent_principal]
+y = csv_read[dependent]
 
 # estimate the model using all variables (without PC)
-regressor = regression_kNN(x,y)
+regressor = regression_kNN(x_sig,y)
 
-print(regressor.score(x,y))
+print('R2: ', regressor.score(x_sig,y))
+
+# test the sensitivity of R2
+scores = cv.cross_val_score(regressor, x_sig, y, cv=100)
+print('Expected R2: {0:.2f} (+/- {1:.2f})'\
+    .format(scores.mean(), scores.std()**2))
 
 # estimate the model using Principal Components only
-regressor_red = regression_kNN(x_red,y)
+regressor_principal = regression_kNN(x_principal,y)
 
-print(regressor_red.score(x_red,y))
+print('R2: ', regressor_principal.score(x_principal,y))
+
+# test the sensitivity of R2
+scores = cv.cross_val_score(regressor_principal, 
+    x_principal, y, cv=100)
+print('Expected R2: {0:.2f} (+/- {1:.2f})'\
+    .format(scores.mean(), scores.std()**2))
