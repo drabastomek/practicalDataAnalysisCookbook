@@ -15,6 +15,9 @@ files=['american.csv', 'colum.csv']
 # folder with data
 data_folder = '../../Data/Chapter7/'
 
+# colors 
+colors = ['#FF6600', '#000000', '#29407C', '#660000']
+
 # read the data
 american = pd.read_csv(data_folder + files[0], 
     index_col=0, parse_dates=[0], 
@@ -79,13 +82,13 @@ print(year.head(2))
 
 # plot time series
 # monthly time series
-riverFlows.plot(title='Monthly river flows')
+riverFlows.plot(title='Monthly river flows', color=colors)
 plt.savefig(data_folder + '/charts/monthly_riverFlows.png',
     dpi=300)
 plt.close()
 
 # quarterly time series
-quarter.plot(title='Quarterly river flows')
+quarter.plot(title='Quarterly river flows', color=colors)
 plt.savefig(data_folder + '/charts/quarterly_riverFlows.png',
     dpi=300)
 plt.close()
