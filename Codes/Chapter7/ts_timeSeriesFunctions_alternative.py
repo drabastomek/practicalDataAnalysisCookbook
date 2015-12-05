@@ -22,7 +22,7 @@ riverFlows = pd.read_csv(data_folder + 'combined_flow.csv',
 fig, ax = plt.subplots(2, 2, sharex=True) 
 
 # set the size of the figure explicitly
-fig.set_size_inches(7, 7)
+fig.set_size_inches(8, 7)
 
 # plot the charts for american
 sm.graphics.tsa.plot_acf(
