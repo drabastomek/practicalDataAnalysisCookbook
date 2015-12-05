@@ -1,5 +1,12 @@
 import pandas as pd
+import matplotlib
 import matplotlib.pyplot as plt
+
+# change the font size
+matplotlib.rc('xtick', labelsize=9)
+matplotlib.rc('ytick', labelsize=9)
+matplotlib.rc('font', size=14)
+
 
 # time series tools
 import statsmodels.api as sm
@@ -26,7 +33,7 @@ sm.graphics.tsa.plot_pacf(
     riverFlows['american_flow'].squeeze(), 
     lags=40, ax=ax[0, 1])
 
-# # plot the charts for colum
+# plot the charts for colum
 sm.graphics.tsa.plot_acf(
     riverFlows['colum_flow'].squeeze(), 
     lags=40, ax=ax[1, 0])
@@ -39,6 +46,5 @@ sm.graphics.tsa.plot_pacf(
 ax[0, 0].set_ylabel('American')
 ax[1, 0].set_ylabel('Colum')
 
-# plt.show()
 # save the chart
 plt.savefig(data_folder + 'charts/acf_pacf.png', dpi=300)

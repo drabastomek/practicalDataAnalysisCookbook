@@ -1,7 +1,13 @@
 import numpy as np
 import pandas as pd
 import pandas.tseries.offsets as ofst
+import matplotlib
 import matplotlib.pyplot as plt
+
+# change the font size
+matplotlib.rc('xtick', labelsize=9)
+matplotlib.rc('ytick', labelsize=9)
+matplotlib.rc('font', size=14)
 
 # files we'll be working with
 files=['american.csv', 'colum.csv']

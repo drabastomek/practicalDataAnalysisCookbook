@@ -1,5 +1,4 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 import bokeh.plotting as bkh
 
 # folder with data
