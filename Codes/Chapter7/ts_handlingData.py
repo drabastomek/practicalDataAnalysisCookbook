@@ -63,11 +63,11 @@ print(quarter.head(2))
 
 # averaging by half a year
 half = riverFlows.resample('6M', how='mean')
-print('\nAveraging by half')
+print('\nAveraging by half a year')
 print(half.head(2))
 
 # averaging by year
-year = riverFlows.resample('5A', how='mean')
+year = riverFlows.resample('A', how='mean')
 print('\nAveraging by year')
 print(year.head(2))
 
