@@ -16,7 +16,7 @@ year = riverFlows.resample('A', how='mean')
 TOOLS = 'pan,wheel_zoom,box_zoom,reset,save'
 
 # output file
-bkh.output_file(data_folder + 'correlation.html', 
+bkh.output_file(data_folder + 'charts/riverFlows.html', 
     title='River flows')
 
 # plot data for american river
