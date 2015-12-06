@@ -36,12 +36,12 @@ idx_american = riverFlows['american_flow'] \
     .index[riverFlows['american_flow'].apply(np.isnan)].min()
 
 # find the last month where the flow is missing for colum
-idx_colum = riverFlows['columbia_flow'] \
+idx_columbia = riverFlows['columbia_flow'] \
     .index[riverFlows['columbia_flow'].apply(np.isnan)].max()
 
 # truncate the time series
 riverFlows = riverFlows.truncate(
-    before=idx_colum + ofst.DateOffset(months=1),
+    before=idx_columbia + ofst.DateOffset(months=1),
     after=idx_american - ofst.DateOffset(months=1))
 
 # write the truncated dataset to a file
