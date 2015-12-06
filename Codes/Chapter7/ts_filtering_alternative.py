@@ -41,13 +41,13 @@ ax[0, 2].plot(hptrend['american_flow'],   colors[3])
 ax[0, 3].plot(cfcycle['american_flow'],  colors[2]) 
 ax[0, 3].plot(cftrend['american_flow'],  colors[3]) 
 
-# plot the charts for colum
-ax[1, 0].plot(riverFlows['colum_flow'],  colors[0])
-ax[1, 1].plot(bkfilter['colum_flow'], colors[1]) 
-ax[1, 2].plot(hpcycle['colum_flow'],   colors[2]) 
-ax[1, 2].plot(hptrend['colum_flow'],   colors[3]) 
-ax[1, 3].plot(cfcycle['colum_flow'],  colors[2]) 
-ax[1, 3].plot(cftrend['colum_flow'],  colors[3]) 
+# plot the charts for columbia
+ax[1, 0].plot(riverFlows['columbia_flow'],  colors[0])
+ax[1, 1].plot(bkfilter['columbia_flow'], colors[1]) 
+ax[1, 2].plot(hpcycle['columbia_flow'],   colors[2]) 
+ax[1, 2].plot(hptrend['columbia_flow'],   colors[3]) 
+ax[1, 3].plot(cfcycle['columbia_flow'],  colors[2]) 
+ax[1, 3].plot(cftrend['columbia_flow'],  colors[3]) 
 
 # set titles for columns
 ax[0, 0].set_title('Original')
@@ -57,7 +57,7 @@ ax[0, 3].set_title('Christiano-Fitzgerald')
 
 # set titles for rows
 ax[0, 0].set_ylabel('American')
-ax[1, 0].set_ylabel('Colum')
+ax[1, 0].set_ylabel('Columbia')
 
 # save the chart
 plt.savefig(data_folder + 'charts/filtering_alternative.png', 

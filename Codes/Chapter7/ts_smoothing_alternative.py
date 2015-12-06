@@ -55,9 +55,9 @@ fig.set_size_inches(12, 7)
 ax[0, 0].plot(riverFlows['american_flow'],    colors[0])
 ax[0, 1].plot(ma_transform12['american_flow'],colors[1]) 
 
-# plot the charts for colum
-ax[1, 0].plot(riverFlows['colum_flow'],    colors[0])
-ax[1, 1].plot(ma_transform12['colum_flow'],colors[1]) 
+# plot the charts for columbia
+ax[1, 0].plot(riverFlows['columbia_flow'],    colors[0])
+ax[1, 1].plot(ma_transform12['columbia_flow'],colors[1]) 
 
 # set titles for columns
 ax[0, 0].set_title('Original')
@@ -65,7 +65,7 @@ ax[0, 1].set_title('Holt transform')
 
 # set titles for rows
 ax[0, 0].set_ylabel('American')
-ax[1, 0].set_ylabel('Colum')
+ax[1, 0].set_ylabel('Columbia')
 
 # save the chart
 plt.savefig(data_folder + 'charts/holt_transform.png', 

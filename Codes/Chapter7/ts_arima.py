@@ -19,14 +19,15 @@ def fit_model(data, params, modelType, f, t):
     model = sm.tsa.ARIMA(data, params)
 
     # fit the model
-    model = model.fit(maxiter=600, trend='nc', 
+    model_res = model.fit(maxiter=600, trend='nc', 
         start_params=[.1] * (params[0] + params[2]), tol=1e06)
 
     # plot the model
-    plot_model(data['1950':], model, params, modelType, f, t)
+    plot_model(data['1950':], model_res, params, 
+        modelType, f, t)
 
     # and save the figure
-    plt.savefig(data_folder + '/charts/' + modelType + '_a.png', 
+    plt.savefig(data_folder + '/charts/' + modelType + '.png', 
         dpi=300)
 
 def plot_model(data, model, params, modelType, f, t):
@@ -62,7 +63,7 @@ fit_model(riverFlows['american_flow_r'], (4, 1, 5),
     'ARIMA_American', '1960-11-30', '1962')
 
 # fit colum models
-fit_model(riverFlows['colum_flow_r'], (8, 0, 4), 
-    'ARMA_Colum', '1960-09-30', '1962')
-fit_model(riverFlows['colum_flow_r'], (4, 1, 5), 
-    'ARIMA_Colum', '1960-09-30', '1962')
+fit_model(riverFlows['columbia_flow_r'], (8, 0, 4), 
+    'ARMA_Columbia', '1960-09-30', '1962')
+fit_model(riverFlows['columbia_flow_r'], (4, 1, 5), 
+    'ARIMA_Columbia', '1960-09-30', '1962')

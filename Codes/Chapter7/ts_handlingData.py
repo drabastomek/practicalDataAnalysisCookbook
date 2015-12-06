@@ -10,7 +10,7 @@ matplotlib.rc('ytick', labelsize=9)
 matplotlib.rc('font', size=14)
 
 # files we'll be working with
-files=['american.csv', 'colum.csv']
+files=['american.csv', 'columbia.csv']
 
 # folder with data
 data_folder = '../../Data/Chapter7/'
@@ -25,7 +25,7 @@ american = pd.read_csv(data_folder + files[0],
 
 judith = pd.read_csv(data_folder + files[1], 
     index_col=0, parse_dates=[0],
-    header=0, names=['','colum_flow'])
+    header=0, names=['','columbia_flow'])
 
 # combine the datasets
 riverFlows = american.combine_first(judith)
@@ -36,8 +36,8 @@ idx_american = riverFlows['american_flow'] \
     .index[riverFlows['american_flow'].apply(np.isnan)].min()
 
 # find the last month where the flow is missing for colum
-idx_colum = riverFlows['colum_flow'] \
-    .index[riverFlows['colum_flow'].apply(np.isnan)].max()
+idx_colum = riverFlows['columbia_flow'] \
+    .index[riverFlows['columbia_flow'].apply(np.isnan)].max()
 
 # truncate the time series
 riverFlows = riverFlows.truncate(

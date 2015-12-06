@@ -45,10 +45,10 @@ ax[0, 0].plot(riverFlows['american_flow_resid'], colors[0])
 ax[0, 1].plot(riverFlows['american_flow_trend'], colors[1]) 
 ax[0, 2].plot(riverFlows['american_flow_seas'],  colors[2]) 
 
-# plot the charts for colum
-ax[1, 0].plot(riverFlows['colum_flow_resid'], colors[0])
-ax[1, 1].plot(riverFlows['colum_flow_trend'], colors[1]) 
-ax[1, 2].plot(riverFlows['colum_flow_seas'],  colors[2]) 
+# plot the charts for columbia
+ax[1, 0].plot(riverFlows['columbia_flow_resid'], colors[0])
+ax[1, 1].plot(riverFlows['columbia_flow_trend'], colors[1]) 
+ax[1, 2].plot(riverFlows['columbia_flow_seas'],  colors[2]) 
 
 # set titles for columns
 ax[0, 0].set_title('Residuals')
@@ -57,7 +57,7 @@ ax[0, 2].set_title('Seasonality')
 
 # set titles for rows
 ax[0, 0].set_ylabel('American')
-ax[1, 0].set_ylabel('Colum')
+ax[1, 0].set_ylabel('Columbia')
 
 # save the chart
 plt.savefig(data_folder + 'charts/decomposed.png', dpi=300)

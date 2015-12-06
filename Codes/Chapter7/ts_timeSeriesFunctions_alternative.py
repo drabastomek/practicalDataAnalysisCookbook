@@ -33,18 +33,18 @@ sm.graphics.tsa.plot_pacf(
     riverFlows['american_flow'].squeeze(), 
     lags=40, ax=ax[0, 1])
 
-# plot the charts for colum
+# plot the charts for columbia
 sm.graphics.tsa.plot_acf(
-    riverFlows['colum_flow'].squeeze(), 
+    riverFlows['columbia_flow'].squeeze(), 
     lags=40, ax=ax[1, 0])
 
 sm.graphics.tsa.plot_pacf(
-    riverFlows['colum_flow'].squeeze(), 
+    riverFlows['columbia_flow'].squeeze(), 
     lags=40, ax=ax[1, 1])
 
 # set titles for rows
 ax[0, 0].set_ylabel('American')
-ax[1, 0].set_ylabel('Colum')
+ax[1, 0].set_ylabel('Columbia')
 
 # save the chart
 plt.savefig(data_folder + 'charts/acf_pacf.png', dpi=300)

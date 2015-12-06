@@ -34,7 +34,7 @@ detrended = sm.tsa.tsatools.detrend(riverFlows,
 
 # create a data frame with the detrended data
 detrended = pd.DataFrame(detrended, index=riverFlows.index, 
-    columns=['american_flow_d', 'colum_flow_d'])
+    columns=['american_flow_d', 'columbia_flow_d'])
 
 # join to the main dataset
 riverFlows = riverFlows.join(detrended)
@@ -42,16 +42,15 @@ riverFlows = riverFlows.join(detrended)
 # calculate trend
 riverFlows['american_flow_t'] = riverFlows['american_flow'] \
     - riverFlows['american_flow_d']
-riverFlows['colum_flow_t'] = riverFlows['colum_flow'] \
-    - riverFlows['colum_flow_d']
+riverFlows['columbia_flow_t'] = riverFlows['columbia_flow'] \
+    - riverFlows['columbia_flow_d']
 
+# number of observations and frequency of seasonal component
 nobs = len(riverFlows)
 freq = 12   # yearly seasonality
 
-seasonal = pd.DataFrame()
-resid = pd.DataFrame()
-
-for col in ['american_flow', 'colum_flow']:
+# remove the seasonality
+for col in ['american_flow', 'columbia_flow']:
     period_averages = period_mean(riverFlows[col], freq)
     riverFlows[col+'_s'] = np.tile(period_averages, nobs // freq + 1)[:nobs]
     riverFlows[col+'_r'] = np.array(riverFlows[col]) - np.array(riverFlows[col+'_s'])
@@ -71,10 +70,10 @@ ax[0, 0].plot(riverFlows['american_flow_t'], colors[0])
 ax[0, 1].plot(riverFlows['american_flow_s'], colors[1]) 
 ax[0, 2].plot(riverFlows['american_flow_r'], colors[2]) 
 
-# plot the charts for colum
-ax[1, 0].plot(riverFlows['colum_flow_t'], colors[0])
-ax[1, 1].plot(riverFlows['colum_flow_s'], colors[1]) 
-ax[1, 2].plot(riverFlows['colum_flow_r'], colors[2]) 
+# plot the charts for columbia
+ax[1, 0].plot(riverFlows['columbia_flow_t'], colors[0])
+ax[1, 1].plot(riverFlows['columbia_flow_s'], colors[1]) 
+ax[1, 2].plot(riverFlows['columbia_flow_r'], colors[2]) 
 
 # set titles for columns
 ax[0, 0].set_title('Trend')
@@ -83,7 +82,7 @@ ax[0, 2].set_title('Residuals')
 
 # set titles for rows
 ax[0, 0].set_ylabel('American')
-ax[1, 0].set_ylabel('Colum')
+ax[1, 0].set_ylabel('Columbia')
 
 # save the chart
 plt.savefig(data_folder + 'charts/detrended.png', dpi=300)

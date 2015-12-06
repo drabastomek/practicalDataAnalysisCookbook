@@ -52,11 +52,11 @@ ax[0, 1].plot(conv_linear['american_flow'], colors[1])
 ax[0, 2].plot(conv_high['american_flow'],   colors[2]) 
 ax[0, 3].plot(conv_gauss['american_flow'],  colors[3]) 
 
-# plot the charts for colum
-ax[1, 0].plot(riverFlows['colum_flow'],     colors[0])
-ax[1, 1].plot(conv_linear['colum_flow'],    colors[1]) 
-ax[1, 2].plot(conv_high['colum_flow'],      colors[2]) 
-ax[1, 3].plot(conv_gauss['colum_flow'],     colors[3]) 
+# plot the charts for columbia
+ax[1, 0].plot(riverFlows['columbia_flow'],     colors[0])
+ax[1, 1].plot(conv_linear['columbia_flow'],    colors[1]) 
+ax[1, 2].plot(conv_high['columbia_flow'],      colors[2]) 
+ax[1, 3].plot(conv_gauss['columbia_flow'],     colors[3]) 
 
 # set titles for columns
 ax[0, 0].set_title('Original')
@@ -66,7 +66,7 @@ ax[0, 3].set_title('Gaussian')
 
 # set titles for rows
 ax[0, 0].set_ylabel('American')
-ax[1, 0].set_ylabel('Colum')
+ax[1, 0].set_ylabel('Columbia')
 
 # save the chart
 plt.savefig(data_folder + 'charts/filtering.png', 

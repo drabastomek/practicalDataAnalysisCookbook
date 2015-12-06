@@ -32,18 +32,18 @@ a.line(year.index, year['american_flow'],
 a.title = 'American river flow'
 a.grid.grid_line_alpha=0.3
 
-# plot data for colum river
+# plot data for columbia river
 c = bkh.figure(x_axis_type = 'datetime', tools=TOOLS,
     plot_width=900, plot_height=300)
 
 # plot the lines
-c.line(riverFlows.index, riverFlows['colum_flow'], 
+c.line(riverFlows.index, riverFlows['columbia_flow'], 
     color='#1F78B4', legend='Monthly average')
-c.line(year.index, year['colum_flow'], 
+c.line(year.index, year['columbia_flow'], 
     color='#660033', legend='Yearly average')
 
 # define title and fade the grid lines
-c.title = 'Colum river flow'
+c.title = 'Columbia river flow'
 c.grid.grid_line_alpha=0.3
 
 # show the charts in the browser
