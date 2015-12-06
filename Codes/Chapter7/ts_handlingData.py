@@ -35,7 +35,7 @@ riverFlows = american.combine_first(judith)
 idx_american = riverFlows['american_flow'] \
     .index[riverFlows['american_flow'].apply(np.isnan)].min()
 
-# find the last month where the flow is missing for colum
+# find the last month where the flow is missing for columbia
 idx_columbia = riverFlows['columbia_flow'] \
     .index[riverFlows['columbia_flow'].apply(np.isnan)].max()
 
