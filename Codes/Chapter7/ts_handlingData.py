@@ -32,11 +32,11 @@ riverFlows = american.combine_first(judith)
 
 # periods aren't equal in the two datasets so find the overlap
 # find the first month where the flow is missing for american
-idx_american = riverFlows['american_flow'] \
+idx_american = riverFlows \
     .index[riverFlows['american_flow'].apply(np.isnan)].min()
 
 # find the last month where the flow is missing for columbia
-idx_columbia = riverFlows['columbia_flow'] \
+idx_columbia = riverFlows \
     .index[riverFlows['columbia_flow'].apply(np.isnan)].max()
 
 # truncate the time series
@@ -53,8 +53,8 @@ print('\nIndex of riverFlows')
 print(riverFlows.index)
 
 # selecting time series data
-print('\ncsv_read[\'1930-01\':\'1930-06\']')
-print(riverFlows['1930-01':'1930-06'])
+print('\ncsv_read[\'1933\':\'1934-06\']')
+print(riverFlows['1933':'1934-06'])
 
 # shifting the data
 by_month = riverFlows.shift(1, freq='M')
