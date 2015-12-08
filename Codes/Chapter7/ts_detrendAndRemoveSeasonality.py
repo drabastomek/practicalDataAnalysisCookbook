@@ -50,10 +50,12 @@ nobs = len(riverFlows)
 freq = 12   # yearly seasonality
 
 # remove the seasonality
-for col in ['american_flow', 'columbia_flow']:
+for col in ['american_flow_d', 'columbia_flow_d']:
     period_averages = period_mean(riverFlows[col], freq)
-    riverFlows[col+'_s'] = np.tile(period_averages, nobs // freq + 1)[:nobs]
-    riverFlows[col+'_r'] = np.array(riverFlows[col]) - np.array(riverFlows[col+'_s'])
+    riverFlows[col[:-2]+'_s'] = np.tile(period_averages, 
+        nobs // freq + 1)[:nobs]
+    riverFlows[col[:-2]+'_r'] = np.array(riverFlows[col]) \
+        - np.array(riverFlows[col[:-2]+'_s'])
 
 # save the decomposed dataset
 with open(data_folder + 'combined_flow_d.csv', 'w') as o:

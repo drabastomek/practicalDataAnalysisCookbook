@@ -42,26 +42,31 @@ colors = ['#FF6600', '#000000', '#29407C', '#660000']
 riverFlows = pd.read_csv(data_folder + 'combined_flow.csv', 
     index_col=0, parse_dates=[0])
 
-ma_transform12 = riverFlows.apply(
+# transformations
+ma_transformHolt = riverFlows.apply(
     lambda col: holt_transform(col, 0.5), axis=0)
+difference = riverFlows - riverFlows.shift()
 
 # plot the data
-fig, ax = plt.subplots(2, 2, sharex=True) 
+fig, ax = plt.subplots(2, 3, sharex=True) 
 
 # set the size of the figure explicitly
 fig.set_size_inches(12, 7)
 
 # plot the charts for american
 ax[0, 0].plot(riverFlows['american_flow'],    colors[0])
-ax[0, 1].plot(ma_transform12['american_flow'],colors[1]) 
+ax[0, 1].plot(ma_transformHolt['american_flow'],colors[1]) 
+ax[0, 2].plot(difference['american_flow'],colors[2]) 
 
 # plot the charts for columbia
 ax[1, 0].plot(riverFlows['columbia_flow'],    colors[0])
-ax[1, 1].plot(ma_transform12['columbia_flow'],colors[1]) 
+ax[1, 1].plot(ma_transformHolt['columbia_flow'],colors[1]) 
+ax[1, 2].plot(difference['columbia_flow'],colors[2]) 
 
 # set titles for columns
 ax[0, 0].set_title('Original')
 ax[0, 1].set_title('Holt transform')
+ax[0, 2].set_title('Differencing')
 
 # set titles for rows
 ax[0, 0].set_ylabel('American')

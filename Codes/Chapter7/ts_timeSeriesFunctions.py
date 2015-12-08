@@ -26,9 +26,6 @@ f = {}
 
 for col in riverFlows.columns:
     acf[col] = sm.tsa.stattools.acf(riverFlows[col])
-    _, f[col] = sm.tsa.stattools.acf(riverFlows[col], alpha=0.5)
-
-print(f)
 
 # partial autocorrelation function
 pacf = {}
@@ -50,8 +47,8 @@ fig.set_size_inches(12, 7)
 
 # plot the charts for American
 ax[0, 0].plot(acf['american_flow'], colors[0])
-ax[0, 1].plot(pacf['american_flow'],colors[2])
-ax[0, 2].plot(sd['american_flow'],  colors[3])
+ax[0, 1].plot(pacf['american_flow'],colors[1])
+ax[0, 2].plot(sd['american_flow'],  colors[2])
 ax[0, 2].yaxis.tick_right() # shows the numbers on the right
 
 # plot the charts for Columbia

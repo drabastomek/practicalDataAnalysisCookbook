@@ -22,13 +22,13 @@ colors = ['#FF6600', '#000000', '#29407C', '#660000']
 riverFlows = pd.read_csv(data_folder + 'combined_flow.csv', 
     index_col=0, parse_dates=[0])
 
-bkfilter = sm.tsa.filters.bkfilter(riverFlows, 6, 24, 12)
+bkfilter = sm.tsa.filters.bkfilter(riverFlows, 18, 96, 12)
 hpcycle, hptrend = sm.tsa.filters.hpfilter(riverFlows, 129600)
 cfcycle, cftrend = sm.tsa.filters.cffilter(riverFlows, 
-    4, 9, False)
+    18, 96, False)
 
 # plot the data
-fig, ax = plt.subplots(2, 4, sharex=True) 
+fig, ax = plt.subplots(2, 4, sharex=True, sharey=True) 
 
 # set the size of the figure explicitly
 fig.set_size_inches(16, 7)
