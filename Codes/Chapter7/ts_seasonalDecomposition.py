@@ -23,7 +23,8 @@ riverFlows = pd.read_csv(data_folder + 'combined_flow.csv',
 
 for col in riverFlows.columns:
     # seasonal decomposition of the data
-    sd = sm.tsa.seasonal_decompose(riverFlows[col], model='a', freq=12)
+    sd = sm.tsa.seasonal_decompose(riverFlows[col], 
+        model='a', freq=12)
 
     riverFlows[col + '_resid'] = sd.resid \
         .fillna(np.mean(sd.resid))
@@ -41,14 +42,14 @@ fig, ax = plt.subplots(2, 3, sharex=True, sharey=True)
 fig.set_size_inches(12, 7)
 
 # plot the charts for american
-ax[0, 0].plot(riverFlows['american_flow_resid'], colors[0])
-ax[0, 1].plot(riverFlows['american_flow_trend'], colors[1]) 
-ax[0, 2].plot(riverFlows['american_flow_seas'],  colors[2]) 
+ax[0, 0].plot(riverFlows['american_flow_trend'], colors[0])
+ax[0, 1].plot(riverFlows['american_flow_seas'], colors[1]) 
+ax[0, 2].plot(riverFlows['american_flow_resid'],  colors[2]) 
 
 # plot the charts for columbia
-ax[1, 0].plot(riverFlows['columbia_flow_resid'], colors[0])
-ax[1, 1].plot(riverFlows['columbia_flow_trend'], colors[1]) 
-ax[1, 2].plot(riverFlows['columbia_flow_seas'],  colors[2]) 
+ax[1, 0].plot(riverFlows['columbia_flow_trend'], colors[0])
+ax[1, 1].plot(riverFlows['columbia_flow_seas'], colors[1]) 
+ax[1, 2].plot(riverFlows['columbia_flow_resid'],  colors[2]) 
 
 # set titles for columns
 ax[0, 0].set_title('Residuals')
