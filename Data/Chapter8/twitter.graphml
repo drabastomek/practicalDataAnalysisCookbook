@@ -1,0 +1,261 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key attr.name="weight" attr.type="long" for="edge" id="d3" />
+  <key attr.name="relationship" attr.type="string" for="edge" id="d2" />
+  <key attr.name="age" attr.type="long" for="node" id="d1" />
+  <key attr.name="posts" attr.type="long" for="node" id="d0" />
+  <graph edgedefault="undirected">
+    <node id="Markus">
+      <data key="d0">159</data>
+      <data key="d1">21</data>
+    </node>
+    <node id="Richard">
+      <data key="d0">106</data>
+      <data key="d1">24</data>
+    </node>
+    <node id="Tom">
+      <data key="d0">23</data>
+      <data key="d1">34</data>
+    </node>
+    <node id="Bob">
+      <data key="d0">21</data>
+      <data key="d1">45</data>
+    </node>
+    <node id="Greg">
+      <data key="d0">41</data>
+      <data key="d1">45</data>
+    </node>
+    <node id="Peter">
+      <data key="d0">64</data>
+      <data key="d1">46</data>
+    </node>
+    <node id="Glenn">
+      <data key="d0">45</data>
+      <data key="d1">24</data>
+    </node>
+    <node id="Mike">
+      <data key="d0">34</data>
+      <data key="d1">23</data>
+    </node>
+    <node id="Jack">
+      <data key="d0">62</data>
+      <data key="d1">32</data>
+    </node>
+    <node id="Rob">
+      <data key="d0">111</data>
+      <data key="d1">19</data>
+    </node>
+    <node id="Rory">
+      <data key="d0">182</data>
+      <data key="d1">18</data>
+    </node>
+    <node id="Skye">
+      <data key="d0">78</data>
+      <data key="d1">29</data>
+    </node>
+    <node id="Lester">
+      <data key="d0">4</data>
+      <data key="d1">65</data>
+    </node>
+    <node id="Max">
+      <data key="d0">2</data>
+      <data key="d1">75</data>
+    </node>
+    <node id="Alex">
+      <data key="d0">188</data>
+      <data key="d1">24</data>
+    </node>
+    <node id="Bart">
+      <data key="d0">38</data>
+      <data key="d1">33</data>
+    </node>
+    <node id="Linda">
+      <data key="d0">128</data>
+      <data key="d1">23</data>
+    </node>
+    <node id="Matt">
+      <data key="d0">8</data>
+      <data key="d1">58</data>
+    </node>
+    <node id="Rachel">
+      <data key="d0">89</data>
+      <data key="d1">33</data>
+    </node>
+    <node id="Jackie">
+      <data key="d0">138</data>
+      <data key="d1">25</data>
+    </node>
+    <edge source="Markus" target="Rory">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Markus" target="Alex">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Markus" target="Glenn">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Markus" target="Rob">
+      <data key="d2">spouse</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Markus" target="Mike">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Richard" target="Alex">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Richard" target="Linda">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Richard" target="Glenn">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Richard" target="Rob">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Richard" target="Mike">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Tom" target="Bart">
+      <data key="d2">sibling</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Tom" target="Rachel">
+      <data key="d2">spouse</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Tom" target="Mike">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Tom" target="Linda">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Tom" target="Greg">
+      <data key="d2">sibling</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Bob" target="Greg">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Greg" target="Bart">
+      <data key="d2">sibling</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Greg" target="Peter">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Peter" target="Lester">
+      <data key="d2">generation</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Glenn" target="Rory">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Glenn" target="Rachel">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Glenn" target="Jackie">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Glenn" target="Alex">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Glenn" target="Linda">
+      <data key="d2">sibling</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Glenn" target="Rob">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Glenn" target="Mike">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Mike" target="Rory">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Mike" target="Jackie">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Mike" target="Alex">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Mike" target="Rachel">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Mike" target="Linda">
+      <data key="d2">spouse</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Mike" target="Rob">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Jack" target="Skye">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Rob" target="Rory">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Rob" target="Alex">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Skye" target="Bart">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Skye" target="Rachel">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Lester" target="Matt">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Max" target="Matt">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Alex" target="Linda">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Bart" target="Rachel">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Linda" target="Rachel">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+    <edge source="Linda" target="Jackie">
+      <data key="d2">friend</data>
+      <data key="d3">1</data>
+    </edge>
+  </graph>
+</graphml>
