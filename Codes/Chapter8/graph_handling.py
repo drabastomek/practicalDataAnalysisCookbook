@@ -28,6 +28,28 @@ twitter.add_node('Rob', {'age': 19})
 twitter.add_node('Markus', {'age': 21})
 twitter.add_node('Glenn', {'age': 24})
 
+# add posts
+twitter.node['Rory']['posts'] = 182
+twitter.node['Rob']['posts'] = 111
+twitter.node['Markus']['posts'] = 159
+twitter.node['Linda']['posts'] = 128
+twitter.node['Mike']['posts'] = 289
+twitter.node['Alex']['posts'] = 188
+twitter.node['Glenn']['posts'] = 252
+twitter.node['Richard']['posts'] = 106
+twitter.node['Jackie']['posts'] = 138
+twitter.node['Skye']['posts'] = 78
+twitter.node['Jack']['posts'] = 62
+twitter.node['Bart']['posts'] = 38
+twitter.node['Rachel']['posts'] = 89
+twitter.node['Tom']['posts'] = 23
+twitter.node['Bob']['posts'] = 21
+twitter.node['Greg']['posts'] = 41
+twitter.node['Peter']['posts'] = 64
+twitter.node['Matt']['posts'] = 8
+twitter.node['Lester']['posts'] = 4
+twitter.node['Max']['posts'] = 2
+
 # add followers
 twitter.add_edge('Rob', 'Rory', {'Weight': 1})
 twitter.add_edge('Markus', 'Rory', {'Weight': 1})
@@ -53,6 +75,7 @@ twitter.add_edge('Richard', 'Glenn', {'Weight': 1})
 twitter.add_edge('Jackie', 'Linda', {'Weight': 1})
 twitter.add_edge('Jackie', 'Mike', {'Weight': 1})
 twitter.add_edge('Jackie', 'Glenn', {'Weight': 1})
+twitter.add_edge('Jackie', 'Skye', {'Weight': 1})
 twitter.add_edge('Tom', 'Rachel', {'Weight': 5})
 twitter.add_edge('Rachel', 'Bart', {'Weight': 1})
 twitter.add_edge('Tom', 'Bart', {'Weight': 2})
@@ -99,6 +122,7 @@ twitter['Richard']['Glenn']['relationship'] = 'friend'
 twitter['Jackie']['Linda']['relationship'] = 'friend'
 twitter['Jackie']['Mike']['relationship'] = 'friend'
 twitter['Jackie']['Glenn']['relationship'] = 'friend'
+twitter['Jackie']['Skye']['relationship'] = 'friend'
 twitter['Tom']['Rachel']['relationship'] = 'spouse'
 twitter['Rachel']['Bart']['relationship'] = 'friend'
 twitter['Tom']['Bart']['relationship'] = 'sibling'
@@ -120,28 +144,6 @@ twitter['Rachel']['Glenn']['relationship'] = 'friend'
 twitter['Lester']['Max']['relationship'] = 'friend'
 twitter['Matt']['Peter']['relationship'] = 'friend'
 
-# add posts
-twitter.node['Rory']['posts'] = 182
-twitter.node['Rob']['posts'] = 111
-twitter.node['Markus']['posts'] = 159
-twitter.node['Linda']['posts'] = 128
-twitter.node['Mike']['posts'] = 289
-twitter.node['Alex']['posts'] = 188
-twitter.node['Glenn']['posts'] = 252
-twitter.node['Richard']['posts'] = 106
-twitter.node['Jackie']['posts'] = 138
-twitter.node['Skye']['posts'] = 78
-twitter.node['Jack']['posts'] = 62
-twitter.node['Bart']['posts'] = 38
-twitter.node['Rachel']['posts'] = 89
-twitter.node['Tom']['posts'] = 23
-twitter.node['Bob']['posts'] = 21
-twitter.node['Greg']['posts'] = 41
-twitter.node['Peter']['posts'] = 64
-twitter.node['Matt']['posts'] = 8
-twitter.node['Lester']['posts'] = 4
-twitter.node['Max']['posts'] = 2
-
 # print nodes
 print('\nJust nodes: ', twitter.nodes())
 print('\nNodes with data: ', twitter.nodes(data=True))
@@ -152,8 +154,18 @@ print('\nEdges with data: ', twitter.edges(data=True))
 # graph's density and centrality
 print('\nDensity of the graph: ', nx.density(twitter))
 
-centrality = sorted(alg.centrality.degree_centrality(twitter).items(), key=lambda e: e[1], reverse=True)
+centrality = sorted(
+    alg.centrality.degree_centrality(twitter).items(), 
+    key=lambda e: e[1], reverse=True)
 print('\nCentrality of nodes: ', centrality)
+
+average_degree = sorted(
+    alg.assortativity.average_neighbor_degree(twitter)\
+    .items(), key=lambda e: e[1], reverse=True)
+
+print('\nAverage degree: ', average_degree)
+
+print(len(twitter['Glenn']) / 19)
 
 # draw the graph
 nx.draw_networkx(twitter)
