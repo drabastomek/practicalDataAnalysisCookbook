@@ -30,15 +30,13 @@ for person in people_scammed:
     edges = fraud.out_edges(person, data=True)
     
     for (person, merchant, data) in edges:
-        if  stolen_time[person] - data['time'] <= 2 and \
+        if  stolen_time[person] - data['time'] <= 1 and \
             stolen_time[person] - data['time'] >= 0:
 
             merchants[merchant].append(person)
 
-# for merchant in merchants:
-#     merchants[merchant] = len(set(merchants[merchant]))
-
-merchants = [(merch, len(set(merchants[merch]))) for merch in merchants]
+merchants = [(merch, len(set(merchants[merch]))) 
+    for merch in merchants]
 
 print('\nTop 5 merchants where people made purchases')
 print('shortly before their credit cards were stolen')

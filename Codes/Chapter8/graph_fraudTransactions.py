@@ -1,5 +1,6 @@
 import networkx as nx
 import numpy as np
+import collections as c
 
 # import the graph
 graph_file = '../../Data/Chapter8/fraud.gz'
@@ -23,26 +24,15 @@ print('\nTotal population: {0}, number of merchants: {1}' \
 n_transactions = fraud.number_of_edges()
 print('Total number of transactions: {0}' \
     .format(n_transactions))
-print('Total value of all transactions: {0}' \
-    .format(np.sum([dt[2]['amount'] 
-        for dt in fraud.edges(data=True)])))
 
 # what do we know about a transaction
 p_1_transactions = fraud.out_edges('p_1', data=True)
-print('\nData for p_1 purchase from m_1: ', 
-    p_1_transactions[0])
+print('\nMetadata for a transaction: ', 
+    list(p_1_transactions[0][2].keys()))
 
-p_1_total_amount = np.sum([t[2]['amount'] 
-    for t in p_1_transactions])
-print('Total amount spent by p_1: {0}' \
-    .format(p_1_total_amount))
-
-# are there any disputed transactions?
-p_1_disputed_transactions = [t for t in p_1_transactions 
-    if t[2]['disputed']]
-
-print('The p_1 has {0} disputed transactions.' \
-    .format(len(p_1_disputed_transactions)))
+print('Total value of all transactions: {0}' \
+    .format(np.sum([t[2]['amount'] 
+        for t in fraud.edges(data=True)])))
 
 # identify customers with stolen credit cards
 all_disputed_transactions = \
@@ -55,15 +45,29 @@ print('Total value of disputed transactions: {0}' \
     .format(np.sum([dt[2]['amount'] 
         for dt in all_disputed_transactions])))
 
+# a list of people scammed
 people_scammed = list(set(
     [p[0] for p in all_disputed_transactions]))
 
 print('Total number of people scammed: {0}' \
     .format(len(people_scammed)))
 
+# a list of all disputed transactions
 print('All disputed transactions:')
 
 for dt in sorted(all_disputed_transactions, 
     key=lambda e: e[0]):
-    
-    print(dt)
+    print('({0}, {1}: {{time:{2}, amount:{3}}})'\
+        .format(dt[0], dt[1], 
+         dt[2]['amount'], dt[2]['amount']))
+
+# how much each person lost
+transactions = c.defaultdict(list)
+
+for p in all_disputed_transactions:
+    transactions[p[0]].append(p[2]['amount'])
+
+for p in sorted(transactions.items(), 
+    key=lambda e: np.sum(e[1]), reverse=True):
+    print('Value lost by {0}: \t{1}'\
+        .format(p[0], np.sum(p[1])))
