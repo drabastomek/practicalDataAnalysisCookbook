@@ -1,1 +1,2 @@
-import nltk as nl
+import nltk
+
