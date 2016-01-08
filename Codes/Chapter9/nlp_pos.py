@@ -45,6 +45,7 @@ pattern = '''
     ENT: {<DT|PP\$>?(<NNP|NNPS>)+}
 '''
 
+# use regular expressions parser
 tokenizer = nltk.RegexpParser(pattern)
 
 for sent in tagged_sentences:
