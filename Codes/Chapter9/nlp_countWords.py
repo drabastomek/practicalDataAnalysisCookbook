@@ -1,5 +1,7 @@
 import nltk
 import re
+import numpy as np
+import matplotlib.pyplot as plt
 
 def preprocess_data(text):
     global sentences, tokenized
@@ -17,28 +19,13 @@ with open(guns_laws, 'r') as f:
 # chunk into sentences and tokenize
 sentences = []
 tokenized = []
-words = []
 
 preprocess_data(article)
 
 # part-of-speech tagging
 tagged_sentences = [nltk.pos_tag(w) for w in tokenized]
 
-# extract named entities -- naive approach
-named_entities = []
-
-for sentence in tagged_sentences:
-    for word in sentence:
-        if word[1] == 'NNP' or word[1] == 'NNPS':
-            named_entities.append(word)
-
-named_entities = list(set(named_entities))
-
-print('Named entities -- simplistic approach:')
-print(named_entities)
-
 # extract names entities -- regular expressions approach
-named_entities = []
 tagged = []
 
 pattern = '''
@@ -50,14 +37,39 @@ tokenizer = nltk.RegexpParser(pattern)
 for sent in tagged_sentences:
     tagged.append(tokenizer.parse(sent))
 
+# keep named entities together
+words = []
+lemmatizer = nltk.WordNetLemmatizer()
+
 for sentence in tagged:
     for pos in sentence:
         if type(pos) == nltk.tree.Tree:
-            named_entities.append(pos)
+            words.append(' '.join([w[0] for w in pos]))
+        else:
+            words.append(lemmatizer.lemmatize(pos[0]))
 
-named_entities = list(set([tuple(e) for e in named_entities]))
+# remove stopwords
+stopwords = nltk.corpus.stopwords.words('english')
+words = [w for w in words if w not in stopwords]
 
-print('\nNamed entities using regular expressions:')
+# and calculate frequencies
+freq = nltk.FreqDist(words)
 
-for named_entity in named_entities:
-    print(named_entity)
+# sort descending on frequency
+f = sorted(freq.items(), key=lambda x: x[1], reverse=True)
+
+# print top words
+top_words = [w for w in f if w[1] > 1]
+print(top_words)
+
+# plot 10 top words
+top_words_transposed = list(zip(*top_words))
+y_pos = np.arange(len(top_words_transposed[0][:10]))[::-1]
+
+plt.barh(y_pos, top_words_transposed[1][:10], align='center', alpha=0.5)
+plt.yticks(y_pos, top_words_transposed[0][:10])
+plt.xlabel('Frequency')
+plt.ylabel('Top words')
+
+plt.savefig('../../Data/Chapter9/charts/word_frequency.png',
+    dpi=300)
