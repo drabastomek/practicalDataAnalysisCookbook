@@ -1,5 +1,6 @@
 import nltk
 
+# read the text
 guns_laws = '../../Data/Chapter9/ST_gunLaws.txt'
 
 with open(guns_laws, 'r') as f:
@@ -13,6 +14,7 @@ lemmatizer = nltk.WordNetLemmatizer()
 
 # split the text into sentences
 sentences = sentencer.tokenize(article)
+
 words = []
 stemmed_words = []
 lemmatized_words = []
@@ -33,7 +35,7 @@ for sentence in sentences:
 # and save the results to files
 file_words  = '../../Data/Chapter9/ST_gunLaws_words.txt'
 file_stems  = '../../Data/Chapter9/ST_gunLaws_stems.txt'
-file_lemmas = '../../Data/Chapter9/ST_gunLaws_lemmass.txt'
+file_lemmas = '../../Data/Chapter9/ST_gunLaws_lemmas.txt'
 
 with open(file_words, 'w') as f:
     for w in words:

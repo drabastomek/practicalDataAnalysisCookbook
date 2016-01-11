@@ -22,7 +22,7 @@ words = []
 preprocess_data(article)
 
 # part-of-speech tagging
-tagged_sentences = [nltk.pos_tag(w) for w in tokenized]
+tagged_sentences = [nltk.pos_tag(s) for s in tokenized]
 
 # extract named entities -- naive approach
 named_entities = []
@@ -41,9 +41,7 @@ print(named_entities)
 named_entities = []
 tagged = []
 
-pattern = '''
-    ENT: {<DT|PP\$>?(<NNP|NNPS>)+}
-'''
+pattern = 'ENT: {<DT>?(<NNP|NNPS>)+}'
 
 # use regular expressions parser
 tokenizer = nltk.RegexpParser(pattern)
@@ -59,3 +57,4 @@ for sentence in tagged:
 named_entities = list(set([tuple(e) for e in named_entities]))
 
 print('\nNamed entities using regular expressions:')
+print(named_entities)

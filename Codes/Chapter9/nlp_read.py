@@ -1,24 +1,30 @@
 import urllib.request as u
 import bs4 as bs
 
-# link to the article at Seattle Times
-nyt_url = 'http://www.seattletimes.com/nation-world/obama-starts-2016-with-a-fight-over-gun-control/'
+# link to the article at The Seattle Times
+st_url = 'http://www.seattletimes.com/nation-world/obama-starts-2016-with-a-fight-over-gun-control/'
 
 # read the contents of the webpage
-with u.urlopen(nyt_url) as response:
+with u.urlopen(st_url) as response:
     html = response.read()
 
 # using beautiful soup -- let's parse the content of the HTML
 read = bs.BeautifulSoup(html, 'html5lib')
 
-# extract only the parts of interest to us
+# find the article tag
+article = read.find('article')
+
+# find all the paragraphs of the article
+all_ps = article.find_all('p')
+
+# object to hold the body of text
 body_of_text = []
 
 # get the tile
 body_of_text.append(read.title.get_text())
+print(read.title)
 
-# find all the paragraphs of the article
-all_ps = read.find_all('p')
+# put all the paragraphs to the body of text list
 for p in all_ps:
     body_of_text.append(p.get_text())
 

@@ -29,7 +29,7 @@ tagged_sentences = [nltk.pos_tag(w) for w in tokenized]
 tagged = []
 
 pattern = '''
-    ENT: {<DT|PP\$>?(<NNP|NNPS>)+}
+    ENT: {<DT>?(<NNP|NNPS>)+}
 '''
 
 tokenizer = nltk.RegexpParser(pattern)
@@ -50,7 +50,7 @@ for sentence in tagged:
 
 # remove stopwords
 stopwords = nltk.corpus.stopwords.words('english')
-words = [w for w in words if w not in stopwords]
+words = [w for w in words if w.lower() not in stopwords]
 
 # and calculate frequencies
 freq = nltk.FreqDist(words)
@@ -60,13 +60,14 @@ f = sorted(freq.items(), key=lambda x: x[1], reverse=True)
 
 # print top words
 top_words = [w for w in f if w[1] > 1]
-print(top_words)
+print(top_words, len(top_words))
 
 # plot 10 top words
 top_words_transposed = list(zip(*top_words))
 y_pos = np.arange(len(top_words_transposed[0][:10]))[::-1]
 
-plt.barh(y_pos, top_words_transposed[1][:10], align='center', alpha=0.5)
+plt.barh(y_pos, top_words_transposed[1][:10], 
+    align='center', alpha=0.5)
 plt.yticks(y_pos, top_words_transposed[0][:10])
 plt.xlabel('Frequency')
 plt.ylabel('Top words')
