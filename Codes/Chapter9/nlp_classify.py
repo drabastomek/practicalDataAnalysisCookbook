@@ -40,6 +40,7 @@ with open(f_testing, 'r') as f:
     read = f.read()
     test = json.loads(read)
 
+# tokenize the words
 tokenizer = nltk.tokenize.TreebankWordTokenizer()
 
 train = [(tokenizer.tokenize(r['review']), r['sentiment']) 
@@ -50,11 +51,23 @@ test  = [(tokenizer.tokenize(r['review']), r['sentiment'])
 
 # analyze the sentiment of reviews
 sentim_analyzer = sent.SentimentAnalyzer()
-all_words_neg = sentim_analyzer.all_words([sent.util.mark_negation(doc) for doc in train])
+all_words_neg_flagged = sentim_analyzer.all_words(
+    [sent.util.mark_negation(doc) for doc in train])
 
-unigram_feats = sentim_analyzer.unigram_word_feats(all_words_neg, min_freq=4)
+# get most frequent words
+unigram_feats = sentim_analyzer.unigram_word_feats(
+    all_words_neg_flagged, min_freq=4)
 
-sentim_analyzer.add_feat_extractor(sent.util.extract_unigram_feats, unigrams=unigram_feats)
+# add feature extractor
+sentim_analyzer.add_feat_extractor(
+    sent.util.extract_unigram_feats, unigrams=unigram_feats)
 
+# and create the training and testing using the newly created
+# features
 train = sentim_analyzer.apply_features(train)
 test  = sentim_analyzer.apply_features(test)
+
+# what is left is to classify the movies and then evaluate
+# the performance of the classifier
+classify_movies(train, sentim_analyzer)
+evaluate_classifier(test, sentim_analyzer)
