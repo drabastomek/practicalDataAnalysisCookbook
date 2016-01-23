@@ -1,112 +1,96 @@
 {
     "AA777.1.C": {
         "compartment": 1,
-        "const": 1,
         "frequentFlyer": 1,
         "price": 410,
         "refund": 1
     },
     "AA777.2.Z": {
         "compartment": 1,
-        "const": 1,
         "frequentFlyer": 1,
         "price": 320,
         "refund": 0
     },
     "AA777.3.Y": {
         "compartment": 0,
-        "const": 1,
         "frequentFlyer": 1,
         "price": 210,
         "refund": 1
     },
     "AA777.4.V": {
         "compartment": 0,
-        "const": 1,
         "frequentFlyer": 0,
         "price": 150,
         "refund": 0
     },
     "AS666.1.C": {
         "compartment": 1,
-        "const": 1,
         "frequentFlyer": 1,
         "price": 390,
         "refund": 1
     },
     "AS666.2.Z": {
         "compartment": 1,
-        "const": 1,
         "frequentFlyer": 1,
         "price": 315,
         "refund": 0
     },
     "AS666.3.Y": {
         "compartment": 0,
-        "const": 1,
         "frequentFlyer": 1,
         "price": 195,
         "refund": 1
     },
     "AS666.4.V": {
         "compartment": 0,
-        "const": 1,
         "frequentFlyer": 0,
         "price": 130,
         "refund": 0
     },
     "DL001.1.C": {
         "compartment": 1,
-        "const": 1,
         "frequentFlyer": 1,
         "price": 400,
         "refund": 1
     },
     "DL001.2.Z": {
         "compartment": 1,
-        "const": 1,
         "frequentFlyer": 1,
         "price": 320,
         "refund": 0
     },
     "DL001.3.Y": {
         "compartment": 0,
-        "const": 1,
         "frequentFlyer": 1,
         "price": 200,
         "refund": 1
     },
     "DL001.4.V": {
         "compartment": 0,
-        "const": 1,
         "frequentFlyer": 0,
         "price": 130,
         "refund": 0
     },
     "UA110.1.C": {
         "compartment": 1,
-        "const": 1,
         "frequentFlyer": 1,
         "price": 380,
         "refund": 1
     },
     "UA110.2.Z": {
         "compartment": 1,
-        "const": 1,
         "frequentFlyer": 0,
         "price": 310,
         "refund": 0
     },
     "UA110.3.Y": {
         "compartment": 0,
-        "const": 1,
         "frequentFlyer": 1,
         "price": 200,
         "refund": 1
     },
     "UA110.4.V": {
         "compartment": 0,
-        "const": 1,
         "frequentFlyer": 0,
         "price": 125,
         "refund": 0
