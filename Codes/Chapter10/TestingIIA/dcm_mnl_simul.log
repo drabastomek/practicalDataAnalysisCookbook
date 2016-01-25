@@ -1,0 +1,23 @@
+This file has automatically been generated.
+Sun Jan 24 18:20:52 2016
+Michel Bierlaire, EPFL
+
+biogeme 2.4 [Dim 1 nov 2015 18:05:09 EST]
+Michel Bierlaire, EPFL
+
+[18:20:52]bioModelParser.cc:256  Sensitivity analysis will be performed
+ Read sample file: ../../../Data/Chapter10/choices.dat
+ Nbr of cores reported by the system: 4
+ Nbr of cores used by biogeme: 2
+Warning:  Only one thread is used for simulation.
+ [1000/10001] Est. term. time: Sun Jan 24 18:21:13 2016 (in 00:18)
+ [2000/10001] Est. term. time: Sun Jan 24 18:21:18 2016 (in 00:20)
+ [3000/10001] Est. term. time: Sun Jan 24 18:21:19 2016 (in 00:18)
+ [4000/10001] Est. term. time: Sun Jan 24 18:21:20 2016 (in 00:16)
+ [5000/10001] Est. term. time: Sun Jan 24 18:21:19 2016 (in 00:13)
+ [6000/10001] Est. term. time: Sun Jan 24 18:21:19 2016 (in 00:10)
+ [7000/10001] Est. term. time: Sun Jan 24 18:21:20 2016 (in 00:08)
+ [8000/10001] Est. term. time: Sun Jan 24 18:21:20 2016 (in 00:05)
+ [9000/10001] Est. term. time: Sun Jan 24 18:21:19 2016 (in 00:02)
+ [10000/10001] Est. term. time: Sun Jan 24 18:21:20 2016 (in 00:00)
+ File dcm_mnl_simul.html has been generated

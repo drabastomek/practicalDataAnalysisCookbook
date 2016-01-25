@@ -1,0 +1,46 @@
+This file has automatically been generated.
+Sun Jan 24 18:50:57 2016
+Michel Bierlaire, EPFL
+
+biogeme 2.4 [Dim 1 nov 2015 18:05:09 EST]
+Michel Bierlaire, EPFL
+
+ Read sample file: ../../../Data/Chapter10/choices.dat
+ Nbr of cores used by biogeme: 8
+ Variable __rowId__ has 10000 different values in the sample
+ Generate 100 draws for 1 random parameters
+ Uniform draws: Modified Latin Hypercube Sampling
+ Size reserved in memory: 7 Mbytes = 10000 * 1 * 100 * 8 bytes
+ Size of draws memory        : 8
+ Init. log-likelihood: -25531.5 [00:01]
+     gmax Iter   radius        f(x)     Status       rhok nFree
+ +3.92e-04    1 1.00e+00 +2.5531498e+04 ****OutTrReg +9.93e-01 7  ++ P
+ +4.55e-04    2 2.00e+00 +2.2129191e+04 ****Converg  +1.07e+00 7  ++ P
+ +4.72e-04    3 4.00e+00 +2.1665005e+04 ****Converg  +9.66e-01 7  ++ P
+ +4.75e-04    4 8.00e+00 +2.1631424e+04 ****Converg  +1.02e+00 7  ++ P
+ +3.84e-04    5 1.60e+01 +2.1617500e+04 ****Converg  +1.01e+00 7  ++ P
+ +1.50e-05    6 3.20e+01 +2.1617452e+04 ****Converg  +1.00e+00 7  ++ P
+ Convergence reached...
+ Run time interval: [18:50:58,18:54:05]
+ Run time: 03:07
+ Estimated parameters: 
+Y_price = -4.91592
+
+B_ref = -0.617855
+
+B_ref_S = 0.0496741
+
+B_comp = -0.673125
+
+Z_price = -3.44868
+
+V_price = -5.52788
+
+ASC = 0
+
+C_price = -3.13251
+
+
+ File dcm_mixed_param.py created
+ File dcm_mixed.html has been generated
+ File dcm_mixed.tex has been generated

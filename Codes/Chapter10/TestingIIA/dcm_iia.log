@@ -1,0 +1,41 @@
+This file has automatically been generated.
+Sun Jan 24 18:21:27 2016
+Michel Bierlaire, EPFL
+
+biogeme 2.4 [Dim 1 nov 2015 18:05:09 EST]
+Michel Bierlaire, EPFL
+
+ Read sample file: ../../../Data/Chapter10/choices.dat
+ Nbr of cores used by biogeme: 8
+ Init. log-likelihood: -24663.9 [00:00]
+     gmax Iter   radius        f(x)     Status       rhok nFree
+ +4.05e-04    1 1.00e+00 +2.4663887e+04 ****OutTrReg +9.62e-01 6  ++ P
+ +4.81e-04    2 2.00e+00 +2.1696684e+04 ****Converg  +1.07e+00 6  ++ P
+ +4.97e-04    3 4.00e+00 +2.1183588e+04 ****OutTrReg +1.03e+00 6  ++ P
+ +5.19e-04    4 8.00e+00 +2.1138665e+04 ****Converg  +1.01e+00 6  ++ P
+ +2.36e-04    5 1.60e+01 +2.1135053e+04 ****OutTrReg +9.96e-01 6  ++ P
+ +3.31e-04    6 3.20e+01 +2.1131468e+04 ****Converg  +1.00e+00 6  ++ P
+ +5.67e-05    7 6.40e+01 +2.1131466e+04 ****OutTrReg +1.00e+00 6  ++ P
+ +1.86e-05    8 1.28e+02 +2.1131465e+04 ****Converg  +1.00e+00 5  ++ P
+ Convergence reached...
+ Run time interval: [18:21:28,18:21:29]
+ Run time: 00:01
+ Estimated parameters: 
+C_price = -6.72393
+
+B_refund = -0.72318
+
+B_comp = 3
+
+V_price = -5.05523
+
+Y_price = -4.38749
+
+Z_price = -8.01591
+
+ASC = 0
+
+
+ File dcm_iia_param.py created
+ File dcm_iia.html has been generated
+ File dcm_iia.tex has been generated

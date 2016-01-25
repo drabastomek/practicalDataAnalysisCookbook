@@ -1,0 +1,115 @@
+This file has automatically been generated.
+Sun Jan 24 19:52:27 2016
+Michel Bierlaire, EPFL
+
+biogeme 2.4 [Dim 1 nov 2015 18:05:09 EST]
+Michel Bierlaire, EPFL
+
+ Read sample file: ../../../Data/Chapter10/choices.dat
+ Nbr of cores used by biogeme: 8
+ Init. log-likelihood: -25709.9 [00:00]
+ Value: 25709.9
+ First derivatives
+ +++++++++++++++++
+ Analytical		Fin. diff.	Error	Name
+ -4.8834456e+02	-4.8834448e+02	+1.64e-05% 	Y_price
+ +1.3650060e+03	+1.3650095e+03	-2.59e-04% 	B_refund
+ +3.1707857e+03	+3.1707896e+03	-1.20e-04% 	B_comp
+ +1.2735141e+03	+1.2735142e+03	-5.02e-06% 	C_price
+ +1.5210504e+03	+1.5210559e+03	-3.59e-04% 	Z_price
+ -6.0691269e+02	-6.0691284e+02	-2.52e-05% 	V_price
+ -2.4000108e+04	-2.4000106e+04	+9.50e-06% 	biz_mu
+ +2.2989464e+04	+2.2989466e+04	-8.59e-06% 	eco_mu
+ Compute hessian by finite difference
+ You can interrupt it by creating a file named 
+ 0%	[1/8] Est. term. time: Sun Jan 24 19:52:39 2016 (in 00:07)
+ 10%	[2/8] Est. term. time: Sun Jan 24 19:52:39 2016 (in 00:06)
+ 20%	[3/8] Est. term. time: Sun Jan 24 19:52:39 2016 (in 00:05)
+ 30%	[4/8] Est. term. time: Sun Jan 24 19:52:37 2016 (in 00:03)
+ 40%	[5/8] Est. term. time: Sun Jan 24 19:52:37 2016 (in 00:02)
+ 50%	[6/8] Est. term. time: Sun Jan 24 19:52:37 2016 (in 00:01)
+ 60%	[7/8] Est. term. time: Sun Jan 24 19:52:37 2016 (in 00:00)
+ Second derivatives
+ ++++++++++++++++++
+ Analytical		Fin. diff.	Error	Name i	Name j
+ +2.1700550e+02	+2.1700557e+02	-3.34e-05% 	Y_price	Y_price
+ +5.5563846e+01	+5.5563946e+01	-1.80e-04% 	Y_price	B_refund
+ -6.6554406e+02	-6.6554386e+02	+3.01e-05% 	Y_price	B_comp
+ -2.3836920e+02	-2.3836909e+02	+4.50e-05% 	Y_price	C_price
+ -3.3908929e+02	-3.3908919e+02	+3.06e-05% 	Y_price	Z_price
+ +6.3845966e+01	+6.3846001e+01	-5.45e-05% 	Y_price	V_price
+ +4.9465664e+03	+4.9465637e+03	+5.60e-05% 	Y_price	biz_mu
+ -4.1377390e+03	-4.1377382e+03	+1.96e-05% 	Y_price	eco_mu
+ +6.5336457e+02	+6.5336459e+02	-4.01e-06% 	B_refund	B_refund
+ +5.0498851e+00	+5.0498657e+00	+3.85e-04% 	B_refund	B_comp
+ +3.6986923e+02	+3.6986929e+02	-1.47e-05% 	B_refund	C_price
+ -2.6634306e+02	-2.6634289e+02	+6.64e-05% 	B_refund	Z_price
+ -3.5068694e+01	-3.5068737e+01	-1.23e-04% 	B_refund	V_price
+ +3.7806415e+02	+3.7806332e+02	+2.21e-04% 	B_refund	biz_mu
+ +2.2983955e+03	+2.2983953e+03	+1.15e-05% 	B_refund	eco_mu
+ +2.3487594e+03	+2.3487592e+03	+1.13e-05% 	B_comp	B_comp
+ +8.4066874e+02	+8.4066872e+02	+2.06e-06% 	B_comp	C_price
+ +1.1972328e+03	+1.1972325e+03	+2.73e-05% 	B_comp	Z_price
+ -2.9385522e+02	-2.9385504e+02	+6.01e-05% 	B_comp	V_price
+ -1.7465482e+04	-1.7465479e+04	+1.62e-05% 	B_comp	biz_mu
+ +1.7478387e+04	+1.7478386e+04	+3.64e-06% 	B_comp	eco_mu
+ +7.3977734e+02	+7.3977779e+02	-6.02e-05% 	C_price	C_price
+ +5.1620321e+01	+5.1620300e+01	+4.04e-05% 	C_price	Z_price
+ -1.0505394e+02	-1.0505392e+02	+2.59e-05% 	C_price	V_price
+ -5.9813691e+03	-5.9813655e+03	+6.00e-05% 	C_price	biz_mu
+ +6.2549729e+03	+6.2549709e+03	+3.22e-05% 	C_price	eco_mu
+ +9.4508033e+02	+9.4508043e+02	-9.97e-06% 	Z_price	Z_price
+ -1.4990818e+02	-1.4990825e+02	-4.57e-05% 	Z_price	V_price
+ -9.0876691e+03	-9.0876659e+03	+3.51e-05% 	Z_price	biz_mu
+ +8.9098664e+03	+8.9098671e+03	-7.92e-06% 	Z_price	eco_mu
+ +5.1098262e+01	+5.1098351e+01	-1.74e-04% 	V_price	V_price
+ +2.1867354e+03	+2.1867334e+03	+8.93e-05% 	V_price	biz_mu
+ -2.6057659e+03	-2.6057644e+03	+5.81e-05% 	V_price	eco_mu
+ +2.2738989e+05	+2.2738988e+05	+2.99e-06% 	biz_mu	biz_mu
+ -1.3038738e+05	-1.3038736e+05	+9.32e-06% 	biz_mu	eco_mu
+ +3.9639758e+04	+3.9639759e+04	-5.42e-07% 	eco_mu	eco_mu
+     gmax Iter   radius        f(x)     Status       rhok nFree
+ +3.89e-04    1 1.00e+00 +2.5709877e+04 ****NegCurv  -1.77e+304 8  -  P
+ +3.89e-04    2 2.50e-01 +2.5709877e+04 ****NegCurv  +4.81e-01 8  +  P
+ +4.20e-04    3 2.50e-01 +2.4040067e+04 ****OutTrReg +1.14e+00 8  ++ P
+ +4.33e-04    4 5.00e-01 +2.3473829e+04 ****OutTrReg +9.81e-01 8  ++ P
+ +4.53e-04    5 1.00e+00 +2.2721672e+04 ****OutTrReg +8.62e-01 8  +  P
+ +4.53e-04    6 1.00e+00 +2.1966259e+04 ****OutTrReg +3.01e-01 7  +  P
+ +4.96e-04    7 1.00e+00 +2.1837740e+04 ****OutTrReg -2.33e+305 7  -  P
+ +4.96e-04    8 5.00e-01 +2.1837740e+04 ****OutTrReg -2.34e+00 7  -  P
+ +4.96e-04    9 2.50e-01 +2.1837740e+04 ****OutTrReg +7.24e-01 7  +  P
+ +4.63e-04   10 2.50e-01 +2.1688327e+04 ****OutTrReg +9.61e-01 8  ++ P
+ +4.62e-04   11 5.00e-01 +2.1665934e+04 ****OutTrReg -2.68e-319 8  -  P
+ +4.62e-04   12 5.00e-01 +2.1665934e+04 ****OutTrReg +9.92e-01 8  ++
+ +4.98e-04   13 1.00e+00 +2.1654606e+04 ****OutTrReg +5.24e-01 7  + 
+ +6.50e-04   14 1.00e+00 +2.1649982e+04 ****OutTrReg +1.01e+00 7  ++
+ +4.66e-04   15 2.00e+00 +2.1644279e+04 ****OutTrReg +9.47e-01 6  ++
+ +5.33e-04   16 4.00e+00 +2.1627859e+04 ****Converg  +1.02e+00 6  ++
+ +1.94e-04   17 8.00e+00 +2.1617489e+04 ****Converg  +9.99e-01 6  ++
+ +8.11e-06   18 1.60e+01 +2.1617461e+04 ****Converg  +1.00e+00 6  ++
+ Convergence reached...
+ Run time interval: [19:52:37,19:53:28]
+ Run time: 00:51
+ Estimated parameters: 
+Y_price = -4.91591
+
+B_refund = -0.617229
+
+B_comp = -0.673168
+
+C_price = -3.13244
+
+Z_price = -3.44861
+
+ASC = 0
+
+V_price = -5.52786
+
+biz_mu = 1
+
+eco_mu = 1
+
+
+ File dcm_nested_param.py created
+ File dcm_nested.html has been generated
+ File dcm_nested.tex has been generated

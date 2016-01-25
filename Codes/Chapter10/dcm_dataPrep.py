@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import re
 
 # read datasets
 choices_filename      = '../../Data/Chapter10/choices.csv'
@@ -15,10 +16,14 @@ considered = [alt.split(';')
 # create flag of all available alternatives
 available = []
 alternatives_list = list(alternatives.index)
+alternatives_list = [
+    re.sub(r'\.', r'_', alt) for alt in alternatives_list]
 no_of_alternatives = len(alternatives_list)
 
 for cons in considered:
-    f = np.zeros(len(alternatives_list))
+    f = [0] * len(alternatives_list)
+
+    cons = [re.sub(r'\.', r'_', alt) for alt in cons]
 
     for i, alt in enumerate(alternatives_list):
         if alt in cons:
@@ -29,12 +34,14 @@ for cons in considered:
 # append to the choices DataFrame
 alternatives_av = [alt + '_AV' for alt in alternatives_list]
 available = pd.DataFrame(available, columns=alternatives_av)
+choices = choices.join(available)
 
 # drop the available column as we don't need it anymore
 del choices['available']
 
 # encode the choice variable
 choice = list(choices['choice'])
+choice = [re.sub(r'\.', r'_', alt) for alt in choice]
 choice = [alternatives_list.index(c) + 1 for c in choice]
 
 choices['choice'] = pd.Series(choice)
