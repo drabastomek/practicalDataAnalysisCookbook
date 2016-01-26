@@ -1,23 +1,23 @@
 This file has automatically been generated.
-Sun Jan 24 18:20:52 2016
+Mon Jan 25 22:11:31 2016
 Michel Bierlaire, EPFL
 
 biogeme 2.4 [Dim 1 nov 2015 18:05:09 EST]
 Michel Bierlaire, EPFL
 
-[18:20:52]bioModelParser.cc:256  Sensitivity analysis will be performed
+[22:11:31]bioModelParser.cc:256  Sensitivity analysis will be performed
  Read sample file: ../../../Data/Chapter10/choices.dat
  Nbr of cores reported by the system: 4
  Nbr of cores used by biogeme: 2
 Warning:  Only one thread is used for simulation.
- [1000/10001] Est. term. time: Sun Jan 24 18:21:13 2016 (in 00:18)
- [2000/10001] Est. term. time: Sun Jan 24 18:21:18 2016 (in 00:20)
- [3000/10001] Est. term. time: Sun Jan 24 18:21:19 2016 (in 00:18)
- [4000/10001] Est. term. time: Sun Jan 24 18:21:20 2016 (in 00:16)
- [5000/10001] Est. term. time: Sun Jan 24 18:21:19 2016 (in 00:13)
- [6000/10001] Est. term. time: Sun Jan 24 18:21:19 2016 (in 00:10)
- [7000/10001] Est. term. time: Sun Jan 24 18:21:20 2016 (in 00:08)
- [8000/10001] Est. term. time: Sun Jan 24 18:21:20 2016 (in 00:05)
- [9000/10001] Est. term. time: Sun Jan 24 18:21:19 2016 (in 00:02)
- [10000/10001] Est. term. time: Sun Jan 24 18:21:20 2016 (in 00:00)
+ [990/9913] Est. term. time: Mon Jan 25 22:12:02 2016 (in 00:27)
+ [1980/9913] Est. term. time: Mon Jan 25 22:12:02 2016 (in 00:24)
+ [2970/9913] Est. term. time: Mon Jan 25 22:12:05 2016 (in 00:23)
+ [3960/9913] Est. term. time: Mon Jan 25 22:12:04 2016 (in 00:19)
+ [4950/9913] Est. term. time: Mon Jan 25 22:12:04 2016 (in 00:16)
+ [5940/9913] Est. term. time: Mon Jan 25 22:12:05 2016 (in 00:13)
+ [6930/9913] Est. term. time: Mon Jan 25 22:12:04 2016 (in 00:09)
+ [7920/9913] Est. term. time: Mon Jan 25 22:12:04 2016 (in 00:06)
+ [8910/9913] Est. term. time: Mon Jan 25 22:12:05 2016 (in 00:03)
+ [9900/9913] Est. term. time: Mon Jan 25 22:12:05 2016 (in 00:00)
  File dcm_mnl_simul.html has been generated

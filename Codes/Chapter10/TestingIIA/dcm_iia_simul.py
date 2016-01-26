@@ -143,30 +143,27 @@ probUA110_V = bioLogit(V, availability, 16)
 # Defines an itertor on the data
 rowIterator('obsIter') 
 
-# Define the likelihood function for the estimation
-# BIOGEME_OBJECT.ESTIMATE = Sum(logprob, 'obsIter')
-
-# exclude observations where UA110 V was selected
+# exclude observations where AA777 C was selected
 exclude = choice == 1
 BIOGEME_OBJECT.EXCLUDE = exclude
 
 # simulate
 simulate = {
-    'P(AA777_Z)': probAA777_Z,
-    'P(AA777_Y)': probAA777_Y,
-    'P(AA777_V)': probAA777_V,
-    'P(AS666_C)': probAS666_C,
-    'P(AS666_Z)': probAS666_Z,
-    'P(AS666_Y)': probAS666_Y,
-    'P(AS666_V)': probAS666_V,
-    'P(DL001_C)': probDL001_C,
-    'P(DL001_Z)': probDL001_Z,
-    'P(DL001_Y)': probDL001_Y,
-    'P(DL001_V)': probDL001_V,
-    'P(UA110_C)': probUA110_C,
-    'P(UA110_Z)': probUA110_Z,
-    'P(UA110_Y)': probUA110_Y,
-    'P(UA110_V)': probUA110_V
+    'P_AA777_Z': probAA777_Z,
+    'P_AA777_Y': probAA777_Y,
+    'P_AA777_V': probAA777_V,
+    'P_AS666_C': probAS666_C,
+    'P_AS666_Z': probAS666_Z,
+    'P_AS666_Y': probAS666_Y,
+    'P_AS666_V': probAS666_V,
+    'P_DL001_C': probDL001_C,
+    'P_DL001_Z': probDL001_Z,
+    'P_DL001_Y': probDL001_Y,
+    'P_DL001_V': probDL001_V,
+    'P_UA110_C': probUA110_C,
+    'P_UA110_Z': probUA110_Z,
+    'P_UA110_Y': probUA110_Y,
+    'P_UA110_V': probUA110_V
 }
 
 names = ['B_comp','C_price','V_price','Y_price','Z_price']
@@ -188,9 +185,9 @@ choiceSet = [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
 cteLoglikelihood(choiceSet, choice, 'obsIter')
 availabilityStatistics(availability, 'obsIter')
 
-
-BIOGEME_OBJECT.PARAMETERS['optimizationAlgorithm'] = 'BIO'
-BIOGEME_OBJECT.PARAMETERS['numberOfThreads'] = '8'
+# Parameters
+BIOGEME_OBJECT.PARAMETERS['RandomDistribution'] ="MLHS"
+BIOGEME_OBJECT.PARAMETERS['NbrOfDraws'] = "1"
 
 BIOGEME_OBJECT.FORMULAS['AA777 Z utility'] = V[2]
 BIOGEME_OBJECT.FORMULAS['AA777 Y utility'] = V[3]

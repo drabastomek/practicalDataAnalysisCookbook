@@ -14,17 +14,14 @@ from statistics import *
 #        or keep it fixed (1).
 
 # add the coefficients to be estimated
-C_price = Beta('C_price',-5.84008,-10,10,0,'C price' )
-
-B_refund = Beta('B_refund',0.69535,-3,3,0,'refund' )
-
-V_price = Beta('V_price',-7.09235,-10,10,0,'V price' )
-
-Z_price = Beta('Z_price',-5.05605,-10,10,0,'Z price' )
-
-Y_price = Beta('Y_price',-8.74812,-10,10,0,'Y price' )
+C_price = Beta('C_price',-7.29885,-10,10,0,'C price' )
+V_price = Beta('V_price',-5.07495,-10,10,0,'V price' )
+Y_price = Beta('Y_price',-4.40754,-10,10,0,'Y price' )
+Z_price = Beta('Z_price',-8.70638,-10,10,0,'Z price' )
 
 ASC = Beta('ASC',0,-10,10,1,'ASC' )
+B_comp = Beta('B_comp',3.52571,-10,10,0,'compartment' )
+B_refund = Beta('B_refund',-0.718748,-3,3,0,'refund' )
 
 # Utility functions
 
@@ -92,24 +89,23 @@ r[16] = UA110_4_V_refund
 # The dictionary of utilities is constructed. 
 V = {}
 
-V[1] = C_price * p[1] + B_refund * r[1] + ASC
-V[2] = Z_price * p[2] + B_refund * r[2]
-V[3] = Y_price * p[3] + B_refund * r[3]
-V[4] = V_price * p[4] + B_refund * r[4]
-V[5] = C_price * p[5] + B_refund * r[5]
-V[6] = Z_price * p[6] + B_refund * r[6]
-V[7] = Y_price * p[7] + B_refund * r[7]
-V[8] = V_price * p[8] + B_refund * r[8]
-V[9] = C_price * p[9] + B_refund * r[9]
-V[10] = Z_price * p[10] + B_refund * r[10]
-V[11] = Y_price * p[11] + B_refund * r[11]
-V[12] = V_price * p[12] + B_refund * r[12]
-V[13] = C_price * p[13] + B_refund * r[13]
-V[14] = Z_price * p[14] + B_refund * r[14]
-V[15] = Y_price * p[15] + B_refund * r[15]
-V[16] = V_price * p[16] + B_refund * r[16]
+V[1] = C_price * p[1] + B_refund * r[1] + B_comp * c[1]
+V[2] = Z_price * p[2] + B_refund * r[2] + B_comp * c[2] + ASC
+V[3] = Y_price * p[3] + B_refund * r[3] + B_comp * c[3]
+V[4] = V_price * p[4] + B_refund * r[4] + B_comp * c[4]
+V[5] = C_price * p[5] + B_refund * r[5] + B_comp * c[5]
+V[6] = Z_price * p[6] + B_refund * r[6] + B_comp * c[6]
+V[7] = Y_price * p[7] + B_refund * r[7] + B_comp * c[7]
+V[8] = V_price * p[8] + B_refund * r[8] + B_comp * c[8]
+V[9] = C_price * p[9] + B_refund * r[9] + B_comp * c[9]
+V[10] = Z_price * p[10] + B_refund * r[10] + B_comp * c[10]
+V[11] = Y_price * p[11] + B_refund * r[11] + B_comp * c[11]
+V[12] = V_price * p[12] + B_refund * r[12] + B_comp * c[12]
+V[13] = C_price * p[13] + B_refund * r[13] + B_comp * c[13]
+V[14] = Z_price * p[14] + B_refund * r[14] + B_comp * c[14]
+V[15] = Y_price * p[15] + B_refund * r[15] + B_comp * c[15]
+V[16] = Y_price * p[16] + B_refund * r[16] + B_comp * c[16]
 
-print('t', AA777_1_C_AV == 1.0)
 # availability flags
 availability = {
     1:  AA777_1_C_AV,
@@ -151,45 +147,47 @@ probUA110_V = bioLogit(V, availability, 16)
 # Defines an itertor on the data
 rowIterator('obsIter') 
 
+# exclude observations where AA777 C was selected
+exclude = choice == 1
+BIOGEME_OBJECT.EXCLUDE = exclude
+
 # simulate
 simulate = {
-    'P AA777_C': probAA777_C,
-    'P AA777_Z': probAA777_Z,
-    'P AA777_Y': probAA777_Y,
-    'P AA777_V': probAA777_V,
-    'P AS666_C': probAS666_C,
-    'P AS666_Z': probAS666_Z,
-    'P AS666_Y': probAS666_Y,
-    'P AS666_V': probAS666_V,
-    'P DL001_C': probDL001_C,
-    'P DL001_Z': probDL001_Z,
-    'P DL001_Y': probDL001_Y,
-    'P DL001_V': probDL001_V,
-    'P UA110_C': probUA110_C,
-    'P UA110_Z': probUA110_Z,
-    'P UA110_Y': probUA110_Y,
-    'P UA110_V': probUA110_V
+    'P_AA777_C': probAA777_C,
+    'P_AA777_Z': probAA777_Z,
+    'P_AA777_Y': probAA777_Y,
+    'P_AA777_V': probAA777_V,
+    'P_AS666_C': probAS666_C,
+    'P_AS666_Z': probAS666_Z,
+    'P_AS666_Y': probAS666_Y,
+    'P_AS666_V': probAS666_V,
+    'P_DL001_C': probDL001_C,
+    'P_DL001_Z': probDL001_Z,
+    'P_DL001_Y': probDL001_Y,
+    'P_DL001_V': probDL001_V,
+    'P_UA110_C': probUA110_C,
+    'P_UA110_Z': probUA110_Z,
+    'P_UA110_Y': probUA110_Y,
+    'P_UA110_V': probUA110_V
 }
 
 ## Code for the sensitivity analysis
-names = ['B_refund','C_price','V_price','Y_price','Z_price']
-values = [[0.649889,-0.63624,0.117694,-1.24944,0.0496389],[-0.63624,0.66446,0.00145002,1.3005,0.000500117],[0.117694,0.00145002,0.368897,0.00294145,0.154543],[-1.24944,1.3005,0.00294145,2.55627,0.000999148],[0.0496389,0.000500117,0.154543,0.000999148,0.0663128]]
-vc = bioMatrix(5,names,values)
+names = ['B_comp','B_refund','C_price','V_price','Y_price','Z_price']
+values = [[1.71083,-0.0398667,-1.67587,0.190499,0.209566,-2.13821],[-0.0398667,0.0188657,-0.00717013,-0.083915,-0.0941582,0.0155518],[-1.67587,-0.00717013,1.76813,0.0330621,0.0365816,2.18927],[0.190499,-0.083915,0.0330621,0.418485,0.452985,-0.0676863],[0.209566,-0.0941582,0.0365816,0.452985,0.498726,-0.0766095],[-2.13821,0.0155518,2.18927,-0.0676863,-0.0766095,2.74714]]
+vc = bioMatrix(6, names, values)
 BIOGEME_OBJECT.VARCOVAR = vc
 
 BIOGEME_OBJECT.SIMULATE = Enumerate(simulate,'obsIter')
 
 # Statistics
-
 nullLoglikelihood(availability,'obsIter')
 choiceSet = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
 cteLoglikelihood(choiceSet, choice, 'obsIter')
 availabilityStatistics(availability, 'obsIter')
 
-BIOGEME_OBJECT.PARAMETERS['DumpSensitivityAnalysis'] = "0"
-
-# BIOGEME_OBJECT.PARAMETERS['optimizationAlgorithm'] = 'BIO'
-# BIOGEME_OBJECT.PARAMETERS['numberOfThreads'] = '8'
+# Parameters
+BIOGEME_OBJECT.PARAMETERS['RandomDistribution'] ="MLHS"
+BIOGEME_OBJECT.PARAMETERS['NbrOfDraws'] = "1"
 
 BIOGEME_OBJECT.FORMULAS['AA777 C utility'] = V[1]
 BIOGEME_OBJECT.FORMULAS['AA777 Z utility'] = V[2]

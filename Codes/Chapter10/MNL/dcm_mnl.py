@@ -21,7 +21,7 @@ Z_price = Beta('Z_price',0,-10,10,0,'Z price')
 Y_price = Beta('Y_price',0,-10,10,0,'Y price')
 V_price = Beta('V_price',0,-10,10,0,'V price')
 
-B_comp = Beta('B_comp',0,-3,3,0,'compartment')
+B_comp   = Beta('B_comp',0,-10,10,0,'compartment')
 B_refund = Beta('B_refund',0,-3,3,0,'refund')
 
 # Utility functions
@@ -90,7 +90,7 @@ r[16] = UA110_4_V_refund
 # The dictionary of utilities is constructed. 
 V = {}
 
-V[1] = Z_price * p[1] + B_refund * r[1] + B_comp * c[1]
+V[1] = C_price * p[1] + B_refund * r[1] + B_comp * c[1]
 V[2] = Z_price * p[2] + B_refund * r[2] + B_comp * c[2] + ASC
 V[3] = Y_price * p[3] + B_refund * r[3] + B_comp * c[3]
 V[4] = V_price * p[4] + B_refund * r[4] + B_comp * c[4]
@@ -130,20 +130,19 @@ availability = {
 # The choice model is a logit, with availability conditions
 logprob = bioLogLogit(V, availability, choice)
 
-# Defines an itertor on the data
+# Defines an iterator on the data
 rowIterator('obsIter') 
 
 # Define the likelihood function for the estimation
 BIOGEME_OBJECT.ESTIMATE = Sum(logprob, 'obsIter')
 
 # Statistics
-
 nullLoglikelihood(availability,'obsIter')
 choiceSet = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
 cteLoglikelihood(choiceSet, choice, 'obsIter')
 availabilityStatistics(availability, 'obsIter')
 
-
+# Parameters 
 BIOGEME_OBJECT.PARAMETERS['optimizationAlgorithm'] = 'BIO'
 BIOGEME_OBJECT.PARAMETERS['numberOfThreads'] = '8'
 
