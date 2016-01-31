@@ -26,7 +26,6 @@ B_refund = Beta('B_refund',0,-3,3,0,'refund')
 
 # Utility functions
 
-# The data are associated with the alternative index
 # compartment attributes
 c = {}
 

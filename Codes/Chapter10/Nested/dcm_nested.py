@@ -4,17 +4,6 @@ from nested import *
 from loglikelihood import *
 from statistics import *
 
-# list of alternatives and their attributes
-alternatives = [
-    'AA777_1_C', 'AA777_2_Z', 'AA777_3_Y', 'AA777_4_V', 
-    'AS666_1_C', 'AS666_2_Z', 'AS666_3_Y', 'AS666_4_V',
-    'DL001_1_C', 'DL001_2_Z', 'DL001_3_Y', 'DL001_4_V',
-    'UA110_1_C', 'UA110_2_Z', 'UA110_3_Y', 'UA110_4_V'
-]
-
-attributes = ['compartment', 'price', 'refund', 
-    'frequentFlyer']
-
 # Specify parameters to be estimated
 #
 # Arguments:
@@ -25,8 +14,7 @@ attributes = ['compartment', 'price', 'refund',
 #   - 5  flag whether to estimate the parameter (0)
 #        or keep it fixed (1).
 
-# add constants
-
+# add the coefficients to be estimated
 C_price = Beta('C_price',0,-10,10,0,'C price' )
 V_price = Beta('V_price',0,-10,10,0,'V price' )
 Y_price = Beta('Y_price',0,-10,10,0,'Y price' )
