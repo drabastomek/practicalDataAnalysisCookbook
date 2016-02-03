@@ -97,16 +97,16 @@ class GasStation(object):
         '''
         # print nicely so we can distinguish when the truck
         # was called
-        print('-' * 62)
+        print('-' * 70)
         print('CALLING TRUCK AT {0:4.0f}s.' \
             .format(self.env.now))
-        print('-' * 62)
+        print('-' * 70)
 
         # waiting for the truck to come (lead time)
         yield self.env.timeout(self.TRUCK_TIME)
 
         # let us know when the truck arrived
-        print('-' * 62)
+        print('-' * 70)
         print('TRUCK ARRIVING AT {0:4.0f}s' \
             .format(self.env.now))
 
@@ -116,7 +116,7 @@ class GasStation(object):
 
         print('TO REPLENISH {0:4.0f} GALLONS OF {1}' \
             .format(toReplenish, fuelType))
-        print('-' * 62)
+        print('-' * 70)
 
         # wait for the truck to dump the fuel into 
         # the reservoirs
@@ -129,10 +129,10 @@ class GasStation(object):
         # and pay for the delivery
         self.pay(toReplenish * self.buyPrice[fuelType])
 
-        print('-' * 62)
+        print('-' * 70)
         print('FINISHED REPLENISHING AT {0:4.0f}s.' \
             .format(self.env.now))
-        print('-' * 62)
+        print('-' * 70)
 
     def controlLevels(self):
         '''
