@@ -1,7 +1,7 @@
 import numpy as np
 import simpy
 import itertools
-import collections as col
+# import collections as col
 
 class FuelPump(object):
     '''
@@ -68,6 +68,14 @@ class GasStation(object):
 
         print('Gas station generated...')
 
+    def generateReservoirs(self, env, levels):
+        '''
+            Helper method to generate reservoirs
+        '''
+        for fuel in levels:
+            self.RESERVOIRS[fuel] = simpy.Container(
+                env, levels[fuel], init=levels[fuel])
+
     def generatePumps(self, env, fuelTypes, noOfPumps):
         '''
             Helper method to generate pumps
@@ -76,13 +84,24 @@ class GasStation(object):
                 self.PUMPS[fuelType] = FuelPump(
                     env, noOfPumps[fuelType])
 
-    def generateReservoirs(self, env, levels):
+    def controlLevels(self):
         '''
-            Helper method to generate reservoirs
+            A method to check the levels of fuel (every 5s)
+            and replenish when necessary
         '''
-        for fuel in levels:
-            self.RESERVOIRS[fuel] = simpy.Container(
-                env, levels[fuel], init=levels[fuel])
+        while True:
+            # loop through all the reservoirs
+            for fuelType in self.RESERVOIRS:
+
+                # and if the level is below the minimum
+                if self.RESERVOIRS[fuelType].level \
+                    < self.MINIMUM_FUEL[fuelType]:
+
+                    # replenishes
+                    yield env.process(
+                        self.replenish(fuelType))
+                # wait 5s before checking again
+                yield env.timeout(5)
 
     def replenish(self, fuelType):
         '''
@@ -124,25 +143,6 @@ class GasStation(object):
             .format(self.env.now))
         print('-' * 62)
 
-    def controlLevels(self):
-        '''
-            A method to check the levels of fuel (every 5s)
-            and replenish when necessary
-        '''
-        while True:
-            # loop through all the reservoirs
-            for fuelType in self.RESERVOIRS:
-
-                # and if the level is below the minimum
-                if self.RESERVOIRS[fuelType].level \
-                    < self.MINIMUM_FUEL[fuelType]:
-
-                    # replenishs
-                    yield env.process(
-                        self.replenish(fuelType))
-                # wait 5s before checking again
-                yield env.timeout(5)
-
     def getPump(self, fuelType):
         '''
             Return a pump object
@@ -177,16 +177,16 @@ class Car(object):
         self.env = env
         self.gasStation = gasStation
 
+        # fuel type required by the car
+        self.FUEL_TYPE = np.random.choice(
+            ['PETROL', 'DIESEL'], p=[0.7, 0.3])
+
         # details about the car
         self.TANK_CAPACITY = np.random.randint(12, 23) # gal
         
         # how much fuel left
         self.FUEL_LEFT = self.TANK_CAPACITY \
             * np.random.randint(10, 40) / 100
-
-        # fuel type required by the car
-        self.FUEL_TYPE = np.random.choice(
-            ['PETROL', 'DIESEL'], p=[0.7, 0.3])
 
         # car id
         self.CAR_ID = i
@@ -220,6 +220,12 @@ class Car(object):
             yield self.gasStation.getReservoir(fuelType)\
                 .get(required)
 
+            # record the fuel levels
+            petrolLevel = self.gasStation\
+                        .getReservoir('PETROL').level
+            dieselLevel = self.gasStation\
+                        .getReservoir('DIESEL').level
+
             # and wait for it to finish
             yield env.timeout(required / gasStation \
                 .getRefuelSpeed())
@@ -230,13 +236,14 @@ class Car(object):
             refuellingDetails += '\t{petrol}\t{diesel}'
 
             print(refuellingDetails \
-                .format(car=self.CAR_ID, tm=arrive, 
-                    start=int(start), fin=int(self.env.now), 
+                .format(
+                    car=self.CAR_ID, 
+                    tm=arrive, 
+                    start=int(start), 
+                    fin=int(self.env.now), 
                     gal=required, fuel=fuelType, 
-                    petrol=int(self.gasStation\
-                        .getReservoir('PETROL').level), 
-                    diesel=int(self.gasStation\
-                        .getReservoir('DIESEL').level)
+                    petrol=int(petrolLevel), 
+                    diesel=int(dieselLevel)
                 )
             )
 
@@ -267,7 +274,9 @@ if __name__ == '__main__':
 
     # print the header
     print('\t\t\t\t\t\t     Left')
-    print('CarID\tArrive\tStart\tFinish\tGal\tType\tPetrol\tDiesel')
+    header =  'CarID\tArrive\tStart\tFinish\tGal'
+    header += '\tType\tPetrol\tDiesel'
+    print(header)
     print('-' * 62)
 
     # create the process of generating cars
