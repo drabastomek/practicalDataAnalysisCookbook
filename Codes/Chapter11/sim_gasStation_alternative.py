@@ -63,11 +63,14 @@ class GasStation(object):
         self.SPEED_REPLENISH = 5
 
         # cash registry
-        self.cashIn = 0
-        self.cashOut = 0
-        self.cashLost = 0
         self.sellPrice = {'PETROL': 2.45, 'DIESEL': 2.23}
         self.buyPrice  = {'PETROL': 1.95, 'DIESEL': 1.67}
+        self.cashIn = 0
+        self.cashOut = np.sum(
+            [ self.CAPACITY[ft] \
+            * self.buyPrice[ft] 
+            for ft in self.CAPACITY])
+        self.cashLost = 0
 
         # add the process to control the levels of fuel
         # available for sale
@@ -269,6 +272,12 @@ class Car(object):
                 yield self.gasStation.getReservoir(fuelType)\
                     .get(required)
 
+                # record the fuel levels
+                petrolLevel = self.gasStation\
+                            .getReservoir('PETROL').level
+                dieselLevel = self.gasStation\
+                            .getReservoir('DIESEL').level
+
                 # and wait for it to finish
                 yield env.timeout(required / gasStation \
                     .getRefuelSpeed())
@@ -284,19 +293,19 @@ class Car(object):
                 yield env.timeout(np.random.randint(15, 90))
 
                 # finally, print the details to the screen
-                refuellingDetails = '{car}\t{tm}\t{start}'
-                refuellingDetails += '\t{fin}\t{gal:2.2f}\t{fuel}'
+                refuellingDetails  = '{car}\t{tm}\t{start}'
+                refuellingDetails += '\t{fin}'
+                refuellingDetails += '\t{gal:2.2f}\t{fuel}'
                 refuellingDetails += '\t{petrol}\t{diesel}'
                 refuellingDetails += '\t${pay:3.2f}'
 
                 print(refuellingDetails \
                     .format(car=self.CAR_ID, tm=arrive, 
-                        start=int(start), fin=int(self.env.now), 
+                        start=int(start), 
+                        fin=int(self.env.now), 
                         gal=required, fuel=fuelType, 
-                        petrol=int(self.gasStation\
-                            .getReservoir('PETROL').level), 
-                        diesel=int(self.gasStation\
-                            .getReservoir('DIESEL').level),
+                        petrol=int(petrolLevel), 
+                        diesel=int(dieselLevel),
                         pay=toPay
                     )
                 )
@@ -318,7 +327,7 @@ class Car(object):
 
 if __name__ == '__main__':
     # what is the simulation horizon (in seconds)
-    SIM_TIME = 10 * 60 * 60 # 10 hours
+    SIM_TIME = 20 * 60 * 60 # 10 hours
 
     # create the environment
     env = simpy.Environment()
