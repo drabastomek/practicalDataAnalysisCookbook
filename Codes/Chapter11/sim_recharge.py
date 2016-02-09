@@ -66,19 +66,22 @@ class Car(object):
         self.driver = driver
 
         # car parameters
-        self.BATTERY_CAPACITY = np.random.choice([2, 3], 
+        self.BATTERY_CAPACITY = np.random.choice([70, 85], 
             p=[0.5, 0.5])
         self.BATTERY_LEVEL = np.random.randint(80, 100) / 100 
         self.AVG_SPEED = np.random.randint(364, 492) / 10
-        self.AVG_ECONOMY = np.random.randint(81, 92) # MPeG
+
+        # average economy in kWh per mile
+        # the below translates to ~89MPGe
+        self.AVG_ECONOMY = np.random.randint(34, 38) / 100 
 
         # we start at the beginning of the road
         self.LOCATION = 0 
 
         # and let's drive
-        self.action = self.env.process(self.drive())
+        self.action = self.env.process(self.driving())
 
-    def drive(self):
+    def driving(self):
         # updates every 15 minutes
         interval = 15
 
@@ -87,7 +90,7 @@ class Car(object):
         distanceTraveled = self.AVG_SPEED / 60 * interval
 
         # how much battery used to travel that distance
-        batteryUsed = distanceTraveled / self.AVG_ECONOMY
+        batteryUsed = distanceTraveled * self.AVG_ECONOMY
 
         while True: 
             # update the location of the car
@@ -116,13 +119,19 @@ class Car(object):
                 [gs for gs in self.rechargeStations 
                     if gs.LOCATION > self.LOCATION][0:2]
 
-            distanceToNearest = [rs.LOCATION - self.LOCATION for rs in nearestRechargeStations]
+            distanceToNearest = [rs.LOCATION \
+                - self.LOCATION 
+                for rs in nearestRechargeStations]
 
             # are we currently passing a recharging station?
-            passingRechargeStation = self.LOCATION + distanceTraveled > nearestRechargeStations[0].LOCATION
+            passingRechargeStation = self.LOCATION \
+                + distanceTraveled > \
+                    nearestRechargeStations[0].LOCATION
 
             # will we get to the next one on the charge left?
-            willGetToNextOne = self.check(batteryLeft, nearestRechargeStations[-1].LOCATION)
+            willGetToNextOne = self.check(
+                batteryLeft, 
+                nearestRechargeStations[-1].LOCATION)
 
             # if we're passing the recharge station and 
             # we won't get to the next one -- let's recharge
@@ -140,7 +149,7 @@ class Car(object):
 
                     # start charging
                     charging = self.env.process(
-                        self.charge(timeToFullRecharge, 
+                        self.charging(timeToFullRecharge, 
                             nearestRechargeStations[0] \
                             .RECHARGE_SPEED))
 
@@ -177,7 +186,7 @@ class Car(object):
 
         return batteryLeft > batteryToNext
 
-    def charge(self, timeToFullRecharge, rechargeSpeed):
+    def charging(self, timeToFullRecharge, rechargeSpeed):
         '''
             Method to recharge the car
         '''
@@ -226,7 +235,8 @@ class Driver(object):
         # if more than the time needed to full recharge
         # wait till the full recharge, otherwise interrupt
         # the recharge process earlier
-        yield self.env.timeout(int(np.min([interruptTime, timeToFullRecharge])))
+        yield self.env.timeout(int(np.min(
+            [interruptTime, timeToFullRecharge])))
 
         if interruptTime < timeToFullRecharge:
             car.action.interrupt()
@@ -235,7 +245,6 @@ class Driver(object):
 if __name__ == '__main__':
     # what is the simulation horizon (in minutes)
     SIM_TIME = 10 * 60 * 60 # 10 hours
-    NO_OF_DRIVERS = 2
 
     # create the environment
     env = simpy.Environment()
