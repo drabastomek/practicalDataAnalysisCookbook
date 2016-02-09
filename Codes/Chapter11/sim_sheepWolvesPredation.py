@@ -523,7 +523,7 @@ if __name__ == '__main__':
 
     # print the header
     print('\tSheep\t\tDied\t\tWolves\t\tDied\t')
-    print('Time\tAlive\tBorn\tEnergy\tEaten\tAlive\tBorn\tEnergy')
+    print('T\tLive\tBorn\tEnergy\tEaten\tLive\tBorn\tEnergy')
 
     # and run the simulation
     env.run(until = SIM_TIME)
