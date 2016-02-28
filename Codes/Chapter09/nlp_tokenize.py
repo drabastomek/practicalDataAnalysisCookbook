@@ -1,7 +1,7 @@
 import nltk
 
 # read the text
-guns_laws = '../../Data/Chapter9/ST_gunLaws.txt'
+guns_laws = '../../Data/Chapter09/ST_gunLaws.txt'
 
 with open(guns_laws, 'r') as f:
     article = f.read()
@@ -33,9 +33,9 @@ for sentence in sentences:
         for word in words[-1]])
 
 # and save the results to files
-file_words  = '../../Data/Chapter9/ST_gunLaws_words.txt'
-file_stems  = '../../Data/Chapter9/ST_gunLaws_stems.txt'
-file_lemmas = '../../Data/Chapter9/ST_gunLaws_lemmas.txt'
+file_words  = '../../Data/Chapter09/ST_gunLaws_words.txt'
+file_stems  = '../../Data/Chapter09/ST_gunLaws_stems.txt'
+file_lemmas = '../../Data/Chapter09/ST_gunLaws_lemmas.txt'
 
 with open(file_words, 'w') as f:
     for w in words:

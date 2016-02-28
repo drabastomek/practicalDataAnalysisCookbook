@@ -125,12 +125,13 @@ class Sheep(Animal):
         if self.plane.hasGrass(self.pos):
             # get the energy from grass 
             self.energy += ENERGY_FROM_GRASS
-            if self.energy > 200:
-                self.energy = 200
             self.lastTimeEaten = self.env.now
 
             # and flag that the grass has been eaten
             self.plane.grassEaten(self.pos)
+
+        if self.energy > 200:
+            self.energy = 200
 
 class Wolf(Animal):
     '''
@@ -160,9 +161,10 @@ class Wolf(Animal):
             # as the removal of sheep that died happens later
             if s.isAlive() and i < howMany:
                 self.energy += s.getEnergy() / 20
-                if self.energy > 200:
-                    self.energy = 200
                 s.die('eaten') 
+                
+        if self.energy > 200:
+            self.energy = 200
 
         # update the time of the last meal
         self.lastTimeEaten = self.env.now

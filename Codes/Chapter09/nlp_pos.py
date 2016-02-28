@@ -9,7 +9,7 @@ def preprocess_data(text):
     tokenized = [tokenizer.tokenize(s) for s in sentences]
 
 # import the data
-guns_laws = '../../Data/Chapter9/ST_gunLaws.txt'
+guns_laws = '../../Data/Chapter09/ST_gunLaws.txt'
 
 with open(guns_laws, 'r') as f:
     article = f.read()

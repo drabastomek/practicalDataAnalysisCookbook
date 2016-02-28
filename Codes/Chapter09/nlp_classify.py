@@ -29,8 +29,8 @@ def evaluate_classifier(test, sentim_analyzer):
         print('{0}: {1}'.format(key, value))
 
 # read in the files
-f_training = '../../Data/Chapter9/movie_reviews_train.json'
-f_testing  = '../../Data/Chapter9/movie_reviews_test.json'
+f_training = '../../Data/Chapter09/movie_reviews_train.json'
+f_testing  = '../../Data/Chapter09/movie_reviews_test.json'
 
 with open(f_training, 'r') as f:
     read = f.read()

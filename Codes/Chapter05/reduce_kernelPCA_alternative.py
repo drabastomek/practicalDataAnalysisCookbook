@@ -48,7 +48,7 @@ for params in kwd_params:
     # vary the colors and markers for the points
     file_save_params = {
         'filename': 
-            '../../Data/Chapter5/charts/kernel_pca_3d_{0}.png'\
+            '../../Data/Chapter05/charts/kernel_pca_3d_{0}.png'\
             .format(params['kernel']), 
         'dpi': 300
     }

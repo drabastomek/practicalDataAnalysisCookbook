@@ -22,7 +22,7 @@ def fitRandomForest(data):
     return forest.fit(data[0],data[1])
 
 # the file name of the dataset
-r_filename = '../../Data/Chapter3/bank_contacts.csv'
+r_filename = '../../Data/Chapter03/bank_contacts.csv'
 
 # read the data
 csv_read = pd.read_csv(r_filename)
@@ -60,5 +60,5 @@ for counter, (nm, label) \
 # and export the trees to .dot files
 for counter, tree in enumerate(classifier.estimators_):
     sk.export_graphviz(tree,
-        out_file='../../Data/Chapter3/randomForest/tree_' \
+        out_file='../../Data/Chapter03/randomForest/tree_' \
         + str(counter) + '.dot')

@@ -100,7 +100,7 @@ for features in featureSpace:
 # filename params for the standard PCA
 f_params = {
     'filename':
-        '../../Data/Chapter5/charts/time_pca_surf.png',
+        '../../Data/Chapter05/charts/time_pca_surf.png',
     'dpi': 300
 }
 
@@ -111,7 +111,7 @@ saveSurfacePlot(sampleSizes, featureSpace,
 # filename params for the randomized PCA
 f_params = {
     'filename':
-        '../../Data/Chapter5/charts/time_r_pca_surf.png',
+        '../../Data/Chapter05/charts/time_r_pca_surf.png',
     'dpi': 300
 }
 

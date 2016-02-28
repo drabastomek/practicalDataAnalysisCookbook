@@ -69,6 +69,6 @@ plt.text(.9, .9, ('R^2: {0:.2f}'.format(score)),
              horizontalalignment='right')
 
 plt.savefig(
-    '../../data/Chapter6/charts/regression_svm_alt.png',
+    '../../data/Chapter06/charts/regression_svm_alt.png',
     dpi=300
 )

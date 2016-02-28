@@ -35,5 +35,5 @@ body_of_text = body_of_text[:24]
 print('\n'.join(body_of_text))
 
 # and save it to a file
-with open('../../Data/Chapter9/ST_gunLaws.txt', 'w') as f:
+with open('../../Data/Chapter09/ST_gunLaws.txt', 'w') as f:
     f.write('\n'.join(body_of_text))

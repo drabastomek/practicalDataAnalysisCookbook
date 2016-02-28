@@ -13,7 +13,7 @@ import statsmodels.api as sm
 import scipy as sc
 
 # folder with data
-data_folder = '../../Data/Chapter7/'
+data_folder = '../../Data/Chapter07/'
 
 # colors 
 colors = ['#FF6600', '#000000', '#29407C', '#660000']

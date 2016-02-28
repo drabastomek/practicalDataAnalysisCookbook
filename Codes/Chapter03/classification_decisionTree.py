@@ -19,7 +19,7 @@ def fitDecisionTree(data):
     return tree.fit(data[0],data[1])
 
 # the file name of the dataset
-r_filename = '../../Data/Chapter3/bank_contacts.csv'
+r_filename = '../../Data/Chapter03/bank_contacts.csv'
 
 # read the data
 csv_read = pd.read_csv(r_filename)
@@ -56,4 +56,4 @@ for counter, (nm, label) \
 
 # and export to a .dot file
 sk.export_graphviz(classifier, 
-    out_file='../../Data/Chapter3/decisionTree/tree.dot')
+    out_file='../../Data/Chapter03/decisionTree/tree.dot')

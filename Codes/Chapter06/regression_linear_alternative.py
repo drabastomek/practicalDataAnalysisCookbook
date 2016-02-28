@@ -11,7 +11,7 @@ import seaborn as sns
 sns.set(style="ticks")
 
 # the file name of the dataset
-r_filename = '../../Data/Chapter6/power_plant_dataset_pc.csv'
+r_filename = '../../Data/Chapter06/power_plant_dataset_pc.csv'
 
 # read the data
 csv_read = pd.read_csv(r_filename)
@@ -45,7 +45,7 @@ for col in x_red.columns:
 sns.lmplot(x='x', y='y', col='PC', hue='PC', data=pc_stack,
            col_wrap=2, size=5)
 
-pl.savefig('../../Data/Chapter6/charts/regression_linear.png',
+pl.savefig('../../Data/Chapter06/charts/regression_linear.png',
     dpi=300)
 
 # select only the fel consumption
@@ -69,5 +69,5 @@ sns.lmplot(x='x', y='y', col='fuel', hue='fuel',
     data=fuel_stack, col_wrap=2, size=5)
 
 pl.savefig(
-    '../../Data/Chapter6/charts/regression_linear_fuel.png',
+    '../../Data/Chapter06/charts/regression_linear_fuel.png',
     dpi=300)

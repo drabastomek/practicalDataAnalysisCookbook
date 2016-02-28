@@ -1,11 +1,11 @@
 import pandas as pd 
 
 # name of the file to read from
-r_filenameCSV = '../../Data/Chapter2/' + \
+r_filenameCSV = '../../Data/Chapter02/' + \
     'realEstate_trans_full.csv'
 
 # name of the output file
-w_filenameCSV = '../../Data/Chapter2/' + \
+w_filenameCSV = '../../Data/Chapter02/' + \
     'realEstate_corellations.csv'
 
 # read the data and select only 4 variables

@@ -41,13 +41,13 @@ def plotInteractions(data, n_clusters):
 
     # and save the figure
     ax.savefig(
-        '../../Data/Chapter4/k_means_{0}_clusters.png' \
+        '../../Data/Chapter04/k_means_{0}_clusters.png' \
         .format(n_clusters)
     )
 
 
 # the file name of the dataset
-r_filename = '../../Data/Chapter4/bank_contacts.csv'
+r_filename = '../../Data/Chapter04/bank_contacts.csv'
 
 # read the data
 csv_read = pd.read_csv(r_filename)

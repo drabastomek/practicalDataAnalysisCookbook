@@ -64,5 +64,5 @@ for i, model in enumerate(models_to_test):
                  transform=plt.gca().transAxes, size=15,
                  horizontalalignment='right')
 
-plt.savefig('../../data/Chapter6/charts/regression_svm.png',
+plt.savefig('../../data/Chapter06/charts/regression_svm.png',
     dpi= 300)

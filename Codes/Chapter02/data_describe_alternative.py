@@ -2,7 +2,7 @@ import scipy.stats as st
 import numpy as np
 
 # name of the file to read from
-r_filenameCSV = '../../Data/Chapter2/' + \
+r_filenameCSV = '../../Data/Chapter02/' + \
     'realEstate_trans_full.csv'
 
 # read the data

@@ -20,7 +20,7 @@ def reduce_PCA(x, n):
     return pca.fit(x)
 
 # the file name of the dataset
-r_filename = '../../Data/Chapter6/power_plant_dataset.csv'
+r_filename = '../../Data/Chapter06/power_plant_dataset.csv'
 
 # read the data
 csv_read = pd.read_csv(r_filename)
@@ -73,6 +73,6 @@ x[csv_read.columns[-1]] = y
 csv_read = x
 
 # output to file
-w_filename = '../../Data/Chapter6/power_plant_dataset_pc.csv'
+w_filename = '../../Data/Chapter06/power_plant_dataset_pc.csv'
 with open(w_filename, 'w') as output:
     output.write(csv_read.to_csv(index=False))

@@ -169,8 +169,8 @@ print(len(twitter['Glenn']) / 19)
 
 # draw the graph
 nx.draw_networkx(twitter)
-plt.savefig('../../Data/Chapter8/twitter_networkx.png')
+plt.savefig('../../Data/Chapter08/twitter_networkx.png')
 
 # save graph
 nx.write_graphml(twitter, 
-    '../../Data/Chapter8/twitter.graphml')
+    '../../Data/Chapter08/twitter.graphml')

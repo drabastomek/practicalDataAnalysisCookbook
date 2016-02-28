@@ -93,7 +93,7 @@ def plot_model(data, model, params, modelType, f, t):
     ax.text(0.1, 0.95, chartText, transform=ax.transAxes)
 
 # folder with data
-data_folder = '../../Data/Chapter7/'
+data_folder = '../../Data/Chapter07/'
 
 # colors 
 colors = ['#FF6600', '#000000', '#29407C', '#660000']
@@ -102,11 +102,11 @@ colors = ['#FF6600', '#000000', '#29407C', '#660000']
 riverFlows = pd.read_csv(data_folder + 'combined_flow_d.csv', 
     index_col=0, parse_dates=[0])
 
-# plot the ACF and PACF functions
-# plot_functions(riverFlows['american_flow_r'], 
-#     'ACF_PACF_American')
-# plot_functions(riverFlows['columbia_flow_r'], 
-#     'ACF_PACF_Columbia')
+plot the ACF and PACF functions
+plot_functions(riverFlows['american_flow_r'], 
+    'ACF_PACF_American')
+plot_functions(riverFlows['columbia_flow_r'], 
+    'ACF_PACF_Columbia')
 
 
 # fit american models
@@ -121,14 +121,14 @@ fit_model(riverFlows['columbia_flow_r'], (3, 0, 2),
 fit_model(riverFlows['columbia_flow_r'], (3, 1, 2), 
     'ARIMA_Columbia', '1960-09-30', '1962')
 
-# # fit american models
-# fit_model(riverFlows['american_flow_r'], (3, 0, 5), 
-#     'ARMA_American', '1960-11-30', '1962')
-# fit_model(riverFlows['american_flow_r'], (3, 1, 5), 
-#     'ARIMA_American', '1960-11-30', '1962')
+# fit american models
+fit_model(riverFlows['american_flow_r'], (3, 0, 5), 
+    'ARMA_American', '1960-11-30', '1962')
+fit_model(riverFlows['american_flow_r'], (3, 1, 5), 
+    'ARIMA_American', '1960-11-30', '1962')
 
-# # fit colum models
-# fit_model(riverFlows['columbia_flow_r'], (3, 0, 2), 
-#     'ARMA_Columbia', '1960-09-30', '1962')
-# fit_model(riverFlows['columbia_flow_r'], (3, 1, 2), 
-#     'ARIMA_Columbia', '1960-09-30', '1962')
+# fit colum models
+fit_model(riverFlows['columbia_flow_r'], (3, 0, 2), 
+    'ARMA_Columbia', '1960-09-30', '1962')
+fit_model(riverFlows['columbia_flow_r'], (3, 1, 2), 
+    'ARIMA_Columbia', '1960-09-30', '1962')

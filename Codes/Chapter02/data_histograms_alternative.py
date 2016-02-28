@@ -2,11 +2,11 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # name of the file to read from
-r_filenameCSV = '../../Data/Chapter2/' + \
+r_filenameCSV = '../../Data/Chapter02/' + \
     'realEstate_trans_full.csv'
 
 # name of the output file
-w_filenameCSV = '../../Data/Chapter2/' + \
+w_filenameCSV = '../../Data/Chapter02/' + \
     'realEstate_corellations.csv'
 
 # read the data and select only sales of flats 
@@ -27,7 +27,7 @@ csv_read.hist(
 
 # save to file
 plt.savefig(
-    '../../Data/Chapter2/Figures/priceByBeds_histogram.pdf'
+    '../../Data/Chapter02/Figures/priceByBeds_histogram.pdf'
 )
 
 # show the figures

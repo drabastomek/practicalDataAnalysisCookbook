@@ -11,7 +11,7 @@ def preprocess_data(text):
     tokenized = [tokenizer.tokenize(s) for s in sentences]
 
 # import the data
-guns_laws = '../../Data/Chapter9/ST_gunLaws.txt'
+guns_laws = '../../Data/Chapter09/ST_gunLaws.txt'
 
 with open(guns_laws, 'r') as f:
     article = f.read()
@@ -72,5 +72,5 @@ plt.yticks(y_pos, top_words_transposed[0][:10])
 plt.xlabel('Frequency')
 plt.ylabel('Top words')
 
-plt.savefig('../../Data/Chapter9/charts/word_frequency.png',
+plt.savefig('../../Data/Chapter09/charts/word_frequency.png',
     dpi=300)

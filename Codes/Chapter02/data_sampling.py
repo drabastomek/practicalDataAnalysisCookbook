@@ -6,7 +6,8 @@ import numpy as np
 strata_frac = 0.2
 
 # name of the file to output the sample
-w_filenameSample = '../../Data/Chapter2/realEstate_sample.csv'
+w_filenameSample = \
+    '../../Data/Chapter02/realEstate_sample.csv'
 
 # limiting sales transactions to those of 2, 3, and 4 bedroom
 # properties

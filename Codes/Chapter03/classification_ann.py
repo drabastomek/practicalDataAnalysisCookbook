@@ -39,7 +39,7 @@ def fitANN(data):
     return ann
 
 # the file name of the dataset
-r_filename = '../../Data/Chapter3/bank_contacts.csv'
+r_filename = '../../Data/Chapter03/bank_contacts.csv'
 
 # read the data
 csv_read = pd.read_csv(r_filename)

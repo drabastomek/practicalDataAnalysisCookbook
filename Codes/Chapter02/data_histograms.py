@@ -28,7 +28,7 @@ ax = sns.distplot(
 ax.set_title('Price histogram with estimated kernel function')
 
 # and save to a file
-plt.savefig('../../Data/Chapter2/Figures/price_histogram.pdf')
+plt.savefig('../../Data/Chapter02/Figures/price_histogram.pdf')
 
 # finally, show the plot
 plt.show()

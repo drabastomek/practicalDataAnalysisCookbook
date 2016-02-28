@@ -19,7 +19,7 @@ def findClusters_link(data):
     return cl.linkage(data, method='single')
 
 # the file name of the dataset
-r_filename = '../../Data/Chapter4/bank_contacts.csv'
+r_filename = '../../Data/Chapter04/bank_contacts.csv'
 
 # read the data
 csv_read = pd.read_csv(r_filename)
@@ -44,6 +44,6 @@ ax.set_yticks([])
 
 # save the figure
 fig.savefig(
-    '../../Data/Chapter4/hierarchical_dendrogram.png',
+    '../../Data/Chapter04/hierarchical_dendrogram.png',
     dpi=300
 )

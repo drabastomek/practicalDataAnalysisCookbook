@@ -24,7 +24,7 @@ def regression_cart(x,y):
     return cart
 
 # the file name of the dataset
-r_filename = '../../Data/Chapter6/power_plant_dataset_pc.csv'
+r_filename = '../../Data/Chapter06/power_plant_dataset_pc.csv'
 
 # read the data
 csv_read = pd.read_csv(r_filename)
@@ -65,7 +65,7 @@ for counter, (nm, label) \
 
 # and export to a .dot file
 sk.export_graphviz(regressor, 
-    out_file='../../Data/Chapter6/CART/tree.dot')
+    out_file='../../Data/Chapter06/CART/tree.dot')
 
 # estimate the model using Principal Components only
 regressor_red = regression_cart(x_red,y)
@@ -81,4 +81,4 @@ for counter, (nm, label) \
 
 # and export to a .dot file
 sk.export_graphviz(regressor_red, 
-    out_file='../../Data/Chapter6/CART/tree_red.dot')
+    out_file='../../Data/Chapter06/CART/tree_red.dot')

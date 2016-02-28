@@ -6,8 +6,8 @@ import sqlalchemy as sa
 test_size = 0.33
 
 # names of the files to output the samples
-w_filenameTrain = '../../Data/Chapter2/realEstate_train.csv'
-w_filenameTest  = '../../Data/Chapter2/realEstate_test.csv'
+w_filenameTrain = '../../Data/Chapter02/realEstate_train.csv'
+w_filenameTest  = '../../Data/Chapter02/realEstate_test.csv'
 
 # database credentials
 usr  = 'drabast'

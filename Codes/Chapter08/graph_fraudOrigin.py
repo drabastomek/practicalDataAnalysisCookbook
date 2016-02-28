@@ -3,7 +3,7 @@ import numpy as np
 import collections as c
 
 # import the graph
-graph_file = '../../Data/Chapter8/fraud.gz'
+graph_file = '../../Data/Chapter08/fraud.gz'
 fraud = nx.read_graphml(graph_file)
 
 # identify customers with stolen credit cards

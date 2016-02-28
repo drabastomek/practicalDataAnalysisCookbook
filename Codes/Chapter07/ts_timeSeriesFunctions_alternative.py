@@ -12,7 +12,7 @@ matplotlib.rc('font', size=14)
 import statsmodels.api as sm
 
 # folder with data
-data_folder = '../../Data/Chapter7/'
+data_folder = '../../Data/Chapter07/'
 
 # read the data
 riverFlows = pd.read_csv(data_folder + 'combined_flow.csv', 

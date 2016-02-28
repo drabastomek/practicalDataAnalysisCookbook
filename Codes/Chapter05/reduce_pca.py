@@ -24,7 +24,7 @@ def reduce_PCA(x):
     return pca
 
 # the file name of the dataset
-r_filename = '../../Data/Chapter5/bank_contacts.csv'
+r_filename = '../../Data/Chapter05/bank_contacts.csv'
 
 # read the data
 csv_read = pd.read_csv(r_filename)
@@ -41,7 +41,7 @@ z = reduce_PCA(x)
 color_marker = [('r','o'),('g','.')]
 
 file_save_params = {
-    'filename': '../../Data/Chapter5/charts/pca_3d.png', 
+    'filename': '../../Data/Chapter05/charts/pca_3d.png', 
     'dpi': 300
 }
 

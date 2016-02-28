@@ -4,8 +4,8 @@ import sqlalchemy as sa
 import sklearn.cross_validation as sk
 
 # names of the files to output the samples
-w_filenameTrain = '../../Data/Chapter2/realEstate_train2.csv'
-w_filenameTest  = '../../Data/Chapter2/realEstate_test2.csv'
+w_filenameTrain = '../../Data/Chapter02/realEstate_train2.csv'
+w_filenameTest  = '../../Data/Chapter02/realEstate_test2.csv'
 
 # database credentials
 usr  = 'drabast'

@@ -7,7 +7,7 @@ strata_cnt = 200
 
 # name of the file to output the sample
 w_filenameSample = \
-    '../../Data/Chapter2/realEstate_sample2.csv'
+    '../../Data/Chapter02/realEstate_sample2.csv'
 
 # limiting sales transactions to those of 2, 3, and 4 bedroom
 # properties

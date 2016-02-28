@@ -40,5 +40,5 @@ NPChunker = nltk.RegexpParser(pattern)
 chunks = [NPChunker.parse(s) for s in sentences]
 
 # save to file
-print_tree(chunks[0], '../../Data/Chapter9/charts/sent1.ps')
-print_tree(chunks[1], '../../Data/Chapter9/charts/sent2.ps')
+print_tree(chunks[0], '../../Data/Chapter09/charts/sent1.ps')
+print_tree(chunks[1], '../../Data/Chapter09/charts/sent2.ps')

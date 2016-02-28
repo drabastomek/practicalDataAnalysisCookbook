@@ -45,7 +45,7 @@ for i in range(2,5):
 
 # specify the output HTML file
 b.output_file(
-    '../../Data/Chapter2/Figures/price_bed_area.html',
+    '../../Data/Chapter02/Figures/price_bed_area.html',
     title='Price vs floor area for different bed count'
 )
 
