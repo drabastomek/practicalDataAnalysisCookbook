@@ -77,8 +77,8 @@ def xml_encode(row):
     return '\n'.join(xmlItem)
 
 # names of files to read from and write to
-r_filenameXML = '../../Data/Chapter1/realEstate_trans.xml'
-w_filenameXML = '../../Data/Chapter1/realEstate_trans.xml'
+r_filenameXML = '../../Data/Chapter01/realEstate_trans.xml'
+w_filenameXML = '../../Data/Chapter01/realEstate_trans.xml'
 
 # read the data
 xml_read = read_xml(r_filenameXML)

@@ -13,11 +13,11 @@ def standardize(col):
     return (col - col.mean()) / col.std()
 
 # name of the file to read from
-r_filenameCSV = '../../Data/Chapter1/' + \
+r_filenameCSV = '../../Data/Chapter01/' + \
     'realEstate_trans_price_imputed.csv'
 
 # name of the output file
-w_filenameCSV = '../../Data/Chapter1/' + \
+w_filenameCSV = '../../Data/Chapter01/' + \
     'realEstate_trans_standardized.csv'
 
 # list of columns to normalize and standardize

@@ -1,12 +1,12 @@
 import pandas as pd 
 
 # names of files to read from
-r_filenameCSV = '../../Data/Chapter1/realEstate_trans.csv'
-r_filenameTSV = '../../Data/Chapter1/realEstate_trans.tsv'
+r_filenameCSV = '../../Data/Chapter01/realEstate_trans.csv'
+r_filenameTSV = '../../Data/Chapter01/realEstate_trans.tsv'
 
 # names of files to write to
-w_filenameCSV = '../../Data/Chapter1/realEstate_trans.csv'
-w_filenameTSV = '../../Data/Chapter1/realEstate_trans.tsv'
+w_filenameCSV = '../../Data/Chapter01/realEstate_trans.csv'
+w_filenameTSV = '../../Data/Chapter01/realEstate_trans.tsv'
 
 # read the data
 csv_read = pd.read_csv(r_filenameCSV)

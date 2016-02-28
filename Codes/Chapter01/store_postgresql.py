@@ -2,7 +2,7 @@ import pandas as pd
 import sqlalchemy as sa
 
 # name of the CSV file to read from
-r_filenameCSV = '../../Data/Chapter1/realEstate_trans.csv'
+r_filenameCSV = '../../Data/Chapter01/realEstate_trans.csv'
 
 # database credentials
 usr  = 'drabast'

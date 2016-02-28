@@ -2,8 +2,8 @@ import pandas as pd
 import sqlalchemy as sa
 
 # name of the CSV file to read from and SQLite database
-r_filenameCSV = '../../Data/Chapter1/realEstate_trans.csv'
-rw_filenameSQLite = '../../Data/Chapter1/realEstate_trans.db'
+r_filenameCSV = '../../Data/Chapter01/realEstate_trans.csv'
+rw_filenameSQLite = '../../Data/Chapter01/realEstate_trans.db'
 
 # create the connection to the database
 engine = sa.create_engine(

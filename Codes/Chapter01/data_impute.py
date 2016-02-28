@@ -1,11 +1,11 @@
 import pandas as pd 
 
 # name of the file to read from
-r_filenameCSV = '../../Data/Chapter1/' + \
+r_filenameCSV = '../../Data/Chapter01/' + \
     'realEstate_trans_less_dirty.csv'
 
 # name of the output file
-w_filenameCSV = '../../Data/Chapter1/' + \
+w_filenameCSV = '../../Data/Chapter01/' + \
     'realEstate_trans_price_imputed.csv'
 
 # read the data

@@ -1,7 +1,7 @@
 import json
 
 # read the data
-with open('../../Data/Chapter1/realEstate_trans.json', 'r') \
+with open('../../Data/Chapter01/realEstate_trans.json', 'r') \
     as json_file:
         json_read = json.loads(json_file.read())
 
@@ -9,6 +9,6 @@ with open('../../Data/Chapter1/realEstate_trans.json', 'r') \
 print(json_read[-10:])
 
 # write back to the file
-with open('../../Data/Chapter1/realEstate_trans.json', 'w') \
+with open('../../Data/Chapter01/realEstate_trans.json', 'w') \
     as json_file:
         json_file.write(json.dumps(json_read))

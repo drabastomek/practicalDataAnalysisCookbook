@@ -1,7 +1,7 @@
 import openpyxl as oxl
 
 # name of files to read from 
-r_filenameXLSX = '../../Data/Chapter1/realEstate_trans.xlsx'
+r_filenameXLSX = '../../Data/Chapter01/realEstate_trans.xlsx'
 
 # open the Excel file
 xlsx_wb = oxl.load_workbook(filename=r_filenameXLSX)

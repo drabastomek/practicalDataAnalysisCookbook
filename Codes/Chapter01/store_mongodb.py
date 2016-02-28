@@ -2,7 +2,7 @@ import pandas as pd
 import pymongo
 
 # name of the CSV file to read from and SQLite database
-r_filenameCSV = '../../Data/Chapter1/realEstate_trans.csv'
+r_filenameCSV = '../../Data/Chapter01/realEstate_trans.csv'
 
 # read the data
 csv_read = pd.read_csv(r_filenameCSV)

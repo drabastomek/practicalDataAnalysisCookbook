@@ -1,8 +1,8 @@
 import csv 
 
 # names of files to read from
-r_filenameCSV = '../../Data/Chapter1/realEstate_trans.csv'
-r_filenameTSV = '../../Data/Chapter1/realEstate_trans.tsv'
+r_filenameCSV = '../../Data/Chapter01/realEstate_trans.csv'
+r_filenameTSV = '../../Data/Chapter01/realEstate_trans.tsv'
 
 # data structures to hold the data
 csv_labels = []

@@ -1,8 +1,8 @@
 import pandas as pd
 
 # name of files to read from and write to
-r_filenameXLSX = '../../Data/Chapter1/realEstate_trans.xlsx'
-w_filenameXLSX = '../../Data/Chapter1/realEstate_trans.xlsx'
+r_filenameXLSX = '../../Data/Chapter01/realEstate_trans.xlsx'
+w_filenameXLSX = '../../Data/Chapter01/realEstate_trans.xlsx'
 
 # open the Excel file
 xlsx_file = pd.ExcelFile(r_filenameXLSX)
