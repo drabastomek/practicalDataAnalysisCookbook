@@ -31,12 +31,18 @@ x_train, x_test, y_train, y_test = sk.train_test_split(
 
 # then form DataFrames for ease of manipulating
 train = pd.DataFrame(
-    np.append(x_train, y_train[...,None], 1), 
+    np.append(
+        x_train, \
+        y_train.reshape((x_train.shape[0], 1)), \
+        1), 
     columns=['zip', 'beds', 'sq__ft', 'price']
 )
 
 test = pd.DataFrame(
-    np.append(x_test, y_test[...,None], 1), 
+    np.append(
+        x_test, 
+        y_test.reshape((x_test.shape[0], 1)), \
+        1), 
     columns=['zip', 'beds', 'sq__ft', 'price']
 )
 
