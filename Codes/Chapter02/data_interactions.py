@@ -2,7 +2,7 @@ import pandas as pd
 import sqlalchemy as sa
 
 # names of the files to output the samples
-w_filenameD3js = '../../Data/Chapter2/realEstate_d3.csv'
+w_filenameD3js = '../../Data/Chapter02/realEstate_d3.csv'
 
 # database credentials
 usr  = 'drabast'
