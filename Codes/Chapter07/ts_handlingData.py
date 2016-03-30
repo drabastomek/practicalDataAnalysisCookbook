@@ -23,12 +23,12 @@ american = pd.read_csv(data_folder + files[0],
     index_col=0, parse_dates=[0], 
     header=0, names=['','american_flow'])
 
-judith = pd.read_csv(data_folder + files[1], 
+columbia = pd.read_csv(data_folder + files[1], 
     index_col=0, parse_dates=[0],
     header=0, names=['','columbia_flow'])
 
 # combine the datasets
-riverFlows = american.combine_first(judith)
+riverFlows = american.combine_first(columbia)
 
 # periods aren't equal in the two datasets so find the overlap
 # find the first month where the flow is missing for american
