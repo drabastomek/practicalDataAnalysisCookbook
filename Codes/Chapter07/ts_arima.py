@@ -43,7 +43,7 @@ def fit_model(data, params, modelType, f, t):
 
     # fit the model
     model_res = model.fit(maxiter=600, trend='nc', 
-        start_params=[.1] * (params[0]+params[2]), tol=1e06)
+        start_params=[.1] * (params[0]+params[2]), tol=1e-06)
 
     # create figure
     fig, ax = plt.subplots(1, figsize=(12, 8))
